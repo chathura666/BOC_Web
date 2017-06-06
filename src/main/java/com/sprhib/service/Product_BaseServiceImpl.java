@@ -16,14 +16,13 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author it207432
  */
-
 @Service
 @Transactional
 public class Product_BaseServiceImpl implements Product_BaseService {
 
     @Autowired
     private Product_BaseDAO pbaseDAO;
-    
+
     @Override
     public void addProduct(Product_Base pbase) {
         pbaseDAO.addProduct(pbase);
@@ -47,6 +46,11 @@ public class Product_BaseServiceImpl implements Product_BaseService {
     @Override
     public List<Product_Base> getProducts() {
         return pbaseDAO.getProducts();
+    }
+
+    @Override
+    public List<Object> getAllTables() {
+        return pbaseDAO.getAllTables();
     }
 
 }

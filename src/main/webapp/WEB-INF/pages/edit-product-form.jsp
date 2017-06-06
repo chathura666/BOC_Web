@@ -65,11 +65,11 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
+<!--                            <div class="form-group">
                                 <div class="col-sm-9 col-sm-offset-3">
                                     <p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>
                                 </div>
-                            </div>                                
+                            </div>                                -->
                         </form:form>
                     </div>
 

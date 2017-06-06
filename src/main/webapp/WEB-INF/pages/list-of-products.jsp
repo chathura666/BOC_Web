@@ -18,39 +18,60 @@
 
                 </head>
                 <body>
-                    <h2 style="padding-left: 10px;">List of Products</h2>
-                    <div><br></br></div>
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
-                        <div class="panel-heading" style="padding-left: 10px; padding-bottom: 10px">Here you can see the list of the products, edit them, remove or update.</div>
-     
+                    <div class="container">
+                        <h3>List of Products</h3>
+                        <div class="row"><br></br></div>
+                        <div class="row" style="padding-bottom: 10px">
+                            <div class="col-sm-10">
+                                <c:if test = "${not empty message}">
+                                    <div style="padding-top: 5px;padding-bottom: 5px;" class="alert alert-success" role="alert"><c:out value = "${message}"/></div>
+                                </c:if>
+                            </div>
+                            <div class="col-sm-2">
+                                <a href="${pageContext.request.contextPath}/pbase/addProduct.html" class="btn btn-success" role="button" style="width:110px">+ Add New</a>
+                            </div>
+                        </div>
                         <!-- Table -->
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr align="center">
-                                    <th align="center" width="5%">PID</th><th align="center" width="5%">P_Code</th><th align="center" width="5%">WF_P_Code</th><th align="center" width="20%">P_Name</th><th align="center" width="35%">P_Desc</th><th align="center" width="5%">P_Cat_ID</th><th align="center" width="20%"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach var="pbase" items="${pbases}">
+                        <div class="row">
+                            <table class="table table-striped table-bordered">
+
+                                <thead>
                                     <tr>
-                                        <td align="left">${pbase.PID}</td>
-                                        <td align="left">${pbase.PRODUCT_CODE}</td>
-                                        <td align="left">${pbase.WF_PRODUCT_CODE}</td>
-                                        <td align="left">${pbase.PRODUCT_NAME}</td>
-                                        <td align="left">${pbase.PRODUCT_DESCRIPTION}</td>
-                                        <td align="left">${pbase.PRODUCT_CATEGORY_ID}</td>
-                                        <td align="center">
-                                            <a href="${pageContext.request.contextPath}/pbase/editProduct/${pbase.PID}.html" class="btn btn-primary" role="button" style="width:70px">Edit</a>
-                                            <a href="${pageContext.request.contextPath}/pbase/deleteProduct/${pbase.PID}.html" class="btn btn-primary" role="button" style="width:70px">Delete</a>
-                                        </td>
+                                        <div class="row">
+                                            <td class="col-md-1">PID</td>
+                                            <td class="col-md-1">P_Code</td>
+                                            <td class="col-md-1">WF_P_Code</td>
+                                            <td class="col-md-3">P_Name</td>
+                                            <td class="col-md-3">P_Desc</td>
+                                            <td class="col-md-1">P_Cat_ID</td>
+                                            <td class="col-md-2"></td>
                                     </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
+                                </thead>
+
+                                <tbody>
+                                    <c:forEach var="pbase" items="${pbases}">
+                                        <div class="row">
+                                            <tr>
+                                                <td class="col-md-1">${pbase.PID}</td>
+                                                <td class="col-md-1">${pbase.PRODUCT_CODE}</td>
+                                                <td class="col-md-1">${pbase.WF_PRODUCT_CODE}</td>
+                                                <td class="col-md-3">${pbase.PRODUCT_NAME}</td>
+                                                <td class="col-md-3">${pbase.PRODUCT_DESCRIPTION}</td>
+                                                <td class="col-md-1">${pbase.PRODUCT_CATEGORY_ID}</td>
+                                                <td class="col-md-2">
+                                                    <a href="${pageContext.request.contextPath}/pbase/editProduct/${pbase.PID}.html" class="btn btn-primary" role="button" style="width:60px">Edit</a>
+                                                    <a href="${pageContext.request.contextPath}/pbase/deleteProduct/${pbase.PID}.html" class="btn btn-warning" role="button" style="width:60px">Delete</a>
+                                                </td>
+                                            </tr>
+                                        </div>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--<p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>-->
                     </div>
 
-                    <p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>
+
 
                 </body>
                 </html>

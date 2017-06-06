@@ -64,4 +64,9 @@ public class Product_BaseDAOImpl implements Product_BaseDAO {
         return getCurrentSession().createQuery("from Product_Base").list();
     }
 
+    @Override
+    public List<Object> getAllTables() {
+        return getCurrentSession().createQuery("SELECT TABLE_NAME FROM WFCONFIG.TABLES WHERE TABLE_SCHEMA=DATABASE()").list();
+    }
+
 }

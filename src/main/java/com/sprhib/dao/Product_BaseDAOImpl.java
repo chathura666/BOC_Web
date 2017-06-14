@@ -5,7 +5,7 @@
  */
 package com.sprhib.dao;
 
-import com.sprhib.model.Product_Base;
+import com.sprhib.model.ProductBase;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,31 +27,31 @@ public class Product_BaseDAOImpl implements Product_BaseDAO {
     }
 
     @Override
-    public void addProduct(Product_Base pbase) {
+    public void addProduct(ProductBase pbase) {
         getCurrentSession().save(pbase);
     }
 
     @Override
-    public void updateProduct(Product_Base pbase) {
-        Product_Base productToUpdate = getProduct(pbase.getPID());
-        productToUpdate.setPRODUCT_CODE(pbase.getPRODUCT_CODE());
-        productToUpdate.setPRODUCT_DESCRIPTION(pbase.getPRODUCT_DESCRIPTION());
-        productToUpdate.setPRODUCT_NAME(pbase.getPRODUCT_NAME());
-        productToUpdate.setWF_PRODUCT_CODE(pbase.getWF_PRODUCT_CODE());
-        productToUpdate.setPRODUCT_CATEGORY_ID(pbase.getPRODUCT_CATEGORY_ID());
+    public void updateProduct(ProductBase pbase) {
+        ProductBase productToUpdate = getProduct(pbase.getPid());
+        productToUpdate.setProductCode(pbase.getProductCode());
+        productToUpdate.setProductDescription(pbase.getProductDescription());
+        productToUpdate.setProductName(pbase.getProductName());
+        productToUpdate.setWfProductCode(pbase.getWfProductCode());
+        productToUpdate.setProductCategoryId(pbase.getProductCategoryId());
         getCurrentSession().update(productToUpdate);
     }
 
     @Override
-    public Product_Base getProduct(int pid) {
-        Product_Base pbase = (Product_Base) getCurrentSession().get(Product_Base.class, pid);
+    public ProductBase getProduct(int pid) {
+        ProductBase pbase = (ProductBase) getCurrentSession().get(ProductBase.class, pid);
         return pbase;
 
     }
 
     @Override
     public void deleteProduct(int id) {
-        Product_Base pbase = getProduct(id);
+        ProductBase pbase = getProduct(id);
         if (pbase != null) {
             getCurrentSession().delete(pbase);
         }
@@ -60,13 +60,13 @@ public class Product_BaseDAOImpl implements Product_BaseDAO {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Product_Base> getProducts() {
-        return getCurrentSession().createQuery("from Product_Base").list();
+    public List<ProductBase> getProducts() {
+        return getCurrentSession().createQuery("from ProductBase").list();
     }
 
     @Override
     public List<Object> getAllTables() {
-        return getCurrentSession().createQuery("SELECT TABLE_NAME FROM WFCONFIG.TABLES WHERE TABLE_SCHEMA=DATABASE()").list();
+        return getCurrentSession().createQuery("select * from wfconfig.systables").list();
     }
 
 }

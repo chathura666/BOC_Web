@@ -17,6 +17,11 @@ public class LinkController {
 		return new ModelAndView("home");
 	}
         
+        @RequestMapping(value="/login")
+	public ModelAndView loginPage() {
+		return new ModelAndView("Login");
+	}
+        
 //        @RequestMapping(value="/pbase")
 //        public ModelAndView ProductsPage() {
 //		return new ModelAndView("products");

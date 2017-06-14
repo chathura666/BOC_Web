@@ -69,7 +69,7 @@
                     </c:if>
                 </div>
                 <div>
-                    <a href="${pageContext.request.contextPath}/pbase/addProduct.html" class="btn btn-success" role="button" style="width:110px">+ Add New</a>
+                    <a href="${pageContext.request.contextPath}/pcbase/addProductCategory.html" class="btn btn-success" role="button" style="width:110px">+ Add New</a>
                 </div>
             </div>
             <!-- Table -->
@@ -78,32 +78,24 @@
 
                     <thead>
                         <tr>
+                            
                             <div>
-                                <td>PID</td>
-                                <td>P_Code</td>
-                                <td>WF_P_Code</td>
-                                <td>P_Name</td>
-                                <td>P_Desc</td>
-                                <td>P_Cat_ID</td>
+                                <td>PRODUCT_CATEGORY_ID</td>
+                                <td>PRODUCT_CATEGORY</td>
                                 <td></td>
                                 <td></td>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <c:forEach var="pbase" items="${pbases}">
+                        <c:forEach var="pcbase" items="${pcbases}">
                             <tr>
-                                <td>${pbase.pid}</td>
-                                <td>${pbase.productCode}</td>
-                                <td>${pbase.wfProductCode}</td>
-                                <td>${pbase.productName}</td>
-                                <td>${pbase.productDescription}</td>
-                                <td>${pbase.productCategoryId}</td>
+                                <td>${pcbase.productCategoryId}</td>
+                                <td>${pcbase.productCategory}</td>
 
+                                <td>   <a href="${pageContext.request.contextPath}/pcbase/editProductCategory/${pcbase.productCategoryId}.html" class="btn btn-primary" role="button" id="editbtn" style="width:60px"  onclick="return confirm('Are you sure you want to edit this item?');">Edit</a>  </td>
 
-                                <td>   <a href="${pageContext.request.contextPath}/pbase/editProduct/${pbase.pid}.html" class="btn btn-primary" role="button" id="editbtn" style="width:60px"  onclick="return confirm('Are you sure you want to edit this item?');">Edit</a>  </td>
-
-                                <td>   <a href="${pageContext.request.contextPath}/pbase/deleteProduct/${pbase.pid}.html" class="btn btn-warning" role="button" id="deletebtn"  onclick="return confirm('Are you sure you want to delete this item?');" style="width:60px">Delete</a>  </td>
+                                <td>   <a href="${pageContext.request.contextPath}/pcbase/deleteProductCategory/${pcbase.productCategoryId}.html" class="btn btn-warning" role="button" id="deletebtn"  onclick="return confirm('Are you sure you want to delete this item?');" style="width:60px">Delete</a>  </td>
 
                             </tr>
                         </c:forEach>

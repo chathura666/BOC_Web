@@ -25,42 +25,42 @@
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">Product ID:</label>
                                 <div class="col-sm-9">
-                                    <form:input type="text" class="form-control" path="PID"/>
+                                    <form:input type="text" class="form-control" path="pid"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">Product Code:</label>
                                 <div class="col-sm-9">
-                                    <form:input type="text" class="form-control" path="PRODUCT_CODE"/>
+                                    <form:input type="text" class="form-control" path="productCode"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">WF Product Code:</label>
                                 <div class="col-sm-9">
-                                    <form:input type="text" class="form-control" path="WF_PRODUCT_CODE"/>
+                                    <form:input type="text" class="form-control" path="wfProductCode"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Product Name:</label>
                                 <div class="col-sm-9">
-                                    <form:input type="text" class="form-control" path="PRODUCT_NAME"/>
+                                    <form:input type="text" class="form-control" path="productName"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">Product Description:</label>
                                 <div class="col-sm-9">
-                                    <form:input type="text" class="form-control" path="PRODUCT_DESCRIPTION"/>
+                                    <form:input type="text" class="form-control" path="productDescription"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">Product Category ID:</label>
                                 <div class="col-sm-9">
-                                    <form:input type="text" class="form-control" path="PRODUCT_CATEGORY_ID"/>
+                                    <form:input type="text" class="form-control" path="productCategoryId"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <div class="col-sm-9 col-sm-offset-3">
+                                <div class="col-sm-2 col-sm-offset-6">
                                     <button type="submit" class="btn btn-primary btn-block">Add Product</button>
                                 </div>
                             </div>

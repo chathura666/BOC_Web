@@ -5,7 +5,7 @@
  */
 package com.sprhib.service;
 
-import com.sprhib.model.Product_Base;
+import com.sprhib.model.ProductBase;
 import java.util.List;
 
 /**
@@ -14,15 +14,15 @@ import java.util.List;
  */
 public interface Product_BaseService {
 
-    public void addProduct(Product_Base pbase);
+    public void addProduct(ProductBase pbase);
 
-    public void updateProduct(Product_Base pbase);
+    public void updateProduct(ProductBase pbase);
 
-    public Product_Base getProduct(int id);
+    public ProductBase getProduct(int id);
 
     public void deleteProduct(int id);
 
-    public List<Product_Base> getProducts();
+    public List<ProductBase> getProducts();
     
     public List<Object>  getAllTables();
 

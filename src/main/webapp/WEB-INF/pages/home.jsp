@@ -11,22 +11,32 @@
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>  
                 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
 
+                <script>
+                    function redirect_url(url)
+                    {
+                        window.location = url;
+                    }
+
+
+                </script>
+
                 </head>
                 <body>
                     <div class="container" style="padding-left: 140px;
                          padding-right: 140px;
                          padding-top: 140px;
                          padding-bottom: 140px;">
-                        <form>
-                            <fieldset>
-                                <div class="form-group">
-                                    <label for="disabledSelect">Select Table</label>
-                                    <select id="disabledSelect" class="form-control">
-                                        <option>PRODUCT_BASE</option>
-                                    </select>
-                                </div>
-                                <a href="${pageContext.request.contextPath}/pbase/listProducts.html" class="btn btn-primary" role="button" style="width:70px">Next</a>
-                            </fieldset>
+                        <form name="dropdown">
+                            <div>
+                                <select size="1" name="tablelist" id="tablelist" >
+                                    <option value="${pageContext.request.contextPath}/pbase/listProducts.html">Product Base</option>
+                                    <option value="${pageContext.request.contextPath}/pcbase/listProductCategories.html">Product Base Category</option>
+                                </select>
+                            </div>
+                            <br></br>
+                            <div>
+                                <a class="btn btn-success" role="button" style="width:110px" onclick="redirect_url(document.getElementById('tablelist').value)">Next</a>
+                            </div>
                         </form>
                     </div>
                 </body>

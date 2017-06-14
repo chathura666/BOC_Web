@@ -6,7 +6,7 @@
 package com.sprhib.service;
 
 import com.sprhib.dao.Product_BaseDAO;
-import com.sprhib.model.Product_Base;
+import com.sprhib.model.ProductBase;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,17 +24,17 @@ public class Product_BaseServiceImpl implements Product_BaseService {
     private Product_BaseDAO pbaseDAO;
 
     @Override
-    public void addProduct(Product_Base pbase) {
+    public void addProduct(ProductBase pbase) {
         pbaseDAO.addProduct(pbase);
     }
 
     @Override
-    public void updateProduct(Product_Base pbase) {
+    public void updateProduct(ProductBase pbase) {
         pbaseDAO.updateProduct(pbase);
     }
 
     @Override
-    public Product_Base getProduct(int id) {
+    public ProductBase getProduct(int id) {
         return pbaseDAO.getProduct(id);
     }
 
@@ -44,7 +44,7 @@ public class Product_BaseServiceImpl implements Product_BaseService {
     }
 
     @Override
-    public List<Product_Base> getProducts() {
+    public List<ProductBase> getProducts() {
         return pbaseDAO.getProducts();
     }
 

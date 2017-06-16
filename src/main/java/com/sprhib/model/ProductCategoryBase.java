@@ -6,21 +6,24 @@
 package com.sprhib.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author it207432
  */
 @Entity
-@Table(name = "product_category_base")
+@Table(name = "PRODUCT_CATEGORY_BASE")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ProductCategoryBase.findAll", query = "SELECT p FROM ProductCategoryBase p"),
@@ -36,6 +39,8 @@ public class ProductCategoryBase implements Serializable {
     @Basic(optional = false)
     @Column(name = "PRODUCT_CATEGORY")
     private String productCategory;
+    @OneToMany(mappedBy = "productCategoryId")
+    private Collection<ProductBase> productBaseCollection;
 
     public ProductCategoryBase() {
     }
@@ -65,6 +70,15 @@ public class ProductCategoryBase implements Serializable {
         this.productCategory = productCategory;
     }
 
+    @XmlTransient
+    public Collection<ProductBase> getProductBaseCollection() {
+        return productBaseCollection;
+    }
+
+    public void setProductBaseCollection(Collection<ProductBase> productBaseCollection) {
+        this.productBaseCollection = productBaseCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -87,7 +101,7 @@ public class ProductCategoryBase implements Serializable {
 
     @Override
     public String toString() {
-        return "db.ProductCategoryBase[ productCategoryId=" + productCategoryId + " ]";
+        return "db2.ProductCategoryBase[ productCategoryId=" + productCategoryId + " ]";
     }
     
 }

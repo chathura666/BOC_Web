@@ -5,11 +5,8 @@
  */
 package com.sprhib.controller;
 
-import com.sprhib.model.ProductBase;
 import com.sprhib.model.ProductCategoryBase;
-import com.sprhib.service.Product_BaseService;
 import com.sprhib.service.Product_Category_BaseService;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

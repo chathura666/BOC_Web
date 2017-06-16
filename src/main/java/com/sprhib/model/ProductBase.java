@@ -6,21 +6,27 @@
 package com.sprhib.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author it207432
  */
 @Entity
-@Table(name = "product_base")
+@Table(name = "PRODUCT_BASE")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ProductBase.findAll", query = "SELECT p FROM ProductBase p"),
@@ -28,8 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ProductBase.findByProductCode", query = "SELECT p FROM ProductBase p WHERE p.productCode = :productCode"),
     @NamedQuery(name = "ProductBase.findByWfProductCode", query = "SELECT p FROM ProductBase p WHERE p.wfProductCode = :wfProductCode"),
     @NamedQuery(name = "ProductBase.findByProductName", query = "SELECT p FROM ProductBase p WHERE p.productName = :productName"),
-    @NamedQuery(name = "ProductBase.findByProductDescription", query = "SELECT p FROM ProductBase p WHERE p.productDescription = :productDescription"),
-    @NamedQuery(name = "ProductBase.findByProductCategoryId", query = "SELECT p FROM ProductBase p WHERE p.productCategoryId = :productCategoryId")})
+    @NamedQuery(name = "ProductBase.findByProductDescription", query = "SELECT p FROM ProductBase p WHERE p.productDescription = :productDescription")})
 public class ProductBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,8 +53,11 @@ public class ProductBase implements Serializable {
     private String productName;
     @Column(name = "PRODUCT_DESCRIPTION")
     private String productDescription;
-    @Column(name = "PRODUCT_CATEGORY_ID")
-    private Integer productCategoryId;
+    @JoinColumn(name = "PRODUCT_CATEGORY_ID", referencedColumnName = "PRODUCT_CATEGORY_ID")
+    @ManyToOne
+    private ProductCategoryBase productCategoryId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
+    private Collection<ProductDocumentChecklistMapping> productDocumentChecklistMappingCollection;
 
     public ProductBase() {
     }
@@ -105,12 +113,21 @@ public class ProductBase implements Serializable {
         this.productDescription = productDescription;
     }
 
-    public Integer getProductCategoryId() {
+    public ProductCategoryBase getProductCategoryId() {
         return productCategoryId;
     }
 
-    public void setProductCategoryId(Integer productCategoryId) {
+    public void setProductCategoryId(ProductCategoryBase productCategoryId) {
         this.productCategoryId = productCategoryId;
+    }
+
+    @XmlTransient
+    public Collection<ProductDocumentChecklistMapping> getProductDocumentChecklistMappingCollection() {
+        return productDocumentChecklistMappingCollection;
+    }
+
+    public void setProductDocumentChecklistMappingCollection(Collection<ProductDocumentChecklistMapping> productDocumentChecklistMappingCollection) {
+        this.productDocumentChecklistMappingCollection = productDocumentChecklistMappingCollection;
     }
 
     @Override
@@ -135,7 +152,7 @@ public class ProductBase implements Serializable {
 
     @Override
     public String toString() {
-        return "db.ProductBase[ pid=" + pid + " ]";
+        return "db2.ProductBase[ pid=" + pid + " ]";
     }
     
 }

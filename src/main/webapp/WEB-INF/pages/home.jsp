@@ -31,6 +31,7 @@
                                 <select size="1" name="tablelist" id="tablelist" >
                                     <option value="${pageContext.request.contextPath}/pbase/listProducts.html">Product Base</option>
                                     <option value="${pageContext.request.contextPath}/pcbase/listProductCategories.html">Product Base Category</option>
+                                     <option value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html">Document Type Base</option>
                                 </select>
                             </div>
                             <br></br>

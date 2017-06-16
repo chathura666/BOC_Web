@@ -10,6 +10,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -20,13 +22,11 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author it207432
  */
 @Entity
-@Table(name = "product_document_checklist_mapping")
+@Table(name = "PRODUCT_DOCUMENT_CHECKLIST_MAPPING")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ProductDocumentChecklistMapping.findAll", query = "SELECT p FROM ProductDocumentChecklistMapping p"),
     @NamedQuery(name = "ProductDocumentChecklistMapping.findByPdcid", query = "SELECT p FROM ProductDocumentChecklistMapping p WHERE p.pdcid = :pdcid"),
-    @NamedQuery(name = "ProductDocumentChecklistMapping.findByProductId", query = "SELECT p FROM ProductDocumentChecklistMapping p WHERE p.productId = :productId"),
-    @NamedQuery(name = "ProductDocumentChecklistMapping.findByDocumentId", query = "SELECT p FROM ProductDocumentChecklistMapping p WHERE p.documentId = :documentId"),
     @NamedQuery(name = "ProductDocumentChecklistMapping.findByScanRequired", query = "SELECT p FROM ProductDocumentChecklistMapping p WHERE p.scanRequired = :scanRequired"),
     @NamedQuery(name = "ProductDocumentChecklistMapping.findByMandatory", query = "SELECT p FROM ProductDocumentChecklistMapping p WHERE p.mandatory = :mandatory")})
 public class ProductDocumentChecklistMapping implements Serializable {
@@ -37,16 +37,16 @@ public class ProductDocumentChecklistMapping implements Serializable {
     @Column(name = "PDCID")
     private Integer pdcid;
     @Basic(optional = false)
-    @Column(name = "PRODUCT_ID")
-    private int productId;
-    @Basic(optional = false)
-    @Column(name = "DOCUMENT_ID")
-    private int documentId;
-    @Basic(optional = false)
     @Column(name = "SCAN_REQUIRED")
     private Character scanRequired;
     @Column(name = "MANDATORY")
     private Character mandatory;
+    @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PID")
+    @ManyToOne(optional = false)
+    private ProductBase productId;
+    @JoinColumn(name = "DOCUMENT_ID", referencedColumnName = "DID")
+    @ManyToOne(optional = false)
+    private DocumentTypeBase documentId;
 
     public ProductDocumentChecklistMapping() {
     }
@@ -55,10 +55,8 @@ public class ProductDocumentChecklistMapping implements Serializable {
         this.pdcid = pdcid;
     }
 
-    public ProductDocumentChecklistMapping(Integer pdcid, int productId, int documentId, Character scanRequired) {
+    public ProductDocumentChecklistMapping(Integer pdcid, Character scanRequired) {
         this.pdcid = pdcid;
-        this.productId = productId;
-        this.documentId = documentId;
         this.scanRequired = scanRequired;
     }
 
@@ -68,22 +66,6 @@ public class ProductDocumentChecklistMapping implements Serializable {
 
     public void setPdcid(Integer pdcid) {
         this.pdcid = pdcid;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public int getDocumentId() {
-        return documentId;
-    }
-
-    public void setDocumentId(int documentId) {
-        this.documentId = documentId;
     }
 
     public Character getScanRequired() {
@@ -100,6 +82,22 @@ public class ProductDocumentChecklistMapping implements Serializable {
 
     public void setMandatory(Character mandatory) {
         this.mandatory = mandatory;
+    }
+
+    public ProductBase getProductId() {
+        return productId;
+    }
+
+    public void setProductId(ProductBase productId) {
+        this.productId = productId;
+    }
+
+    public DocumentTypeBase getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(DocumentTypeBase documentId) {
+        this.documentId = documentId;
     }
 
     @Override
@@ -124,7 +122,7 @@ public class ProductDocumentChecklistMapping implements Serializable {
 
     @Override
     public String toString() {
-        return "db.ProductDocumentChecklistMapping[ pdcid=" + pdcid + " ]";
+        return "db2.ProductDocumentChecklistMapping[ pdcid=" + pdcid + " ]";
     }
     
 }

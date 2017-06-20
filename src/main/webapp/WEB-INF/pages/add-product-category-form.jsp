@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-        <title>Edit Product page</title>
+        <title>Edit Product Category page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">  
             <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">  
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>  
@@ -18,7 +18,7 @@
                 </head>
                 <body>
                     <div class ="container" >
-                        <div class="col-sm-9 col-sm-offset-3"><h3>Add Product Category page</h3></div>
+                        <div class="col-sm-9 col-sm-offset-3"><h3>Add Product Category</h3></div>
                         <div class="col-sm-9 col-sm-offset-3"><p>Here you can edit product category details....</p></div>
                         <form:form method="POST" class="form-horizontal" commandName="pcbase" action="${pageContext.request.contextPath}/pcbase/addProductCategory.html">
                             <div class="form-group">

@@ -61,7 +61,7 @@
                         <div class="form-group">
                             <label  class="col-sm-3 control-label">Product Category ID:</label>
                             <div class="col-sm-9">
-                                <form:input type="text" class="form-control" path="productCategoryId"/>
+                                <form:input type="text" class="form-control" path="productCategoryId.productCategoryId"/>
                             </div>
                         </div>
 

@@ -6,13 +6,15 @@
 package com.sprhib.controller;
 
 import com.sprhib.model.ProductBase;
+import com.sprhib.model.ProductCategoryBase;
 import com.sprhib.service.Product_BaseService;
-import java.sql.SQLException;
+import com.sprhib.service.Product_Category_BaseService;
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,9 @@ public class Product_BaseController {
     @Autowired
     Product_BaseService pbaseService;
 
+    @Autowired
+    Product_Category_BaseService pcbaseService;
+
     @RequestMapping(value = "/addProduct", method = RequestMethod.GET)
     public ModelAndView addProductPage() {
         ModelAndView modelAndView = new ModelAndView("add-product-form");
@@ -40,19 +45,44 @@ public class Product_BaseController {
     @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
     public ModelAndView addingProduct(@ModelAttribute ProductBase pbase) {
 
+        List<ProductBase> currentpbases = pbaseService.getProducts();
+        System.out.println(currentpbases);
+
         ModelAndView modelAndView = new ModelAndView("list-of-products");
 
         try {
+
+            //if(currentpbases.)
             pbaseService.addProduct(pbase);
 
             String message = "Product was successfully added!!.";
             modelAndView.addObject("message", message);
 
-        } catch (Exception ex) {
+        } catch (ConstraintViolationException ex) {
 
-            String message1 = "Product Insert failed!!";
+            String message1 = ex.getMessage();
             modelAndView.addObject("message1", message1);
 
+        } catch (DataIntegrityViolationException ex) {
+
+            ProductBase currentpbase = pbaseService.getProduct(pbase.getPid());
+            if (currentpbase != null) {
+                String message1 = "Item Already Exist!!!";
+                modelAndView.addObject("message1", message1);
+            } else {
+                ProductCategoryBase currentpcbase = pcbaseService.getProductCategoryBase(pbase.getPid());
+                if (currentpcbase == null) {
+                    String message1 = "Product Category Not Found!!!";
+                    modelAndView.addObject("message1", message1);
+                } else {
+                    String message1 = "Item Addinfg Failed!!";
+                    modelAndView.addObject("message1", message1);
+                }
+            }
+
+        } catch (Exception ex) {
+            String message1 = "Item Addinfg Failed!!";
+            modelAndView.addObject("message1", message1);
         }
 
         List<ProductBase> pbases = pbaseService.getProducts();
@@ -75,8 +105,7 @@ public class Product_BaseController {
         ModelAndView modelAndView = new ModelAndView("home");
 
         //List<Object> tables = pbaseService.getAllTables();
-
-        List<String> al = new ArrayList<String>();  
+        List<String> al = new ArrayList<String>();
         al.add("ProductBase");
         al.add("ProductCategoryBase");
 
@@ -106,7 +135,7 @@ public class Product_BaseController {
 
         } catch (Exception ex) {
 
-            String message1 = "Product Update failed!!";
+            String message1 = ex.getMessage();
             modelAndView.addObject("message1", message1);
 
         }
@@ -127,7 +156,7 @@ public class Product_BaseController {
             modelAndView.addObject("message", message);
         } catch (Exception ex) {
 
-            String message1 = "Product Delete failed!!";
+            String message1 = ex.getMessage();
             modelAndView.addObject("message1", message1);
 
         }

@@ -32,6 +32,7 @@
                                     <option value="${pageContext.request.contextPath}/pbase/listProducts.html">Product Base</option>
                                     <option value="${pageContext.request.contextPath}/pcbase/listProductCategories.html">Product Base Category</option>
                                      <option value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html">Document Type Base</option>
+                                     <option value="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html">Checklist Map</option>
                                 </select>
                             </div>
                             <br></br>

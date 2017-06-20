@@ -47,7 +47,7 @@ public class Product_Category_BaseController {
 
         } catch (Exception ex) {
 
-            String message1 = "Product Insert failed!!";
+            String message1 = ex.getMessage();
             modelAndView.addObject("message1", message1);
 
         }
@@ -66,8 +66,6 @@ public class Product_Category_BaseController {
 
         return modelAndView;
     }
-
- 
 
     @RequestMapping(value = "/editProductCategory/{id}", method = RequestMethod.GET)
     public ModelAndView editProductCategoryPage(@PathVariable Integer id) {
@@ -90,7 +88,7 @@ public class Product_Category_BaseController {
 
         } catch (Exception ex) {
 
-            String message1 = "Product Update failed!!";
+            String message1 = ex.getMessage();
             modelAndView.addObject("message1", message1);
 
         }
@@ -111,7 +109,7 @@ public class Product_Category_BaseController {
             modelAndView.addObject("message", message);
         } catch (Exception ex) {
 
-            String message1 = "Product Delete failed!!";
+            String message1 = ex.getMessage();
             modelAndView.addObject("message1", message1);
 
         }

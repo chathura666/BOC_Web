@@ -8,7 +8,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-        <title>List of Product Categories</title>
+        <title>List of Document Checklist Mapping</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">   
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>  
             <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
@@ -69,7 +69,7 @@
                     </c:if>
                 </div>
                 <div>
-                    <a href="${pageContext.request.contextPath}/pcbase/addProductCategory.html" class="btn btn-success" role="button" style="width:110px">+ Add New</a>
+                    <a href="${pageContext.request.contextPath}/dcmap/addChecklistMap.html" class="btn btn-success" role="button" style="width:110px">+ Add New</a>
                 </div>
             </div>
             <!-- Table -->
@@ -80,22 +80,28 @@
                         <tr>
                             
                             <div>
-                                <td>PRODUCT_CATEGORY_ID</td>
-                                <td>PRODUCT_CATEGORY</td>
+                                <td>PDCID</td>
+                                <td>PRODUCT_ID</td>
+                                <td>DOCUMENT_ID</td>
+                                <td>SCAN_REQIURED</td>
+                                <td>MANDATORY</td>
                                 <td></td>
                                 <td></td>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <c:forEach var="pcbase" items="${pcbases}">
+                        <c:forEach var="dcmap" items="${dcmaps}">
                             <tr>
-                                <td>${pcbase.productCategoryId}</td>
-                                <td>${pcbase.productCategory}</td>
+                                <td>${dcmap.pdcid}</td>
+                                <td>${dcmap.productId.pid}</td>
+                                <td>${dcmap.documentId.did}</td>
+                                <td>${dcmap.scanRequired}</td>
+                                <td>${dcmap.mandatory}</td>
 
-                                <td>   <a href="${pageContext.request.contextPath}/pcbase/editProductCategory/${pcbase.productCategoryId}.html" class="btn btn-primary" role="button" id="editbtn" style="width:60px"  onclick="return confirm('Are you sure you want to edit this item?');">Edit</a>  </td>
+                                <td><a href="${pageContext.request.contextPath}/dcmap/editChecklistMapping/${dcmap.pdcid}.html" class="btn btn-primary" role="button" id="editbtn" style="width:60px"  onclick="return confirm('Are you sure you want to edit this item?');">Edit</a>  </td>
 
-                                <td>   <a href="${pageContext.request.contextPath}/pcbase/deleteProductCategory/${pcbase.productCategoryId}.html" class="btn btn-warning" role="button" id="deletebtn"  onclick="return confirm('Are you sure you want to delete this item?');" style="width:60px">Delete</a>  </td>
+                                <td><a href="${pageContext.request.contextPath}/dcmap/deleteChecklistMapping/${dcmap.pdcid}.html" class="btn btn-warning" role="button" id="deletebtn"  onclick="return confirm('Are you sure you want to delete this item?');" style="width:60px">Delete</a>  </td>
 
                             </tr>
                         </c:forEach>

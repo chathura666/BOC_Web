@@ -19,7 +19,7 @@
                 <body>
 
                     <div class="container" >
-                        <div class="col-sm-9 col-sm-offset-3"><h3>Add Product page</h3></div>
+                        <div class="col-sm-9 col-sm-offset-3"><h3>Add Product</h3></div>
                         <div class="col-sm-9 col-sm-offset-3"><p>Here you can add a new product....</p></div>
                         <form:form method="POST" class="form-horizontal" role="form" commandName="pbase" action="${pageContext.request.contextPath}/pbase/addProduct.html">        
                             <div class="form-group">
@@ -55,7 +55,7 @@
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">Product Category ID:</label>
                                 <div class="col-sm-9">
-                                    <form:input type="text" class="form-control" path="productCategoryId"/>
+                                    <form:input type="text" class="form-control" path="productCategoryId.productCategoryId"/>
                                 </div>
                             </div>
 

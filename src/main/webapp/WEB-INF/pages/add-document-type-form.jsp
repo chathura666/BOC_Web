@@ -18,7 +18,7 @@
                 </head>
                 <body>
                     <div class ="container" >
-                        <div class="col-sm-9 col-sm-offset-3"><h3>Add Document Type page</h3></div>
+                        <div class="col-sm-9 col-sm-offset-3"><h3>Add Document Type</h3></div>
                         <div class="col-sm-9 col-sm-offset-3"><p>Here you can add document type details....</p></div>
                         <form:form method="POST" class="form-horizontal" commandName="dtbase" action="${pageContext.request.contextPath}/pcbase/addDocumentType.html">
                             <div class="form-group">

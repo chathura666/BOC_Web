@@ -31,7 +31,7 @@
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">PDCID:</label>
                                 <div class="col-sm-9">
-                                    <form:input id="did" type="text" class="form-control"  path="pdcid"/>
+                                    <form:input id="did" type="text" class="form-control" readonly="true" path="pdcid"/>
                                 </div>
                             </div>
                             <div class="form-group">

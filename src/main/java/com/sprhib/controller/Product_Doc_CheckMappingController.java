@@ -6,11 +6,16 @@
 package com.sprhib.controller;
 
 import com.sprhib.model.DocumentTypeBase;
+import com.sprhib.model.ProductBase;
 import com.sprhib.model.ProductDocumentChecklistMapping;
 import com.sprhib.service.Document_Type_BaseService;
 import com.sprhib.service.ProductDocumentChecklistMappingService;
+import com.sprhib.service.Product_BaseService;
 import java.util.List;
+import org.hibernate.TransientPropertyValueException;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +34,12 @@ public class Product_Doc_CheckMappingController {
     @Autowired
     ProductDocumentChecklistMappingService dcmapService;
 
+    @Autowired
+    Product_BaseService pbaseService;
+
+    @Autowired
+    Document_Type_BaseService dtbaseService;
+
     @RequestMapping(value = "/addChecklistMap", method = RequestMethod.GET)
     public ModelAndView addProductChecklistMap() {
         ModelAndView modelAndView = new ModelAndView("add-checklist-mapping-form");
@@ -41,17 +52,66 @@ public class Product_Doc_CheckMappingController {
 
         ModelAndView modelAndView = new ModelAndView("list-of-checklist-mapping");
 
+        ProductBase currentpbases = pbaseService.getProduct(dcmap.getProductId().getPid());
+        DocumentTypeBase currentdtbase = dtbaseService.getDocumentTypeBase(dcmap.getDocumentId().getDid());
+
         try {
             dcmapService.addProductDocumentChecklistMapping(dcmap);
 
             String message = "Document Type was successfully added!!.";
             modelAndView.addObject("message", message);
+        } catch (ConstraintViolationException ex) {
 
-        } catch (Exception ex) {
-
-            String message1 = "Document Insert failed!!";
+            String message1 = "Constraint Violation.. Product Adding Failed!!";
+            //String message1 = ex.getMessage();
             modelAndView.addObject("message1", message1);
 
+        } catch (DataIntegrityViolationException ex) {
+
+            ProductDocumentChecklistMapping currentdcmapbase = dcmapService.getProductDocumentChecklistMapping(dcmap.getPdcid());
+            if (currentdcmapbase != null) {
+                String message1 = "Document Checklist Map Already Exist!!!";
+                //String message1 = ex.getMessage();
+                modelAndView.addObject("message1", message1);
+            }
+
+            if (currentpbases == null) {
+                String message1 = "Product ID Not Exist!!!";
+                modelAndView.addObject("message1", message1);
+            } else if (currentdtbase == null) {
+                String message1 = "Document ID Not Exist!!";
+                modelAndView.addObject("message1", message1);
+            } else {
+                String message1 = "Product Checklist Map Adding Failed!!";
+                //String message1 = ex.getMessage();
+                modelAndView.addObject("message1", message1);
+            }
+        } catch (TransientPropertyValueException ex) {
+            {
+
+                ProductDocumentChecklistMapping currentdcmapbase = dcmapService.getProductDocumentChecklistMapping(dcmap.getPdcid());
+                if (currentdcmapbase != null) {
+                    String message1 = "Document Checklist Map Already Exist!!!";
+                    //String message1 = ex.getMessage();
+                    modelAndView.addObject("message1", message1);
+                }
+
+                if (currentpbases == null) {
+                    String message1 = "Product ID Not Exist!!!";
+                    modelAndView.addObject("message1", message1);
+                } else if (currentdtbase == null) {
+                    String message1 = "Document ID Not Exist!!";
+                    modelAndView.addObject("message1", message1);
+                } else {
+                    String message1 = "Product Checklist Map Adding Failed!!";
+                    //String message1 = ex.getMessage();
+                    modelAndView.addObject("message1", message1);
+                }
+            }
+        } catch (Exception ex) {
+            //String message1 = ex.getMessage();
+            String message1 = "Product Checklist Map Adding Failed!!";
+            modelAndView.addObject("message1", message1);
         }
 
         List<ProductDocumentChecklistMapping> dcmaps = dcmapService.getProductDocumentChecklistMappings();
@@ -77,9 +137,14 @@ public class Product_Doc_CheckMappingController {
     }
 
     @RequestMapping(value = "/editChecklistMapping/{id}", method = RequestMethod.POST)
-    public ModelAndView editingProductChecklistMap(@ModelAttribute ProductDocumentChecklistMapping dcmap, @PathVariable Integer id) {
+    public ModelAndView editingProductChecklistMap(@ModelAttribute ProductDocumentChecklistMapping dcmap,
+            @PathVariable Integer id
+    ) {
 
         ModelAndView modelAndView = new ModelAndView("list-of-checklist-mapping");
+
+        ProductBase currentpbases = pbaseService.getProduct(dcmap.getProductId().getPid());
+        DocumentTypeBase currentdtbase = dtbaseService.getDocumentTypeBase(dcmap.getDocumentId().getDid());
 
         try {
             dcmapService.updateProductDocumentChecklistMapping(dcmap);
@@ -87,11 +152,58 @@ public class Product_Doc_CheckMappingController {
             String message = "Document Type was successfully edited!!.";
             modelAndView.addObject("message", message);
 
-        } catch (Exception ex) {
+        } catch (ConstraintViolationException ex) {
 
-            String message1 = "Document Update failed!!";
+            String message1 = "Constraint Violation.. Product Adding Failed!!";
+            //String message1 = ex.getMessage();
             modelAndView.addObject("message1", message1);
 
+        } catch (DataIntegrityViolationException ex) {
+
+            ProductDocumentChecklistMapping currentdcmapbase = dcmapService.getProductDocumentChecklistMapping(dcmap.getPdcid());
+            if (currentdcmapbase != null) {
+                String message1 = "Document Checklist Map Already Exist!!!";
+                //String message1 = ex.getMessage();
+                modelAndView.addObject("message1", message1);
+            }
+
+            if (currentpbases == null) {
+                String message1 = "Product ID Not Exist!!!";
+                modelAndView.addObject("message1", message1);
+            } else if (currentdtbase == null) {
+                String message1 = "Document ID Not Exist!!";
+                modelAndView.addObject("message1", message1);
+            } else {
+                String message1 = "Product Checklist Map Adding Failed!!";
+                //String message1 = ex.getMessage();
+                modelAndView.addObject("message1", message1);
+            }
+        } catch (TransientPropertyValueException ex) {
+            {
+
+                ProductDocumentChecklistMapping currentdcmapbase = dcmapService.getProductDocumentChecklistMapping(dcmap.getPdcid());
+                if (currentdcmapbase != null) {
+                    String message1 = "Document Checklist Map Already Exist!!!";
+                    //String message1 = ex.getMessage();
+                    modelAndView.addObject("message1", message1);
+                }
+
+                if (currentpbases == null) {
+                    String message1 = "Product ID Not Exist!!!";
+                    modelAndView.addObject("message1", message1);
+                } else if (currentdtbase == null) {
+                    String message1 = "Document ID Not Exist!!";
+                    modelAndView.addObject("message1", message1);
+                } else {
+                    String message1 = "Product Checklist Map Editing Failed!!";
+                    //String message1 = ex.getMessage();
+                    modelAndView.addObject("message1", message1);
+                }
+            }
+        } catch (Exception ex) {
+            //String message1 = ex.getMessage();
+            String message1 = "Product Checklist Map Editing Failed!!";
+            modelAndView.addObject("message1", message1);
         }
 
         List<ProductDocumentChecklistMapping> dcmaps = dcmapService.getProductDocumentChecklistMappings();
@@ -100,7 +212,8 @@ public class Product_Doc_CheckMappingController {
     }
 
     @RequestMapping(value = "/deleteChecklistMapping/{id}", method = RequestMethod.GET)
-    public ModelAndView deleteProductCategory(@PathVariable Integer id) {
+    public ModelAndView deleteProductCategory(@PathVariable Integer id
+    ) {
         ModelAndView modelAndView = new ModelAndView("list-of-checklist-mapping");
 
         try {

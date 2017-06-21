@@ -29,14 +29,14 @@
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">PRODUCT ID:</label>
                                 <div class="col-sm-9">
-                                    <form:input type="text" class="form-control" path="productId"/>
+                                    <form:input type="text" class="form-control" path="productId.pid"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">DOCUMENT ID:</label>
                                 <div class="col-sm-9">
-                                    <form:input type="text" class="form-control" path="documentId"/>
+                                    <form:input type="text" class="form-control" path="documentId.did"/>
                                 </div>
                             </div>
 

@@ -60,28 +60,28 @@ public class Product_BaseController {
 
         } catch (ConstraintViolationException ex) {
 
-            String message1 = ex.getMessage();
+            String message1 = "Constraint Violation.. PRoduct Adding Failed!!";
             modelAndView.addObject("message1", message1);
 
         } catch (DataIntegrityViolationException ex) {
 
             ProductBase currentpbase = pbaseService.getProduct(pbase.getPid());
             if (currentpbase != null) {
-                String message1 = "Item Already Exist!!!";
+                String message1 = "Product Already Exist!!!";
                 modelAndView.addObject("message1", message1);
             } else {
-                ProductCategoryBase currentpcbase = pcbaseService.getProductCategoryBase(pbase.getPid());
+                ProductCategoryBase currentpcbase = pcbaseService.getProductCategoryBase(pbase.getProductCategoryId().getProductCategoryId());
                 if (currentpcbase == null) {
                     String message1 = "Product Category Not Found!!!";
                     modelAndView.addObject("message1", message1);
                 } else {
-                    String message1 = "Item Addinfg Failed!!";
+                    String message1 = "Product Adding Failed!!";
                     modelAndView.addObject("message1", message1);
                 }
             }
 
         } catch (Exception ex) {
-            String message1 = "Item Addinfg Failed!!";
+            String message1 = "Product Adding Failed!!";
             modelAndView.addObject("message1", message1);
         }
 
@@ -133,11 +133,25 @@ public class Product_BaseController {
             String message = "Product was successfully edited!!.";
             modelAndView.addObject("message", message);
 
-        } catch (Exception ex) {
+        } catch (ConstraintViolationException ex) {
 
-            String message1 = ex.getMessage();
+            String message1 = "Constraint Violation.. PRoduct Adding Failed!!";
             modelAndView.addObject("message1", message1);
 
+        } catch (DataIntegrityViolationException ex) {
+
+            ProductCategoryBase currentpcbase = pcbaseService.getProductCategoryBase(pbase.getProductCategoryId().getProductCategoryId());
+            if (currentpcbase != null) {
+                String message1 = "Product Category Not Found!!!";
+                modelAndView.addObject("message1", message1);
+            } else {
+                String message1 = "Product Adding Failed!!";
+                modelAndView.addObject("message1", message1);
+            }
+
+        } catch (Exception ex) {
+            String message1 = "Product Adding Failed!!";
+            modelAndView.addObject("message1", message1);
         }
 
         List<ProductBase> pbases = pbaseService.getProducts();

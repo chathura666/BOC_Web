@@ -8,7 +8,9 @@ package com.sprhib.controller;
 import com.sprhib.model.ProductCategoryBase;
 import com.sprhib.service.Product_Category_BaseService;
 import java.util.List;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,22 +40,35 @@ public class Product_Category_BaseController {
     public ModelAndView addingProductCategoryPage(@ModelAttribute ProductCategoryBase pcbase) {
 
         ModelAndView modelAndView = new ModelAndView("list-of-product-categories");
-
         try {
             pcbaseService.addProductCategoryBase(pcbase);
 
             String message = "Product Category was successfully added!!.";
             modelAndView.addObject("message", message);
 
-        } catch (Exception ex) {
+        } catch (ConstraintViolationException ex) {
 
-            String message1 = ex.getMessage();
+            String message1 = "Constraint Violation.. Product Adding Failed!!";
             modelAndView.addObject("message1", message1);
 
-        }
+        } catch (DataIntegrityViolationException ex) {
 
+            ProductCategoryBase currentpcbase = pcbaseService.getProductCategoryBase(pcbase.getProductCategoryId());
+            if (currentpcbase != null) {
+                String message1 = "Product Category Already Exist!!!";
+                modelAndView.addObject("message1", message1);
+            } else {
+                String message1 = "Product Category Adding Failed!!";
+                modelAndView.addObject("message1", message1);
+            }
+        } catch (Exception ex) {
+            String message1 = "Product Category Adding Failed!!";
+            modelAndView.addObject("message1", message1);
+        }
         List<ProductCategoryBase> pcbases = pcbaseService.getProductCategoryBases();
-        modelAndView.addObject("pcbases", pcbases);
+
+        modelAndView.addObject(
+                "pcbases", pcbases);
         return modelAndView;
     }
 
@@ -86,11 +101,24 @@ public class Product_Category_BaseController {
             String message = "Product was successfully edited!!.";
             modelAndView.addObject("message", message);
 
-        } catch (Exception ex) {
+        } catch (ConstraintViolationException ex) {
 
-            String message1 = ex.getMessage();
+            String message1 = "Constraint Violation.. Product Adding Failed!!";
             modelAndView.addObject("message1", message1);
 
+        } catch (DataIntegrityViolationException ex) {
+
+            ProductCategoryBase currentpcbase = pcbaseService.getProductCategoryBase(pcbase.getProductCategoryId());
+            if (currentpcbase != null) {
+                String message1 = "Product Category With Same ID Already Exist!!!";
+                modelAndView.addObject("message1", message1);
+            } else {
+                String message1 = "Product Category Editing Failed!!";
+                modelAndView.addObject("message1", message1);
+            }
+        } catch (Exception ex) {
+            String message1 = "Product Category Editing Failed!!";
+            modelAndView.addObject("message1", message1);
         }
 
         List<ProductCategoryBase> pcbases = pcbaseService.getProductCategoryBases();

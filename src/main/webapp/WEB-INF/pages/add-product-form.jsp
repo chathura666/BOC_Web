@@ -25,37 +25,37 @@
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">Product ID:</label>
                                 <div class="col-sm-9">
-                                    <form:input type="text" class="form-control" path="pid"/>
+                                    <form:input type="text" class="form-control" path="pid" maxlength="4"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">Product Code:</label>
                                 <div class="col-sm-9">
-                                    <form:input type="text" class="form-control" path="productCode"/>
+                                    <form:input type="text" class="form-control" path="productCode" maxlength="5"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">WF Product Code:</label>
                                 <div class="col-sm-9">
-                                    <form:input type="text" class="form-control" path="wfProductCode"/>
+                                    <form:input type="text" class="form-control" path="wfProductCode" maxlength="5"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Product Name:</label>
                                 <div class="col-sm-9">
-                                    <form:input type="text" class="form-control" path="productName"/>
+                                    <form:input type="text" class="form-control" path="productName" maxlength="100"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">Product Description:</label>
                                 <div class="col-sm-9">
-                                    <form:input type="text" class="form-control" path="productDescription"/>
+                                    <form:input type="text" class="form-control" path="productDescription" maxlength="200" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">Product Category ID:</label>
                                 <div class="col-sm-9">
-                                    <form:input type="text" class="form-control" path="productCategoryId.productCategoryId"/>
+                                    <form:input type="text" class="form-control" path="productCategoryId.productCategoryId" maxlength="4"/>
                                 </div>
                             </div>
 

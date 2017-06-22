@@ -6,41 +6,99 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
         <title>Home page</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">  
-            <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">  
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>  
-                <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
-
-                <script>
-                    function redirect_url(url)
-                    {
-                        window.location = url;
-                    }
 
 
-                </script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.css"/>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.js"></script>
 
-                </head>
-                <body>
-                    <div class="container" style="padding-left: 140px;
-                         padding-right: 140px;
-                         padding-top: 140px;
-                         padding-bottom: 140px;">
-                        <form name="dropdown">
-                            <div>
-                                <select size="1" name="tablelist" id="tablelist" >
-                                    <option value="${pageContext.request.contextPath}/pbase/listProducts.html">Product Base</option>
-                                    <option value="${pageContext.request.contextPath}/pcbase/listProductCategories.html">Product Base Category</option>
-                                     <option value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html">Document Type Base</option>
-                                     <option value="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html">Checklist Map</option>
-                                </select>
-                            </div>
-                            <br></br>
+
+            <script>
+                function redirect_url(url)
+                {
+                    window.location = url;
+                }
+
+
+            </script>
+
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2" id="leftCol">
+
+                    <ul class="nav nav-stacked" id="sidebar">
+                        <li>&nbsp</li>
+                        <li>&nbsp</li>
+                        <li>&nbsp</li>
+                        <li></li>
+                        <li>&nbsp</li>
+                        <li>
+                            <select id="tablelist" class="selectpicker" data-live-search="true">
+                                <option data-tokens="product" value="${pageContext.request.contextPath}/pbase/listProducts.html">PRODUCT BASE</option>
+                                <option data-tokens="product category" value="${pageContext.request.contextPath}/pcbase/listProductCategories.html">PRODUCT CATEGORY BASE</option>
+                                <option data-tokens="document type" value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html">DOCUMENT TYPE BASE</option>
+                                <option data-tokens="document chacklist map " value="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html">PRODUCT DOCUMENT CHECKLIST MAPPING</option>
+                            </select>
+
+                        </li>
+                        <li>&nbsp</li>
+                        <li>
                             <div>
                                 <a class="btn btn-success" role="button" style="width:110px" onclick="redirect_url(document.getElementById('tablelist').value)">Next</a>
                             </div>
-                        </form>
+                        </li>
+
+                    </ul>
+
+                </div>  
+                <div class="col-md-10" id="mainCol">
+
+
+                </div>
+
+
+                <div class="container" style="padding-left: 140px;
+                     padding-right: 140px;
+                     padding-top: 140px;
+                     padding-bottom: 140px;">
+                    <form name="dropdown">
+
+                        <br></br>
+
+                    </form>
+                </div>
+
+
+
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Some text in the modal.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
                     </div>
-                </body>
-                </html>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
 

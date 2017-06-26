@@ -30,22 +30,27 @@
                         <form:form method="POST" class="form-horizontal" commandName="pcbase" action="${pageContext.request.contextPath}/pcbase/editProductCategory/${pcbase.productCategoryId}.html">
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">Product Category ID:</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-4">
                                     <form:input id="pid" type="text" class="form-control"  readonly="true" path="productCategoryId"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">Product Category:</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-4">
                                     <form:input type="text" class="form-control" path="productCategory"/>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="col-sm-2 col-sm-offset-6">
+                            <div class="form-group row">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-2">
                                     <button type="submit" class="btn btn-primary btn-block">Edit Product Category</button>
                                 </div>
-                            </div>
+                                <div class="col-sm-2">
+                                    <a href="${pageContext.request.contextPath}/pcbase/listProductCategories.html" type="button" class="btn btn-default btn-block" >Close</a>
+                                </div>
+                                <div class="col-sm-5"></div>
+                            </div>   
 
                         </form:form>
                     </div>

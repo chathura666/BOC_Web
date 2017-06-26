@@ -25,30 +25,17 @@
                     $(document).ready(function () {
                         $('#datatable').DataTable();
                     });
-
-
                     window.setTimeout(function () {
                         $(".alert-success").fadeTo(500, 0).slideUp(500, function () {
                             $(this).remove();
                         });
                     }, 5000);
-
                     window.setTimeout(function () {
                         $(".alert-danger").fadeTo(500, 0).slideUp(500, function () {
                             $(this).remove();
                         });
                     }, 5000);
 
-                    function getConfirmation() {
-                        var retVal = confirm("Do you want to continue ?");
-                        if (retVal == true) {
-                            //document.write("User wants to continue!");
-                            return true;
-                        } else {
-                            //document.write("User does not want to continue!");
-                            return false;
-                        }
-                    }
 
                     function redirect_url()
                     {
@@ -56,116 +43,183 @@
                         window.location = x;
                     }
 
+                    $('body').on('hidden.bs.modal', '.modal', function () {
+                        $(this).removeData('bs.modal');
+                    });
+
+
+                    function clearModal()
+                    {
+                        $('#myModal .modal-content').empty();
+                    }
+
+
+
+
+                    jQuery(document).keypress(function (e) {
+                        if (e.keyCode == 27) {
+                            jQuery("#myModal").modal('toggle');
+                            OR
+                            jQuery("#myModal").modal('hide');
+                        }
+                    });
+
+
 
                 </script>
 
 
-                </script>
-                </head>
-                <body>
-                    <nav class="navbar navbar-default">
-                        <div class="container-fluid row">
-                            <div class="navbar-header col-md-2"">
-                                <a class="navbar-brand" href="#">BOC</a>
-                            </div>
-                            <div style="margin-top: 7px;" class="col-md-3">
-                                <select  id="tablelist"  onchange="redirect_url()" class="selectpicker" data-live-search="true">
-                                    <option data-tokens="product" value="${pageContext.request.contextPath}/pbase/listProducts.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>
-                                    <option data-tokens="product category" value="${pageContext.request.contextPath}/pcbase/listProductCategories.html" onselect ="redirect_url(this.value)">PRODUCT CATEGORY BASE</option>
-                                    <option data-tokens="document type" value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
-                                    <option data-tokens="document chacklist map " value="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html" onclick="redirect_url(this.value)">PRODUCT DOCUMENT CHECKLIST MAPPING</option>
-                                </select>
-                            </div >
-                            <div class="col-md-1" style="margin-top: 7px;">
-                                <a class="btn btn-success" role="button" style="width:110px" ">Next</a>
-                            </div>
-                            <div class="col-md-7"></div>
 
-                        </div>
-                    </nav>
+                <style>
+                    html, body{
+                        padding-right: 0px !important; 
+                        position: relative!important
 
-                    <div class="container">
-                        <div class="row">
-                            <div>
-                                <h3>List of Products</h3>
-                                <div><br></br></div>
-                                <div style="padding-bottom: 10px">
-                                    <div>
-                                        <c:if test = "${not empty message}">
-                                            <div style="padding-top: 5px;padding-bottom: 5px;" id="success-alert" class="alert alert-success" role="alert"><c:out value = "${message}"/></div>
-                                        </c:if>
-                                        <c:if test = "${not empty message1}">
-                                            <div style="padding-top: 5px;padding-bottom: 5px;" class="alert alert-danger" role="alert"><c:out value = "${message1}"/></div>
-                                        </c:if>
+                            .modal-backdrop.in {
+                            opacity: 0.5;
+                        }
+
+
+                    </style>
+
+                    </head>
+                    <body>
+                        <nav class="navbar navbar-default" style="margin-bottom: 0px;">
+                            <div class="container-fluid row">
+                                <div class="navbar-header col-md-2"">
+                                    <a class="navbar-brand" href="#">BOC</a>
+                                </div>
+                                <div style="margin-top: 7px;" class="col-md-3">
+                                    <select  id="tablelist"  onchange="redirect_url()" class="selectpicker" data-live-search="true">
+                                        <option selected data-tokens="product" value="${pageContext.request.contextPath}/pbase/listProducts.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>
+                                        <option  data-tokens="product category" value="${pageContext.request.contextPath}/pcbase/listProductCategories.html" onclick ="redirect_url(this.value)">PRODUCT CATEGORY BASE</option>
+                                        <option data-tokens="document type" value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
+                                        <option data-tokens="document chacklist map " value="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html" onclick="redirect_url(this.value)">PRODUCT DOCUMENT CHECKLIST MAPPING</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-7"></div>
+
+                            </div>
+                        </nav>
+
+                        <div class="container">
+                            <div class="row">
+                                <div>
+                                    <h3 style="margin-top: 10px;">List of Products</h3>
+                                    <div style="padding-bottom: 10px">
+                                            <div>
+                                                <c:if test = "${not empty message}">
+                                                    <div style="padding-top: 5px;padding-bottom: 5px;" id="success-alert" class="alert alert-success" role="alert"><c:out value = "${message}"/></div>
+                                            </c:if>
+                                            <c:if test = "${not empty message1}">
+                                                <div style="padding-top: 5px;padding-bottom: 5px;" class="alert alert-danger" role="alert"><c:out value = "${message1}"/></div>
+                                            </c:if>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div style="float:right">
-                                <a  <a href="${pageContext.request.contextPath}/pbase/addProduct.html" class="btn btn-success" role="button" data-toggle="modal" data-target="#myModal" style="width:110px">+ Add New</a>
-                            </div>
-                        </div>
-                        <div class ="row">&nbsp</div>
+                            <div class="row">
+                                <div style="float:right">
+                                        <a href="${pageContext.request.contextPath}/pbase/addProduct.html" class="btn btn-success" role="button" data-toggle="modal" data-target="#myModal" style="width:110px">+ Add New</a>
+                                    </div>
+                                </div>
 
-                        <!-- Table -->
-                        <div class="table-responsive row">
-                            <table id="datatable" class="display" cellspacing="0" width="100%">
-                                <thead>
-                                    <tr>
-                                        <div>
-                                            <td>PID</td>
-                                            <td>P_Code</td>
-                                            <td>WF_P_Code</td>
-                                            <td>P_Name</td>
-                                            <td>P_Desc</td>
-                                            <td>P_Cat_ID</td>
-                                            <td></td>
-                                            <td></td>
-                                    </tr>
-                                </thead>
 
-                                <tbody>
-                                    <c:forEach var="pbase" items="${pbases}">
+                                <!-- Table -->
+                                <div class="table-responsive row" style="margin-top: 5px;">
+                                <table id="datatable" class="display" cellspacing="0" width="100%">
+                                    <thead>
                                         <tr>
-                                            <td>${pbase.pid}</td>
-                                            <td>${pbase.productCode}</td>
-                                            <td>${pbase.wfProductCode}</td>
-                                            <td>${pbase.productName}</td>
-                                            <td>${pbase.productDescription}</td>
-                                            <td>${pbase.productCategoryId.productCategoryId}</td>
-
-                                            <td>   <a href="${pageContext.request.contextPath}/pbase/editProduct/${pbase.pid}.html" class="btn btn-primary" role="button" id="editbtn" style="width:60px" data-toggle="modal" data-target="#myModal"  onclick="return confirm('Are you sure you want to edit this item?');">Edit</a>  </td>
-                                            <td>   <a href="${pageContext.request.contextPath}/pbase/deleteProduct/${pbase.pid}.html" class="btn btn-warning" role="button" id="deletebtn"  onclick="return confirm('Are you sure you want to delete this item?');" style="width:60px">Delete</a>  </td>
-
+                                            <div>
+                                                <td>PID</td>
+                                                <td>P_Code</td>
+                                                <td>WF_P_Code</td>
+                                                <td>P_Name</td>
+                                                <td>P_Desc</td>
+                                                <td>P_Cat_ID</td>
+                                                <td>Edit</td>
+                                                <td>Delete</td>
                                         </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
+                                    </thead>
+
+                                    <tbody>
+                                        <c:forEach var="pbase" items="${pbases}">
+                                            <tr>
+                                                <td>${pbase.pid}</td>
+                                                <td>${pbase.productCode}</td>
+                                                <td>${pbase.wfProductCode}</td>
+                                                <td>${pbase.productName}</td>
+                                                <td>${pbase.productDescription}</td>
+                                                <td>${pbase.productCategoryId.productCategoryId}</td>
+
+                                                <td><p data-placement="top" title="Edit"><button class="btn btn-primary btn-s" data-title="Edit" data-toggle="modal" style="width:60px"  data-target="#edtModalcnfm_${pbase.pid}" >Edit</button></p></td>
+                                                <td><p data-placement="top" id="deletebtn"  title="Delete"><button class="btn btn-warning btn-s" data-title="Delete"  style="width:60px" data-toggle="modal" data-target="#dltModalcnfm_${pbase.pid}" >Delete</button></p></td>
+
+                                            </tr>
+                                            <div id="dltModalcnfm_${pbase.pid}" class="modal">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            <h4 class="modal-title">Confirm Delete</h4>
+                                                        </div>
+
+                                                        <div class="modal-body">
+                                                            <p>Are you sure you want to delete this user? </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <a class="btn btn-warning" href="${pageContext.request.contextPath}/pbase/deleteProduct/${pbase.pid}.html" title="Delete"><i class="fa fa-trash-o"></i>Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>  
+
+                                            <div id="edtModalcnfm_${pbase.pid}" class="modal">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            <h4 class="modal-title">Confirm Delete</h4>
+                                                        </div>
+
+                                                        <div class="modal-body">
+                                                            <p>Are you sure you want to edit this user? </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <a  href="${pageContext.request.contextPath}/pbase/editProduct/${pbase.pid}.html" data-toggle="modal" data-dismiss="modal" class="btn btn-warning" data-target="#myModal" ><i class="fa fa-trash-o"></i>Edit</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--<p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>-->
                         </div>
-                        <!--<p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>-->
-                    </div>
 
 
-                    <!-- *********************************************************************   -->
+                        <!--  ************************************************************    -->
 
-                    <!-- Trigger the modal with a button -->
-                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
-                    <!-- Modal -->
-                    <div id="myModal" class="modal fade" role="dialog">
-                        <div class="modal-dialog modal-lg">
-                            <!-- Modal content-->
-                            <div class="modal-content"> </div>
+                        <!-- Modal -->
+                        <div id="myModal" data-keyboard="true"  class="modal" role="dialog" style="background-color: black !important;  ">
+                            <div class="modal-dialog modal-lg">
+                                <!-- Modal content-->
+                                <div class="modal-content"> </div>
+                            </div>
+
                         </div>
-                        
-                    </div>
 
-                </body>
+                    </body>
 
-                <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">  
-                    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">  
-                        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.jqueryui.min.css">  
-                            </html>
+                    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">  
+                        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">  
+                            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.jqueryui.min.css">  
+                                </html>
 
 

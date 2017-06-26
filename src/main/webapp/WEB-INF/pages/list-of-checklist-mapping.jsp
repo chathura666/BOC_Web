@@ -9,15 +9,23 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
         <title>List of Document Checklist Mapping</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">   
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>  
-            <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.css"/>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.js"></script>
             <script src=" //code.jquery.com/jquery-1.12.4.js"></script> 
             <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script> 
             <script src="https://cdn.datatables.net/1.10.15/js/dataTables.jqueryui.min.js"></script> 
 
+
             <script type="text/javascript">
+
+                function redirect_url()
+                {
+                    var x = document.getElementById("tablelist").value;
+                    window.location = x;
+                }
 
                 $(document).ready(function () {
                     $('#datatable').DataTable();
@@ -52,10 +60,26 @@
 
             </script>
     </head>
-    
+
     <body>
-        
-   
+
+        <nav class="navbar navbar-default">
+            <div class="container-fluid row">
+                <div class="navbar-header col-md-2"">
+                    <a class="navbar-brand" href="#">BOC</a>
+                </div>
+                <div style="margin-top: 7px;" class="col-md-3">
+                    <select  id="tablelist"  onchange="redirect_url()" class="selectpicker" data-live-search="true">
+                        <option data-tokens="product" value="${pageContext.request.contextPath}/pbase/listProducts.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>
+                        <option  data-tokens="product category" value="${pageContext.request.contextPath}/pcbase/listProductCategories.html" onclick ="redirect_url(this.value)">PRODUCT CATEGORY BASE</option>
+                        <option  data-tokens="document type" value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
+                        <option selected data-tokens="document chacklist map " value="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html" onclick="redirect_url(this.value)">PRODUCT DOCUMENT CHECKLIST MAPPING</option>
+                    </select>
+                </div>
+                <div class="col-md-7"></div>
+
+            </div>
+        </nav>
         <div class="container">
             <h3>List of Checklist Mapping</h3>
             <div><br></br></div>
@@ -78,7 +102,7 @@
 
                     <thead>
                         <tr>
-                            
+
                             <div>
                                 <td>PDCID</td>
                                 <td>PRODUCT_ID</td>

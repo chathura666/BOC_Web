@@ -30,13 +30,13 @@
                         <form:form method="POST" class="form-horizontal" commandName="dtbase" action="${pageContext.request.contextPath}/dtbase/editDocumentType/${dtbase.did}.html">
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">Product Category ID:</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-4">
                                     <form:input id="did" type="text" class="form-control"  readonly="true" path="did"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">Product Category:</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-4">
                                     <form:input type="text" class="form-control" path="documentType"/>
                                 </div>
                             </div>

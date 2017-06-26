@@ -18,8 +18,8 @@
                 </head>
                 <body>
                     <div class="container" >
-                        <div class="col-sm-9 col-sm-offset-3"><h3>Add Product</h3></div>
-                        <div class="col-sm-9 col-sm-offset-3"><p>Here you can add a new product....</p></div>
+                        <div class="col-sm-9 col-sm-offset-3"><h3>Edit Product</h3></div>
+                        <div class="col-sm-9 col-sm-offset-3"><p>Here you can edit products....</p></div>
                         <form:form method="POST" class="form-horizontal" commandName="pbase" action="${pageContext.request.contextPath}/pbase/editProduct/${pbase.pid}.html">        
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">Product ID:</label>
@@ -64,7 +64,7 @@
                                     <button type="submit" class="btn btn-primary btn-block">Edit Product</button>
                                 </div>
                                 <div class="col-sm-2">
-                                    <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Close</button>
+                                    <a href="${pageContext.request.contextPath}/pbase/listProducts.html" type="button" class="btn btn-default btn-block" >Close</a>
                                 </div>
                                 <div class="col-sm-5"></div>
                             </div>

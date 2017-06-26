@@ -64,7 +64,7 @@
                                     <button type="submit" class="btn btn-primary btn-block">Add Product</button>
                                 </div>
                                 <div class="col-sm-2">
-                                    <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Close</button>
+                                    <a href="${pageContext.request.contextPath}/pbase/listProducts.html" type="button" class="btn btn-default btn-block" >Close</a>
                                 </div>
                                 <div class="col-sm-5"></div>
                             </div>

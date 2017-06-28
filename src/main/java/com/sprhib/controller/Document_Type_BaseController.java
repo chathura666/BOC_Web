@@ -8,6 +8,7 @@ package com.sprhib.controller;
 import com.sprhib.model.DocumentTypeBase;
 import com.sprhib.service.Document_Type_BaseService;
 import java.util.List;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,7 +38,7 @@ public class Document_Type_BaseController {
     @RequestMapping(value = "/addDocumentType", method = RequestMethod.POST)
     public ModelAndView addingProductCategoryPage(@ModelAttribute DocumentTypeBase dtbase) {
 
-        ModelAndView modelAndView = new ModelAndView("list-of-product-categories");
+        ModelAndView modelAndView = new ModelAndView("list-of-document-types");
 
         try {
             dtbaseService.addDocumentTypeBase(dtbase);
@@ -66,7 +67,6 @@ public class Document_Type_BaseController {
         return modelAndView;
     }
 
- 
     @RequestMapping(value = "/editDocumentType/{id}", method = RequestMethod.GET)
     public ModelAndView editProductCategoryPage(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("edit-document-type-form");
@@ -78,7 +78,7 @@ public class Document_Type_BaseController {
     @RequestMapping(value = "/editDocumentType/{id}", method = RequestMethod.POST)
     public ModelAndView editingProductCategory(@ModelAttribute DocumentTypeBase dtbase, @PathVariable Integer id) {
 
-        ModelAndView modelAndView = new ModelAndView("list-of-product-categories");
+        ModelAndView modelAndView = new ModelAndView("list-of-document-types");
 
         try {
             dtbaseService.updateDocumentTypeBase(dtbase);
@@ -106,6 +106,9 @@ public class Document_Type_BaseController {
             dtbaseService.deleteDocumentTypeBase(id);
             String message = "Document Type was successfully deleted!!.";
             modelAndView.addObject("message", message);
+        } catch (ConstraintViolationException ex) {
+            String message1 = "Constraint Violation.. Document Deleting Failed!!";
+            modelAndView.addObject("message1", message1);
         } catch (Exception ex) {
 
             String message1 = "Document Delete failed!!";

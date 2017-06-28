@@ -41,10 +41,15 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="col-sm-2 col-sm-offset-6">
-                                    <button type="submit" class="btn btn-primary btn-block">Edit Document Type</button>
+                            <div class="form-group row">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-2">
+                                    <button type="submit" class="btn btn-primary btn-block">Add Document Type</button>
                                 </div>
+                                <div class="col-sm-2">
+                                    <a href="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html" type="button" class="btn btn-default btn-block" >Close</a>
+                                </div>
+                                <div class="col-sm-5"></div>
                             </div>
 
                         </form:form>

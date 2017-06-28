@@ -67,12 +67,12 @@ public class Product_BaseController {
 
             ProductBase currentpbase = pbaseService.getProduct(pbase.getPid());
             if (currentpbase != null) {
-                String message1 = "Product Already Exist!!!";
+                String message1 = "Product ID Already Exist!!!";
                 modelAndView.addObject("message1", message1);
             } else {
                 ProductCategoryBase currentpcbase = pcbaseService.getProductCategoryBase(pbase.getProductCategoryId().getProductCategoryId());
                 if (currentpcbase == null) {
-                    String message1 = "Product Category Not Found!!!";
+                    String message1 = "Product Category ID Not Found!!!";
                     modelAndView.addObject("message1", message1);
                 } else {
                     String message1 = "Product Adding Failed!!";
@@ -135,22 +135,22 @@ public class Product_BaseController {
 
         } catch (ConstraintViolationException ex) {
 
-            String message1 = "Constraint Violation.. PRoduct Adding Failed!!";
+            String message1 = "Constraint Violation.. Product Editing Failed!!";
             modelAndView.addObject("message1", message1);
 
         } catch (DataIntegrityViolationException ex) {
 
             ProductCategoryBase currentpcbase = pcbaseService.getProductCategoryBase(pbase.getProductCategoryId().getProductCategoryId());
-            if (currentpcbase != null) {
-                String message1 = "Product Category Not Found!!!";
+            if (currentpcbase == null) {
+                String message1 = "Product Category ID Not Found!!!";
                 modelAndView.addObject("message1", message1);
             } else {
-                String message1 = "Product Adding Failed!!";
+                String message1 = "Product Editing Failed!!";
                 modelAndView.addObject("message1", message1);
             }
 
         } catch (Exception ex) {
-            String message1 = "Product Adding Failed!!";
+            String message1 = "Product Editing Failed!!";
             modelAndView.addObject("message1", message1);
         }
 

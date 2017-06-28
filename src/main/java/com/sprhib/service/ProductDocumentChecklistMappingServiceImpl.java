@@ -32,7 +32,7 @@ public class ProductDocumentChecklistMappingServiceImpl implements ProductDocume
 
     @Override
     public void updateProductDocumentChecklistMapping(ProductDocumentChecklistMapping docmap) {
-         chkmapDAO.addProductDocumentChecklistMapping(docmap);
+         chkmapDAO.updateProductDocumentChecklistMapping(docmap);
     }
 
     @Override

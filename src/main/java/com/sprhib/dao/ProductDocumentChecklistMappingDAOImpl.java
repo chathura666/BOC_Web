@@ -34,7 +34,11 @@ public class ProductDocumentChecklistMappingDAOImpl implements ProductDocumentCh
     @Override
     public void updateProductDocumentChecklistMapping(ProductDocumentChecklistMapping docmap) {
         ProductDocumentChecklistMapping dtToUpdate = getProductDocumentChecklistMapping(docmap.getPdcid());
-        dtToUpdate.setPdcid(docmap.getPdcid());
+        //dtToUpdate.setPdcid(docmap.getPdcid());
+        dtToUpdate.setScanRequired(docmap.getScanRequired());
+        dtToUpdate.setMandatory(docmap.getMandatory());
+        dtToUpdate.setDocumentId(docmap.getDocumentId());
+        dtToUpdate.setProductId(docmap.getProductId());
         getCurrentSession().update(dtToUpdate);
     }
 
@@ -46,7 +50,7 @@ public class ProductDocumentChecklistMappingDAOImpl implements ProductDocumentCh
 
     @Override
     public void deleteProductDocumentChecklistMapping(int id) {
-         ProductDocumentChecklistMapping chkmap = getProductDocumentChecklistMapping(id);
+        ProductDocumentChecklistMapping chkmap = getProductDocumentChecklistMapping(id);
         if (chkmap != null) {
             getCurrentSession().delete(chkmap);
         }
@@ -57,5 +61,4 @@ public class ProductDocumentChecklistMappingDAOImpl implements ProductDocumentCh
         return getCurrentSession().createQuery("from ProductDocumentChecklistMapping").list();
     }
 
-    
 }

@@ -53,142 +53,149 @@
                     var x = document.getElementById("tablelist").value;
                     window.location = x;
                 }
-
-
-
-
             </script>
-    </head>
 
-    <body>
+            <style>
+                html, body{
+                    padding-right: 0px !important; 
+                    position: relative!important
 
-        <nav class="navbar navbar-default" style="margin-bottom: 0px;">
-            <div class="container-fluid row">
-                <div class="navbar-header col-md-2"">
-                    <a class="navbar-brand" href="#">BOC</a>
+                        .modal-backdrop.in {
+                        opacity: 0.5;
+                    }
+                </style>
+
+        </head>
+
+        <body>
+
+            <nav class="navbar navbar-default" style="margin-bottom: 0px;">
+                <div class="container-fluid row">
+                    <div class="navbar-header col-md-2"">
+                        <a class="navbar-brand" href="#">BOC</a>
+                    </div>
+                    <div style="margin-top: 7px;" class="col-md-3">
+                        <select  id="tablelist"  onchange="redirect_url()" class="selectpicker" data-live-search="true">
+                            <option data-tokens="product" value="${pageContext.request.contextPath}/pbase/listProducts.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>
+                            <option  selected data-tokens="product category" value="${pageContext.request.contextPath}/pcbase/listProductCategories.html" onclick ="redirect_url(this.value)">PRODUCT CATEGORY BASE</option>
+                            <option data-tokens="document type" value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
+                            <option data-tokens="document chacklist map " value="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html" onclick="redirect_url(this.value)">PRODUCT DOCUMENT CHECKLIST MAPPING</option>
+                        </select>
+                    </div>
+                    <div class="col-md-7"></div>
+
                 </div>
-                <div style="margin-top: 7px;" class="col-md-3">
-                    <select  id="tablelist"  onchange="redirect_url()" class="selectpicker" data-live-search="true">
-                        <option data-tokens="product" value="${pageContext.request.contextPath}/pbase/listProducts.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>
-                        <option  selected data-tokens="product category" value="${pageContext.request.contextPath}/pcbase/listProductCategories.html" onclick ="redirect_url(this.value)">PRODUCT CATEGORY BASE</option>
-                        <option data-tokens="document type" value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
-                        <option data-tokens="document chacklist map " value="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html" onclick="redirect_url(this.value)">PRODUCT DOCUMENT CHECKLIST MAPPING</option>
-                    </select>
-                </div>
-                <div class="col-md-7"></div>
+            </nav>
 
-            </div>
-        </nav>
-
-        <div class="container">
-            <div class="row">
-                <div>
-                    <h3 style="margin-top: 10px;">List of Products Categories</h3>
-                    <div style="padding-bottom: 10px">
-                        <div>
-                            <c:if test = "${not empty message}">
-                                <div style="padding-top: 5px;padding-bottom: 5px;" id="success-alert" class="alert alert-success" role="alert"><c:out value = "${message}"/></div>
-                            </c:if>
-                            <c:if test = "${not empty message1}">
-                                <div style="padding-top: 5px;padding-bottom: 5px;" class="alert alert-danger" role="alert"><c:out value = "${message1}"/></div>
-                            </c:if>
+            <div class="container">
+                <div class="row">
+                    <div>
+                        <h3 style="margin-top: 10px;">List of Products Categories</h3>
+                        <div style="padding-bottom: 10px">
+                                <div>
+                                    <c:if test = "${not empty message}">
+                                        <div style="padding-top: 5px;padding-bottom: 5px;" id="success-alert" class="alert alert-success" role="alert"><c:out value = "${message}"/></div>
+                                </c:if>
+                                <c:if test = "${not empty message1}">
+                                    <div style="padding-top: 5px;padding-bottom: 5px;" class="alert alert-danger" role="alert"><c:out value = "${message1}"/></div>
+                                </c:if>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div style="float:right">
-                    <a href="${pageContext.request.contextPath}/pcbase/addProductCategory.html" class="btn btn-success" role="button" data-toggle="modal" data-target="#myModal" style="width:110px">+ Add New</a>
-                </div>
-            </div>
+                <div class="row">
+                    <div style="float:right">
+                            <a href="${pageContext.request.contextPath}/pcbase/addProductCategory.html" class="btn btn-success" role="button" data-toggle="modal" data-target="#myModal" style="width:110px">+ Add New</a>
+                        </div>
+                    </div>
 
-            <!-- Table -->
-            <div class="table-responsive row" style="margin-top: 5px;" >
-                <table style="text-align: left;" id="datatable" class="display" cellspacing="0"   width="100%">
+                    <!-- Table -->
+                    <div class="table-responsive row" style="margin-top: 5px;" >
+                    <table style="text-align: left;" id="datatable" class="display" cellspacing="0"   width="100%">
 
-                    <thead>
-                        <tr>
-
-                            <div>
-                                <td>PRODUCT_CATEGORY_ID</td>
-                                <td style="width: 60%;">PRODUCT_CATEGORY</td>
-                                <td  style="width: 10%;">EDIT</td>
-                                <td  style="width: 10%;">DELETE</td>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <c:forEach var="pcbase" items="${pcbases}">
+                        <thead>
                             <tr>
-                                <td>${pcbase.productCategoryId}</td>
-                                <td style="width: 60%;" >${pcbase.productCategory}</td>
 
-                                <td  style="width: 10%;"><p data-placement="top" title="Edit"><button class="btn btn-primary btn-s" data-title="Edit" data-toggle="modal" style="width:60px"  data-target="#edtModalcnfm_${pcbase.productCategoryId}" >Edit</button></p></td>
-                                <td  style="width: 10%;"><p data-placement="top" id="deletebtn"  title="Delete"><button class="btn btn-warning btn-s" data-title="Delete" style="width:60px"  data-toggle="modal" data-target="#dltModalcnfm_${pcbase.productCategoryId}" >Delete</button></p></td>
-
+                                <div>
+                                    <td>PRODUCT CATEGORY ID</td>
+                                    <td style="width: 60%;">PRODUCT CATEGORY</td>
+                                    <td  style="width: 5%;">EDIT</td>
+                                    <td  style="width: 5%;">DELETE</td>
                             </tr>
+                        </thead>
 
-                            <div id="dltModalcnfm_${pcbase.productCategoryId}" class="modal">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title">Confirm Delete</h4>
+                        <tbody>
+                            <c:forEach var="pcbase" items="${pcbases}">
+                                <tr>
+                                    <td>${pcbase.productCategoryId}</td>
+                                    <td style="width: 60%;" >${pcbase.productCategory}</td>
+
+                                    <td><p data-placement="top" title="Edit"><button class="btn btn-primary btn-s" data-title="Edit" data-toggle="modal" style="width:60px"  data-target="#edtModalcnfm_${pcbase.productCategoryId}" >Edit</button></p></td>
+                                        <td><p data-placement="top" id="deletebtn"  title="Delete"><button class="btn btn-warning btn-s" data-title="Delete" style="width:60px"  data-toggle="modal" data-target="#dltModalcnfm_${pcbase.productCategoryId}" >Delete</button></p></td>
+
+                                    </tr>
+
+                                    <div id="dltModalcnfm_${pcbase.productCategoryId}" class="modal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h4 class="modal-title">Confirm Delete</h4>
+                                                </div>
+
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete this? </p>
+                                                </div>
+                                                <div class="modal-footer">
+
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    <a class="btn btn-warning" href="${pageContext.request.contextPath}/pcbase/deleteProductCategory/${pcbase.productCategoryId}.html" title="Delete"><i class="fa fa-trash-o"></i>Delete</a>
+                                                </div>
+                                            </div>
                                         </div>
+                                    </div>  
 
-                                        <div class="modal-body">
-                                            <p>Are you sure you want to delete this user? </p>
-                                        </div>
-                                        <div class="modal-footer">
+                                    <div id="edtModalcnfm_${pcbase.productCategoryId}" class="modal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h4 class="modal-title">Confirm Edit</h4>
+                                                </div>
 
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <a class="btn btn-warning" href="${pageContext.request.contextPath}/pcbase/deleteProductCategory/${pcbase.productCategoryId}.html" title="Delete"><i class="fa fa-trash-o"></i>Delete</a>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to edit this? </p>
+                                                </div>
+                                                <div class="modal-footer">
+
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    <a  href="${pageContext.request.contextPath}/pcbase/editProductCategory/${pcbase.productCategoryId}.html" data-toggle="modal" data-dismiss="modal" class="btn btn-warning" data-target="#myModal" ><i class="fa fa-trash-o"></i>Edit</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>  
 
-                            <div id="edtModalcnfm_${pcbase.productCategoryId}" class="modal">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title">Confirm Delete</h4>
-                                        </div>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--<p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>-->
+                </div>
 
-                                        <div class="modal-body">
-                                            <p>Are you sure you want to edit this user? </p>
-                                        </div>
-                                        <div class="modal-footer">
+                <!-- Modal -->
+                <div id="myModal" data-keyboard="true"  class="modal" role="dialog" style="background-color: black !important;  ">
+                <div class="modal-dialog modal-lg">
+                    <!-- Modal content-->
+                    <div class="modal-content"> </div>
+                </div>
 
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <a  href="${pageContext.request.contextPath}/pcbase/editProductCategory/${pcbase.productCategoryId}.html" data-toggle="modal" data-dismiss="modal" class="btn btn-warning" data-target="#myModal" ><i class="fa fa-trash-o"></i>Edit</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-            <!--<p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>-->
-        </div>
-
-        <!-- Modal -->
-        <div id="myModal" data-keyboard="true"  class="modal" role="dialog" style="background-color: black !important;  ">
-            <div class="modal-dialog modal-lg">
-                <!-- Modal content-->
-                <div class="modal-content"> </div>
             </div>
 
-        </div>
+        </body>
 
-    </body>
-
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">  
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">  
-            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.jqueryui.min.css">  
-                </html>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">  
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">  
+                <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.jqueryui.min.css">  
+                    </html>
 
 

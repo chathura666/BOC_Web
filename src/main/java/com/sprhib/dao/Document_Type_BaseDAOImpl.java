@@ -36,6 +36,7 @@ public class Document_Type_BaseDAOImpl implements Document_Type_BaseDAO {
     public void updateDocumentTypeBase(DocumentTypeBase dtbase) {
         DocumentTypeBase dtToUpdate = getDocumentTypeBase(dtbase.getDid());
         dtToUpdate.setDid(dtbase.getDid());
+        dtToUpdate.setDocumentType(dtbase.getDocumentType());
         getCurrentSession().update(dtToUpdate);
     }
 

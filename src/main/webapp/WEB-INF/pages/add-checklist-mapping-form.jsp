@@ -22,42 +22,56 @@
                         <form:form method="POST" class="form-horizontal" commandName="dcmap" action="${pageContext.request.contextPath}/dcmap/addChecklistMap.html">
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">PDCID:</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-4">
                                     <form:input id="did" type="text" class="form-control"  path="pdcid"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">PRODUCT ID:</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-4">
                                     <form:input type="text" class="form-control" path="productId.pid"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">DOCUMENT ID:</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-4">
                                     <form:input type="text" class="form-control" path="documentId.did"/>
+                                    
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">SCAN_REQUIRED:</label>
-                                <div class="col-sm-9">
-                                    <form:input type="text" class="form-control" path="scanRequired"/>
+                                <div class="col-sm-4">
+                                    <form:select path="scanRequired">
+                                        <form:option value="Y">Y</form:option>
+                                        <form:option value="N">N</form:option>
+                                    </form:select> 
                                 </div>
-                            </div>
 
+
+
+                            </div>
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">MANDATORY:</label>
-                                <div class="col-sm-9">
-                                    <form:input type="text" class="form-control" path="mandatory"/>
+                                <div class="col-sm-4">
+                                       <form:select path="mandatory">
+                                        <form:option value="Y">Y</form:option>
+                                        <form:option value="N">N</form:option>
+                                    </form:select> 
                                 </div>
                             </div>    
 
-                            <div class="form-group">
-                                <div class="col-sm-2 col-sm-offset-6">
+                            <div class="form-group row">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-2">
                                     <button type="submit" class="btn btn-primary btn-block">Add Checklist Map</button>
                                 </div>
+                                <div class="col-sm-2">
+                                    <a href="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html" type="button" class="btn btn-default btn-block" >Close</a>
+                                </div>
+                                <div class="col-sm-5"></div>
                             </div>
 
                         </form:form>

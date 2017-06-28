@@ -89,7 +89,7 @@
                                 <div class="navbar-header col-md-2"">
                                     <a class="navbar-brand" href="#">BOC</a>
                                 </div>
-                                <div style="margin-top: 7px;" class="col-md-3">
+                                <div style="margin-top: 7px;" class="col-md-3" >
                                     <select  id="tablelist"  onchange="redirect_url()" class="selectpicker" data-live-search="true">
                                         <option selected data-tokens="product" value="${pageContext.request.contextPath}/pbase/listProducts.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>
                                         <option  data-tokens="product category" value="${pageContext.request.contextPath}/pcbase/listProductCategories.html" onclick ="redirect_url(this.value)">PRODUCT CATEGORY BASE</option>
@@ -134,11 +134,11 @@
                                                 <td>PID</td>
                                                 <td>P_Code</td>
                                                 <td>WF_P_Code</td>
-                                                <td>P_Name</td>
-                                                <td>P_Desc</td>
+                                                <td>PRODUCT NAME</td>
+                                                <td>PRODUCT DESCRIPTION</td>
                                                 <td>P_Cat_ID</td>
-                                                <td>Edit</td>
-                                                <td>Delete</td>
+                                                <td  style="width: 5%;">EDIT</td>
+                                                <td  style="width: 5%;">DELETE</td>
                                         </tr>
                                     </thead>
 
@@ -152,62 +152,62 @@
                                                 <td>${pbase.productDescription}</td>
                                                 <td>${pbase.productCategoryId.productCategoryId}</td>
 
-                                                <td><p data-placement="top" title="Edit"><button class="btn btn-primary btn-s" data-title="Edit" data-toggle="modal" style="width:60px"  data-target="#edtModalcnfm_${pbase.pid}" >Edit</button></p></td>
-                                                <td><p data-placement="top" id="deletebtn"  title="Delete"><button class="btn btn-warning btn-s" data-title="Delete"  style="width:60px" data-toggle="modal" data-target="#dltModalcnfm_${pbase.pid}" >Delete</button></p></td>
+                                                <td style="width: 5%;"><p data-placement="top" title="Edit"><button class="btn btn-primary btn-s" data-title="Edit" data-toggle="modal"  style="width:60px"  data-target="#edtModalcnfm_${pbase.pid}">Edit</button></p></td>
+                                                    <td style="width: 5%;"><p data-placement="top" id="deletebtn"  title="Delete"><button class="btn btn-warning btn-s" data-title="Delete"  style="width:60px" data-toggle="modal" data-target="#dltModalcnfm_${pbase.pid}">Delete</button></p></td>
 
-                                            </tr>
-                                            <div id="dltModalcnfm_${pbase.pid}" class="modal">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                            <h4 class="modal-title">Confirm Delete</h4>
+                                                </tr>
+                                                <div id="dltModalcnfm_${pbase.pid}" class="modal">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                <h4 class="modal-title">Confirm Delete</h4>
+                                                            </div>
+
+                                                            <div class="modal-body">
+                                                                <p>Are you sure you want to delete this </p>
+                                                            </div>
+                                                            <div class="modal-footer">
+
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                <a class="btn btn-warning" href="${pageContext.request.contextPath}/pbase/deleteProduct/${pbase.pid}.html" title="Delete"><i class="fa fa-trash-o"></i>Delete</a>
+                                                            </div>
                                                         </div>
+                                                    </div>
+                                                </div>  
 
-                                                        <div class="modal-body">
-                                                            <p>Are you sure you want to delete this user? </p>
-                                                        </div>
-                                                        <div class="modal-footer">
+                                                <div id="edtModalcnfm_${pbase.pid}" class="modal">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                <h4 class="modal-title">Confirm Edit</h4>
+                                                            </div>
 
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                            <a class="btn btn-warning" href="${pageContext.request.contextPath}/pbase/deleteProduct/${pbase.pid}.html" title="Delete"><i class="fa fa-trash-o"></i>Delete</a>
+                                                            <div class="modal-body">
+                                                                <p>Are you sure you want to edit this? </p>
+                                                            </div>
+                                                            <div class="modal-footer">
+
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                <a  href="${pageContext.request.contextPath}/pbase/editProduct/${pbase.pid}.html" data-toggle="modal" data-dismiss="modal" class="btn btn-warning" data-target="#myModal" ><i class="fa fa-trash-o"></i>Edit</a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>  
-
-                                            <div id="edtModalcnfm_${pbase.pid}" class="modal">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                            <h4 class="modal-title">Confirm Delete</h4>
-                                                        </div>
-
-                                                        <div class="modal-body">
-                                                            <p>Are you sure you want to edit this user? </p>
-                                                        </div>
-                                                        <div class="modal-footer">
-
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                            <a  href="${pageContext.request.contextPath}/pbase/editProduct/${pbase.pid}.html" data-toggle="modal" data-dismiss="modal" class="btn btn-warning" data-target="#myModal" ><i class="fa fa-trash-o"></i>Edit</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--<p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>-->
                             </div>
-                            <!--<p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>-->
-                        </div>
 
 
-                        <!--  ************************************************************    -->
+                            <!--  ************************************************************    -->
 
 
-                        <!-- Modal -->
-                        <div id="myModal" data-keyboard="true"  class="modal" role="dialog" style="background-color: black !important;  ">
+                            <!-- Modal -->
+                            <div id="myModal" data-keyboard="true"  class="modal" role="dialog" style="background-color: black !important;  ">
                             <div class="modal-dialog modal-lg">
                                 <!-- Modal content-->
                                 <div class="modal-content"> </div>
@@ -217,9 +217,9 @@
 
                     </body>
 
-                    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">  
-                        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">  
-                            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.jqueryui.min.css">  
+                    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>  
+                        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>  
+                            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.jqueryui.min.css"/>  
                                 </html>
 
 

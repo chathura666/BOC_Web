@@ -43,6 +43,8 @@
                                 <option data-tokens="product category" value="${pageContext.request.contextPath}/pcbase/listProductCategories.html">PRODUCT CATEGORY BASE</option>
                                 <option data-tokens="document type" value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html">DOCUMENT TYPE BASE</option>
                                 <option data-tokens="document chacklist map " value="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html">PRODUCT DOCUMENT CHECKLIST MAPPING</option>
+                                <option selected data-tokens="credit card wise credit limit" value="${pageContext.request.contextPath}/creditlimit/listCreditLimits.html" onclick="redirect_url(this.value)">CC CARD CATEGORY WISE CREDIT LIMITS</option>
+
                             </select>
 
                         </li>

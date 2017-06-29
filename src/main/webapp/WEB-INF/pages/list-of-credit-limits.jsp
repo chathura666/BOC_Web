@@ -64,11 +64,7 @@
                         }
                     });
 
-
-
                 </script>
-
-
 
                 <style>
                     html, body{
@@ -78,9 +74,7 @@
                             .modal-backdrop.in {
                             opacity: 0.5;
                         }
-
-
-                    </style>
+                </style>
 
                     </head>
                     <body>
@@ -95,7 +89,7 @@
                                         <option  data-tokens="product category" value="${pageContext.request.contextPath}/pcbase/listProductCategories.html" onclick ="redirect_url(this.value)">PRODUCT CATEGORY BASE</option>
                                         <option data-tokens="document type" value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
                                         <option data-tokens="document chacklist map " value="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html" onclick="redirect_url(this.value)">PRODUCT DOCUMENT CHECKLIST MAPPING</option>
-                                        <option data-tokens="credit card wise credit limit" value="${pageContext.request.contextPath}/creditlimit/listCreditLimits.html" onclick="redirect_url(this.value)">CC CARD CATEGORY WISE CREDIT LIMITS</option>
+                                        <option selected data-tokens="credit card wise credit limit" value="${pageContext.request.contextPath}/creditlimit/listCreditLimits.html" onclick="redirect_url(this.value)">CC CARD CATEGORY WISE CREDIT LIMITS</option>
                                     </select>
                                 </div>
                                 <div class="col-md-7"></div>
@@ -106,7 +100,7 @@
                         <div class="container">
                             <div class="row">
                                 <div>
-                                    <h3 style="margin-top: 10px;">List of Products</h3>
+                                    <h3 style="margin-top: 10px;">List of Credit Card Wise Credit Limits</h3>
                                     <div style="padding-bottom: 10px">
                                             <div>
                                                 <c:if test = "${not empty message}">
@@ -121,7 +115,7 @@
                             </div>
                             <div class="row">
                                 <div style="float:right">
-                                        <a href="${pageContext.request.contextPath}/pbase/addProduct.html" class="btn btn-success" role="button" data-toggle="modal" data-target="#myModal" style="width:110px">+ Add New</a>
+                                        <a href="${pageContext.request.contextPath}/creditlimit/addCreditLimit.html" class="btn btn-success" role="button" data-toggle="modal" data-target="#myModal" style="width:110px">+ Add New</a>
                                     </div>
                                 </div>
 
@@ -132,32 +126,30 @@
                                     <thead>
                                         <tr>
                                             <div>
-                                                <td>PID</td>
-                                                <td>P_Code</td>
-                                                <td>WF_P_Code</td>
-                                                <td>PRODUCT NAME</td>
-                                                <td>PRODUCT DESCRIPTION</td>
-                                                <td>P_Cat_ID</td>
+                                                <td>CCL_ID</td>
+                                                <td>MAIN_CATEGORY</td>
+                                                <td>SUB_CATEGORY</td>
+                                                <td>LOWER_LIMIT</td>
+                                                <td>UPPER_LIMIT</td>
                                                 <td  style="width: 5%;">EDIT</td>
                                                 <td  style="width: 5%;">DELETE</td>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        <c:forEach var="pbase" items="${pbases}">
+                                        <c:forEach var="creditlimits" items="${creditlimits}">
                                             <tr>
-                                                <td>${pbase.pid}</td>
-                                                <td>${pbase.productCode}</td>
-                                                <td>${pbase.wfProductCode}</td>
-                                                <td>${pbase.productName}</td>
-                                                <td>${pbase.productDescription}</td>
-                                                <td>${pbase.productCategoryId.productCategoryId}</td>
+                                                <td>${creditlimits.cclId}</td>
+                                                <td>${creditlimits.mainCategory}</td>
+                                                <td>${creditlimits.subCategory}</td>
+                                                <td>${creditlimits.lowerLimit}</td>
+                                                <td>${creditlimits.upperLimit}</td>
 
-                                                <td style="width: 5%;"><p data-placement="top" title="Edit"><button class="btn btn-primary btn-s" data-title="Edit" data-toggle="modal"  style="width:60px"  data-target="#edtModalcnfm_${pbase.pid}">Edit</button></p></td>
-                                                    <td style="width: 5%;"><p data-placement="top" id="deletebtn"  title="Delete"><button class="btn btn-warning btn-s" data-title="Delete"  style="width:60px" data-toggle="modal" data-target="#dltModalcnfm_${pbase.pid}">Delete</button></p></td>
+                                                <td style="width: 5%;"><p data-placement="top" title="Edit"><button class="btn btn-primary btn-s" data-title="Edit" data-toggle="modal"  style="width:60px"  data-target="#edtModalcnfm_${creditlimits.cclId}">Edit</button></p></td>
+                                                    <td style="width: 5%;"><p data-placement="top" id="deletebtn"  title="Delete"><button class="btn btn-warning btn-s" data-title="Delete"  style="width:60px" data-toggle="modal" data-target="#dltModalcnfm_${creditlimits.cclId}">Delete</button></p></td>
 
                                                 </tr>
-                                                <div id="dltModalcnfm_${pbase.pid}" class="modal">
+                                                <div id="dltModalcnfm_${creditlimits.cclId}" class="modal">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -171,13 +163,13 @@
                                                             <div class="modal-footer">
 
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                <a class="btn btn-warning" href="${pageContext.request.contextPath}/pbase/deleteProduct/${pbase.pid}.html" title="Delete"><i class="fa fa-trash-o"></i>Delete</a>
+                                                                <a class="btn btn-warning" href="${pageContext.request.contextPath}/creditlimit/deleteCreditLimit/${creditlimits.cclId}.html" title="Delete"><i class="fa fa-trash-o"></i>Delete</a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>  
 
-                                                <div id="edtModalcnfm_${pbase.pid}" class="modal">
+                                                <div id="edtModalcnfm_${creditlimits.cclId}" class="modal">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -191,7 +183,7 @@
                                                             <div class="modal-footer">
 
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                <a  href="${pageContext.request.contextPath}/pbase/editProduct/${pbase.pid}.html" data-toggle="modal" data-dismiss="modal" class="btn btn-warning" data-target="#myModal" ><i class="fa fa-trash-o"></i>Edit</a>
+                                                                <a  href="${pageContext.request.contextPath}/creditlimit/editCreditLimit/${creditlimits.cclId}.html" data-toggle="modal" data-dismiss="modal" class="btn btn-warning" data-target="#myModal" ><i class="fa fa-trash-o"></i>Edit</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -219,8 +211,8 @@
                     </body>
 
                     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>  
-                        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>  
-                            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.jqueryui.min.css"/>  
-                                </html>
+                    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>  
+                    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.jqueryui.min.css"/>  
+                    </html>
 
 

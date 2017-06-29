@@ -44,7 +44,7 @@
                                 <option data-tokens="document type" value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html">DOCUMENT TYPE BASE</option>
                                 <option data-tokens="document chacklist map " value="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html">PRODUCT DOCUMENT CHECKLIST MAPPING</option>
                                 <option selected data-tokens="credit card wise credit limit" value="${pageContext.request.contextPath}/creditlimit/listCreditLimits.html" onclick="redirect_url(this.value)">CC CARD CATEGORY WISE CREDIT LIMITS</option>
-
+                                <option selected data-tokens="pick list values" value="${pageContext.request.contextPath}/picklist/listPickList.html" onclick="redirect_url(this.value)">PICKLIST VALUES</option>
                             </select>
 
                         </li>

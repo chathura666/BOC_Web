@@ -87,6 +87,10 @@
                             .modal-backdrop.in {
                             opacity: 0.5;
                         }
+
+
+
+
                     </style>
 
                     </head>
@@ -98,13 +102,12 @@
                                 </div>
                                 <div style="margin-top: 7px;" class="col-md-3" >
                                     <select  id="tablelist"  onchange="redirect_url()" class="selectpicker" data-live-search="true">
-                                        <option selected data-tokens="product" value="${pageContext.request.contextPath}/pbase/listProducts.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>
+                                        <option  data-tokens="product" value="${pageContext.request.contextPath}/pbase/listProducts.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>
                                         <option  data-tokens="product category" value="${pageContext.request.contextPath}/pcbase/listProductCategories.html" onclick ="redirect_url(this.value)">PRODUCT CATEGORY BASE</option>
                                         <option data-tokens="document type" value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
                                         <option data-tokens="document chacklist map " value="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html" onclick="redirect_url(this.value)">PRODUCT DOCUMENT CHECKLIST MAPPING</option>
-                                        <option selected data-tokens="credit card wise credit limit" value="${pageContext.request.contextPath}/creditlimit/listCreditLimits.html" onclick="redirect_url(this.value)">CC CARD CATEGORY WISE CREDIT LIMITS</option>
-                                        <option  data-tokens="pick list values" value="${pageContext.request.contextPath}/picklist/listPickList.html" onclick="redirect_url(this.value)">PICKLIST VALUES</option>
-
+                                        <option data-tokens="credit card wise credit limit" value="${pageContext.request.contextPath}/creditlimit/listCreditLimits.html" onclick="redirect_url(this.value)">CC CARD CATEGORY WISE CREDIT LIMITS</option>
+                                        <option selected data-tokens="pick list values" value="${pageContext.request.contextPath}/picklist/listPickList.html" onclick="redirect_url(this.value)">PICKLIST VALUES</option>
                                     </select>
                                 </div>
                                 <div class="col-md-7"></div>
@@ -115,7 +118,7 @@
                         <div class="container">
                             <div class="row">
                                 <div>
-                                    <h3 style="margin-top: 10px;">List of Credit Card Wise Credit Limits</h3>
+                                    <h3 style="margin-top: 10px;">List of Picklist Values </h3>
                                     <div style="padding-bottom: 10px">
                                             <div>
                                                 <c:if test = "${not empty message}">
@@ -130,7 +133,7 @@
                             </div>
                             <div class="row">
                                 <div style="float:right">
-                                        <a href="${pageContext.request.contextPath}/creditlimit/addCreditLimit.html" class="btn btn-success" role="button" data-toggle="modal" data-target="#myModal" style="width:110px">+ Add New</a>
+                                        <a href="${pageContext.request.contextPath}/picklist/addPickList.html" class="btn btn-success" role="button" data-toggle="modal" data-target="#myModal" style="width:110px">+ Add New</a>
                                     </div>
                                 </div>
 
@@ -141,30 +144,30 @@
                                     <thead>
                                         <tr>
                                             <div>
-                                                <td>CCL_ID</td>
-                                                <td>MAIN_CATEGORY</td>
-                                                <td>SUB_CATEGORY</td>
-                                                <td>LOWER_LIMIT</td>
-                                                <td>UPPER_LIMIT</td>
+                                                <td>PICK LIST ID</td>
+                                                <td>PICK LIST CODE</td>
+                                                <td>PICK VALUE</td>
+                                                <td>PICK LIST NAME</td>
+                                                <td>PICK LIST FILTER</td>
                                                 <td  style="width: 5%;">EDIT</td>
                                                 <td  style="width: 5%;">DELETE</td>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        <c:forEach var="creditlimits" items="${creditlimits}">
+                                        <c:forEach var="pklist" items="${pklist}">
                                             <tr>
-                                                <td>${creditlimits.cclId}</td>
-                                                <td>${creditlimits.mainCategory}</td>
-                                                <td>${creditlimits.subCategory}</td>
-                                                <td>${creditlimits.lowerLimit}</td>
-                                                <td>${creditlimits.upperLimit}</td>
+                                                <td>${pklist.picklistId}</td>
+                                                <td>${pklist.picklistCode}</td>
+                                                <td>${pklist.pickValue}</td>
+                                                <td>${pklist.picklistName}</td>
+                                                <td>${pklist.picklistFilter}</td>
 
-                                                <td style="width: 5%;"><p data-placement="top" title="Edit"><button class="btn btn-primary btn-s" data-title="Edit" data-toggle="modal"  style="width:60px"  data-target="#edtModalcnfm_${creditlimits.cclId}">Edit</button></p></td>
-                                                    <td style="width: 5%;"><p data-placement="top" id="deletebtn"  title="Delete"><button class="btn btn-warning btn-s" data-title="Delete"  style="width:60px" data-toggle="modal" data-target="#dltModalcnfm_${creditlimits.cclId}">Delete</button></p></td>
+                                                <td style="width: 5%;"><p data-placement="top" title="Edit"><button class="btn btn-primary btn-s" data-title="Edit" data-toggle="modal"  style="width:60px"  data-target="#edtModalcnfm_${pklist.picklistId}">Edit</button></p></td>
+                                                    <td style="width: 5%;"><p data-placement="top" id="deletebtn"  title="Delete"><button class="btn btn-warning btn-s" data-title="Delete"  style="width:60px" data-toggle="modal" data-target="#dltModalcnfm_${pklist.picklistId}">Delete</button></p></td>
 
                                                 </tr>
-                                                <div id="dltModalcnfm_${creditlimits.cclId}" class="modal">
+                                                <div id="dltModalcnfm_${pklist.picklistId}" class="modal">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -178,13 +181,13 @@
                                                             <div class="modal-footer">
 
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                <a class="btn btn-warning" href="${pageContext.request.contextPath}/creditlimit/deleteCreditLimit/${creditlimits.cclId}.html" title="Delete"><i class="fa fa-trash-o"></i>Delete</a>
+                                                                <a class="btn btn-warning" href="${pageContext.request.contextPath}/picklist/deletePickList/${pklist.picklistId}.html" title="Delete"><i class="fa fa-trash-o"></i>Delete</a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>  
 
-                                                <div id="edtModalcnfm_${creditlimits.cclId}" class="modal">
+                                                <div id="edtModalcnfm_${pklist.picklistId}" class="modal">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -198,7 +201,7 @@
                                                             <div class="modal-footer">
 
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                <a  href="${pageContext.request.contextPath}/creditlimit/editCreditLimit/${creditlimits.cclId}.html" data-toggle="modal" data-dismiss="modal" class="btn btn-warning" data-target="#myModal" ><i class="fa fa-trash-o"></i>Edit</a>
+                                                                <a  href="${pageContext.request.contextPath}/picklist/editPickList/${pklist.picklistId}.html" data-toggle="modal" data-dismiss="modal" class="btn btn-warning" data-target="#myModal" ><i class="fa fa-trash-o"></i>Edit</a>
                                                             </div>
                                                         </div>
                                                     </div>

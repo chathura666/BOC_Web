@@ -53,9 +53,22 @@
                     var x = document.getElementById("tablelist").value;
                     window.location = x;
                 }
+                $(window).load(function () {
+                    // When the page has loaded
+                    $("body").fadeIn(100);
+                });
+
+
+
             </script>
 
+
+
             <style>
+
+                body {
+                    display: none;
+                }
                 html, body{
                     padding-right: 0px !important; 
                     position: relative!important
@@ -81,6 +94,7 @@
                             <option data-tokens="document type" value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
                             <option data-tokens="document chacklist map " value="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html" onclick="redirect_url(this.value)">PRODUCT DOCUMENT CHECKLIST MAPPING</option>
                             <option  data-tokens="credit card wise credit limit" value="${pageContext.request.contextPath}/creditlimit/listCreditLimits.html" onclick="redirect_url(this.value)">CC CARD CATEGORY WISE CREDIT LIMITS</option>
+                            <option  data-tokens="pick list values" value="${pageContext.request.contextPath}/picklist/listPickList.html" onclick="redirect_url(this.value)">PICKLIST VALUES</option>
                         </select>
                     </div>
                     <div class="col-md-7"></div>

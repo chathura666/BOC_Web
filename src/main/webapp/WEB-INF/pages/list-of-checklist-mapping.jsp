@@ -55,9 +55,22 @@
                     }
                 }
 
+                $(window).load(function () {
+                    // When the page has loaded
+                    $("body").fadeIn(100);
+                });
+
+
+
             </script>
 
+
+
             <style>
+
+                body {
+                    display: none;
+                }
                 html, body{
                     padding-right: 0px !important; 
                     position: relative!important
@@ -83,6 +96,8 @@
                             <option data-tokens="document type" value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
                             <option selected data-tokens="document chacklist map " value="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html" onclick="redirect_url(this.value)">PRODUCT DOCUMENT CHECKLIST MAPPING</option>
                             <option  data-tokens="credit card wise credit limit" value="${pageContext.request.contextPath}/creditlimit/listCreditLimits.html" onclick="redirect_url(this.value)">CC CARD CATEGORY WISE CREDIT LIMITS</option>
+                            <option  data-tokens="pick list values" value="${pageContext.request.contextPath}/picklist/listPickList.html" onclick="redirect_url(this.value)">PICKLIST VALUES</option>
+
                         </select>
                     </div>
                     <div class="col-md-7"></div>
@@ -140,7 +155,7 @@
                                     <td>${dcmap.mandatory}</td>
 
                                     <td style="width: 5%;"><p data-placement="top" title="Edit"><button class="btn btn-primary btn-s" data-title="Edit" data-toggle="modal"  style="width:60px"  data-target="#edtModalcnfm_${dcmap.pdcid}">Edit</button></p></td>
-                                    <td style="width: 5%;"><p data-placement="top" id="deletebtn"  title="Delete"><button class="btn btn-warning btn-s" data-title="Delete"  style="width:60px" data-toggle="modal" data-target="#dltModalcnfm_${dcmap.pdcid}">Delete</button></p></td>
+                                        <td style="width: 5%;"><p data-placement="top" id="deletebtn"  title="Delete"><button class="btn btn-warning btn-s" data-title="Delete"  style="width:60px" data-toggle="modal" data-target="#dltModalcnfm_${dcmap.pdcid}">Delete</button></p></td>
 
 
                                     </tr>

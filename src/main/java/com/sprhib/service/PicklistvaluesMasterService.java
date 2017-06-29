@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface PicklistvaluesMasterService {
 
- public void addPickListValue(PicklistvaluesMaster pbase);
+    public void addPickListValue(PicklistvaluesMaster pbase);
 
     public void updatePickListValue(PicklistvaluesMaster pbase);
 

@@ -23,7 +23,5 @@ public interface Product_BaseService {
     public void deleteProduct(int id);
 
     public List<ProductBase> getProducts();
-    
-    public List<Object>  getAllTables();
 
 }

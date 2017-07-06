@@ -38,15 +38,16 @@
                         <li></li>
                         <li>&nbsp</li>
                         <li>
-                            <select id="tablelist" class="selectpicker" data-live-search="true">
-                                <option data-tokens="product" value="${pageContext.request.contextPath}/pbase/listProducts.html">PRODUCT BASE</option>
-                                <option data-tokens="product category" value="${pageContext.request.contextPath}/pcbase/listProductCategories.html">PRODUCT CATEGORY BASE</option>
-                                <option data-tokens="document type" value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html">DOCUMENT TYPE BASE</option>
-                                <option data-tokens="document chacklist map " value="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html">PRODUCT DOCUMENT CHECKLIST MAPPING</option>
-                                <option selected data-tokens="credit card wise credit limit" value="${pageContext.request.contextPath}/creditlimit/listCreditLimits.html" onclick="redirect_url(this.value)">CC CARD CATEGORY WISE CREDIT LIMITS</option>
-                                <option selected data-tokens="pick list values" value="${pageContext.request.contextPath}/picklist/listPickList.html" onclick="redirect_url(this.value)">PICKLIST VALUES</option>
+                            <select  id="tablelist"  onchange="redirect_url()" class="selectpicker" data-live-search="true">
+                                <option selected data-tokens="area" value="${pageContext.request.contextPath}/abase/listAreaBases.html" onclick="redirect_url(this.value)">AREA BASE</option>
+                                <option data-tokens="credit card wise credit limit" value="${pageContext.request.contextPath}/creditlimit/listCreditLimits.html" onclick="redirect_url(this.value)">CC CARD CATEGORY WISE CREDIT LIMITS</option>
+                                <option data-tokens="document type" value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
+                                <option data-tokens="loan product mapping" value="${pageContext.request.contextPath}/lpidmap/listIndexIdMap.html" onclick="redirect_url(this.value)">LOAN PRODUCT INDEX ID MAPPING</option>
+                                <option data-tokens="pick list values" value="${pageContext.request.contextPath}/picklist/listPickList.html" onclick="redirect_url(this.value)">PICKLIST VALUES</option>
+                                <option data-tokens="product" value="${pageContext.request.contextPath}/pbase/listProducts.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>
+                                <option data-tokens="product category" value="${pageContext.request.contextPath}/pcbase/listProductCategories.html" onclick ="redirect_url(this.value)">PRODUCT CATEGORY BASE</option>
+                                <option data-tokens="document chacklist map " value="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html" onclick="redirect_url(this.value)">PRODUCT DOCUMENT CHECKLIST MAPPING</option>
                             </select>
-
                         </li>
                         <li>&nbsp</li>
                         <li>

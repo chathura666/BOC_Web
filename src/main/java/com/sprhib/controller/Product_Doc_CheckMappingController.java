@@ -12,6 +12,7 @@ import com.sprhib.service.Document_Type_BaseService;
 import com.sprhib.service.ProductDocumentChecklistMappingService;
 import com.sprhib.service.Product_BaseService;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.hibernate.TransientPropertyValueException;
 import org.hibernate.exception.ConstraintViolationException;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -44,14 +46,58 @@ public class Product_Doc_CheckMappingController {
     @RequestMapping(value = "/addChecklistMap", method = RequestMethod.GET)
     public ModelAndView addProductChecklistMap() {
         ModelAndView modelAndView = new ModelAndView("add-checklist-mapping-form");
+
+        List<ProductBase> productNames = pbaseService.getProducts();
+        List<String> ProdName = new ArrayList<String>();
+
+        Iterator<ProductBase> pname = productNames.iterator();
+        while (pname.hasNext()) {
+            ProdName.add(pname.next().getProductName());
+
+        }
+
+        List<DocumentTypeBase> docNames = dtbaseService.getDocumentTypeBases();
+        List<String> DocName = new ArrayList<String>();
+
+        Iterator<DocumentTypeBase> dname = docNames.iterator();
+        while (dname.hasNext()) {
+            DocName.add(dname.next().getDocumentType());
+
+        }
+
+        modelAndView.addObject("ProdName", ProdName);
+        modelAndView.addObject("DocName", DocName);
         modelAndView.addObject("dcmap", new ProductDocumentChecklistMapping());
         return modelAndView;
     }
 
     @RequestMapping(value = "/addChecklistMap", method = RequestMethod.POST)
-    public ModelAndView addingProductChecklistMap(@ModelAttribute ProductDocumentChecklistMapping dcmap) {
+    public ModelAndView addingProductChecklistMap(@ModelAttribute ProductDocumentChecklistMapping dcmap, @RequestParam("pname") String pname, @RequestParam("dtype") String dtype) {
 
         ModelAndView modelAndView = new ModelAndView("list-of-checklist-mapping");
+
+        List<ProductBase> products = pbaseService.getProducts();
+        List<DocumentTypeBase> docs = dtbaseService.getDocumentTypeBases();
+
+        ProductBase pid = null;
+        DocumentTypeBase did = null;
+
+        for (ProductBase pb : products) {
+            if (pb.getProductName().equalsIgnoreCase(pname)) {
+                pid = pb;
+                break;
+            }
+        }
+
+        for (DocumentTypeBase db : docs) {
+            if (db.getDocumentType().equalsIgnoreCase(dtype)) {
+                did = db;
+                break;
+            }
+        }
+
+        dcmap.setProductId(pid);
+        dcmap.setDocumentId(did);
 
         ProductBase currentpbases = pbaseService.getProduct(dcmap.getProductId().getPid());
         DocumentTypeBase currentdtbase = dtbaseService.getDocumentTypeBase(dcmap.getDocumentId().getDid());
@@ -134,22 +180,87 @@ public class Product_Doc_CheckMappingController {
         ModelAndView modelAndView = new ModelAndView("edit-checklist-mapping-form");
         ProductDocumentChecklistMapping dcmaps = dcmapService.getProductDocumentChecklistMapping(id);
         modelAndView.addObject("dcmap", dcmaps);
-        
+
+        List<ProductBase> productNames = pbaseService.getProducts();
+        List<String> ProdNames = new ArrayList<String>();
+
+        Iterator<ProductBase> pname = productNames.iterator();
+        while (pname.hasNext()) {
+            ProdNames.add(pname.next().getProductName());
+        }
+
+        List<DocumentTypeBase> documentNames = dtbaseService.getDocumentTypeBases();
+        List<String> DocNames = new ArrayList<String>();
+
+        Iterator<DocumentTypeBase> dname = documentNames.iterator();
+        while (dname.hasNext()) {
+            DocNames.add(dname.next().getDocumentType());
+        }
+
+        ProductBase pid = null;
+        DocumentTypeBase did = null;
+
+        for (ProductBase pb : productNames) {
+            if (pb.getPid().equals(dcmaps.getProductId().getPid())) {
+                pid = pb;
+                break;
+            }
+        }
+
+        for (DocumentTypeBase db : documentNames) {
+            if (db.getDid().equals(dcmaps.getDocumentId().getDid())) {
+                did = db;
+                break;
+            }
+        }
+
+        ProdNames.remove(pid.getProductName());
+        DocNames.remove(did.getDocumentType());
+
+        modelAndView.addObject("ProdNames", ProdNames);
+        modelAndView.addObject("DocNames", DocNames);
+
+        modelAndView.addObject("ProdName", pid.getProductName());
+        modelAndView.addObject("DocName", did.getDocumentType());
+
         List<String> DropValues = new ArrayList<String>();
         DropValues.add("Y");
         DropValues.add("N");
 
         modelAndView.addObject("DropValues", DropValues);
-        
+
         return modelAndView;
     }
 
     @RequestMapping(value = "/editChecklistMapping/{id}", method = RequestMethod.POST)
     public ModelAndView editingProductChecklistMap(@ModelAttribute ProductDocumentChecklistMapping dcmap,
-            @PathVariable Integer id
+            @PathVariable Integer id, @RequestParam("pname") String pname, @RequestParam("dtype") String dtype
     ) {
 
         ModelAndView modelAndView = new ModelAndView("list-of-checklist-mapping");
+
+        List<ProductBase> productNames = pbaseService.getProducts();
+        List<DocumentTypeBase> docNames = dtbaseService.getDocumentTypeBases();
+
+        ProductBase pid = null;
+        DocumentTypeBase did = null;
+
+        for (ProductBase pb : productNames) {
+            if (pb.getProductName().equalsIgnoreCase(pname)) {
+                pid = pb;
+                break;
+            }
+        }
+
+        for (DocumentTypeBase db : docNames) {
+            if (db.getDocumentType().equalsIgnoreCase(dtype)) {
+                did = db;
+                break;
+            }
+        }
+
+        dcmap.setProductId(pid);
+        dcmap.setDocumentId(did);
 
         ProductBase currentpbases = pbaseService.getProduct(dcmap.getProductId().getPid());
         DocumentTypeBase currentdtbase = dtbaseService.getDocumentTypeBase(dcmap.getDocumentId().getDid());

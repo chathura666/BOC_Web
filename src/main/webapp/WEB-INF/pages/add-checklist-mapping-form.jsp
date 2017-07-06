@@ -17,8 +17,8 @@
                 </head>
                 <body>
                     <div class ="container" >
-                        <div class="col-sm-9 col-sm-offset-3"><h3>Add Chacklist Mapping</h3></div>
-                        <div class="col-sm-9 col-sm-offset-3"><p>Here you can add Chacklist Mapping details....</p></div>
+                        <div class="col-sm-9 col-sm-offset-3"><h3>Add Checklist Mapping</h3></div>
+                        <div class="col-sm-9 col-sm-offset-3"><p>Here you can add Checklist Mapping details....</p></div>
                         <form:form method="POST" class="form-horizontal" commandName="dcmap" action="${pageContext.request.contextPath}/dcmap/addChecklistMap.html">
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">PDCID:</label>
@@ -27,24 +27,27 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label  class="col-sm-3 control-label">PRODUCT ID:</label>
+                                <label  class="col-sm-3 control-label">PRODUCT NAME:</label>
                                 <div class="col-sm-4">
-                                    <form:input type="text" class="form-control" path="productId.pid"/>
+                                    <form:select data-live-search="true" class="form-control" type="text" name="pname" path="">
+                                        <form:options items="${ProdName}"></form:options>                                                                                                        
+                                    </form:select>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label  class="col-sm-3 control-label">DOCUMENT ID:</label>
+                                <label  class="col-sm-3 control-label">DOCUMENT TYPE:</label>
                                 <div class="col-sm-4">
-                                    <form:input type="text" class="form-control" path="documentId.did"/>
-                                    
+                                    <form:select data-live-search="true" class="form-control" type="text" name="dtype" path="">
+                                        <form:options  items="${DocName}"></form:options>                                                                                                        
+                                    </form:select>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">SCAN_REQUIRED:</label>
                                 <div class="col-sm-4">
-                                    <form:select path="scanRequired">
+                                    <form:select path="scanRequired" class="form-control" style="width:60px">
                                         <form:option value="Y">Y</form:option>
                                         <form:option value="N">N</form:option>
                                     </form:select> 
@@ -56,7 +59,7 @@
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">MANDATORY:</label>
                                 <div class="col-sm-4">
-                                       <form:select path="mandatory">
+                                    <form:select path="mandatory" class="form-control" style="width:60px">
                                         <form:option value="Y">Y</form:option>
                                         <form:option value="N">N</form:option>
                                     </form:select> 

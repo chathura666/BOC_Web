@@ -34,6 +34,7 @@ public class CcardCategoryWiseCreditLimitDAOImpl implements CcardCategoryWiseCre
     @Override
     public void updateCCWiseCreditLimit(CcCardCategoryWiseCreditLimits CCClimit) {
         CcCardCategoryWiseCreditLimits limitToUpdate = getCCWiseCreditLimit(CCClimit.getCclId());
+        limitToUpdate.setCclId(CCClimit.getCclId());
         limitToUpdate.setLowerLimit(CCClimit.getLowerLimit());
         limitToUpdate.setMainCategory(CCClimit.getMainCategory());
         limitToUpdate.setSubCategory(CCClimit.getSubCategory());

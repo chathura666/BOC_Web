@@ -34,7 +34,7 @@ public class ProductDocumentChecklistMappingDAOImpl implements ProductDocumentCh
     @Override
     public void updateProductDocumentChecklistMapping(ProductDocumentChecklistMapping docmap) {
         ProductDocumentChecklistMapping dtToUpdate = getProductDocumentChecklistMapping(docmap.getPdcid());
-        //dtToUpdate.setPdcid(docmap.getPdcid());
+        dtToUpdate.setPdcid(docmap.getPdcid());
         dtToUpdate.setScanRequired(docmap.getScanRequired());
         dtToUpdate.setMandatory(docmap.getMandatory());
         dtToUpdate.setDocumentId(docmap.getDocumentId());

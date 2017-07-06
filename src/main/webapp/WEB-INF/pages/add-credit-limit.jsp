@@ -30,7 +30,7 @@
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">MAIN_CATEGORY:</label>
                                 <div class="col-sm-4">
-                                    <form:select path="mainCategory" style="margin-top: 6px;">
+                                    <form:select class="form-control" path="mainCategory" style="margin-top: 6px;width:150px">
                                         <form:options  items="${creditCardType}"></form:options>                                                                                                       
                                     </form:select>
                                 </div>
@@ -38,7 +38,7 @@
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">SUB_CATEGORY:</label>
                                 <div class="col-sm-4">
-                                    <form:select path="subCategory" style="margin-top: 6px;">
+                                    <form:select class="form-control" path="subCategory" style="margin-top: 6px;width:150px">
                                         <form:options  items="${subType}"></form:options>                                                                                                       
                                     </form:select>                           
                                 </div>

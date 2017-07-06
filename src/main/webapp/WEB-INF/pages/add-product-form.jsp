@@ -11,10 +11,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
         <title>Add Product page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">  
-            <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">  
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>  
-                <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
-
                 </head>
                 <body>
                     <div class="container" >
@@ -52,9 +48,11 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label  class="col-sm-3 control-label">Product Category ID:</label>
+                                <label  class="col-sm-3 control-label">Product Category:</label>
                                 <div class="col-sm-4">
-                                    <form:input type="text" class="form-control" path="productCategoryId.productCategoryId" maxlength="4"/>
+                                    <form:select data-live-search="true" class="form-control" type="text" name="pcat" path="">
+                                        <form:options items="${ProdCat}"></form:options>                                                                                                        
+                                    </form:select>
                                 </div>
                             </div>
 

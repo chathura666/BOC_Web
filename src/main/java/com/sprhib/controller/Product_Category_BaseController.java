@@ -103,7 +103,7 @@ public class Product_Category_BaseController {
 
         } catch (ConstraintViolationException ex) {
 
-            String message1 = "Constraint Violation.. Product Adding Failed!!";
+            String message1 = "Constraint Violation.. Product editing Failed!!";
             modelAndView.addObject("message1", message1);
 
         } catch (DataIntegrityViolationException ex) {

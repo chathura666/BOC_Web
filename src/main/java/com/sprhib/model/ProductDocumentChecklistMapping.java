@@ -48,6 +48,9 @@ public class ProductDocumentChecklistMapping implements Serializable {
     @ManyToOne(optional = false)
     private DocumentTypeBase documentId;
 
+    
+    
+
     public ProductDocumentChecklistMapping() {
     }
 
@@ -124,5 +127,5 @@ public class ProductDocumentChecklistMapping implements Serializable {
     public String toString() {
         return "db2.ProductDocumentChecklistMapping[ pdcid=" + pdcid + " ]";
     }
-    
+
 }

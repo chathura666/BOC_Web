@@ -48,9 +48,5 @@ public class Product_BaseServiceImpl implements Product_BaseService {
         return pbaseDAO.getProducts();
     }
 
-    @Override
-    public List<Object> getAllTables() {
-        return pbaseDAO.getAllTables();
-    }
 
 }

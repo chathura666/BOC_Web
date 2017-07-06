@@ -52,9 +52,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label  class="col-sm-3 control-label">Product Category ID:</label>
+                                <label  class="col-sm-3 control-label">Product Category:</label>
                                 <div class="col-sm-4">
-                                    <form:input type="text" class="form-control" path="productCategoryId.productCategoryId" maxlength="4"/>
+                                    <form:select data-live-search="true" class="form-control" type="text" name="pcat" path="">
+                                        <form:option value="${ProdCat}" selected="true" >${ProdCat}</form:option>
+                                        <form:options  items="${ProdCats}"></form:options>                                                                                                        
+                                    </form:select>
                                 </div>
                             </div>
 

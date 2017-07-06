@@ -34,6 +34,7 @@ public class Product_BaseDAOImpl implements Product_BaseDAO {
     @Override
     public void updateProduct(ProductBase pbase) {
         ProductBase productToUpdate = getProduct(pbase.getPid());
+        productToUpdate.setPid(pbase.getPid());
         productToUpdate.setProductCode(pbase.getProductCode());
         productToUpdate.setProductDescription(pbase.getProductDescription());
         productToUpdate.setProductName(pbase.getProductName());
@@ -62,11 +63,6 @@ public class Product_BaseDAOImpl implements Product_BaseDAO {
     @SuppressWarnings("unchecked")
     public List<ProductBase> getProducts() {
         return getCurrentSession().createQuery("from ProductBase").list();
-    }
-
-    @Override
-    public List<Object> getAllTables() {
-        return getCurrentSession().createQuery("select * from wfconfig.systables").list();
     }
 
 }

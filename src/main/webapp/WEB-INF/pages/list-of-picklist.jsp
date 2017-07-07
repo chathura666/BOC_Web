@@ -108,6 +108,7 @@
                 <div style="margin-top: 7px;" class="col-md-3" >
                     <select  id="tablelist"  onchange="redirect_url()" class="selectpicker" data-live-search="true">
                         <option data-tokens="area" value="${pageContext.request.contextPath}/abase/listAreaBases.html" onclick="redirect_url(this.value)">AREA BASE</option>
+                        <option data-tokens="area branch" value="${pageContext.request.contextPath}/AreaBranchMap/listMap.html" onclick="redirect_url(this.value)">AREA BRANCH MAPPING</option>
                         <option data-tokens="credit card wise credit limit" value="${pageContext.request.contextPath}/creditlimit/listCreditLimits.html" onclick="redirect_url(this.value)">CC CARD CATEGORY WISE CREDIT LIMITS</option>
                         <option data-tokens="document type" value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
                         <option data-tokens="loan product mapping" value="${pageContext.request.contextPath}/lpidmap/listIndexIdMap.html" onclick="redirect_url(this.value)">LOAN PRODUCT INDEX ID MAPPING</option>

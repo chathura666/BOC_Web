@@ -105,6 +105,7 @@
                 <div style="margin-top: 7px;" class="col-md-3" >
                     <select  id="tablelist"  onchange="redirect_url()" class="selectpicker" data-live-search="true">
                         <option data-tokens="area" value="${pageContext.request.contextPath}/abase/listAreaBases.html" onclick="redirect_url(this.value)">AREA BASE</option>
+                        <option data-tokens="area branch" value="${pageContext.request.contextPath}/AreaBranchMap/listMap.html" onclick="redirect_url(this.value)">AREA BRANCH MAPPING</option>
                         <option data-tokens="credit card wise credit limit" value="${pageContext.request.contextPath}/creditlimit/listCreditLimits.html" onclick="redirect_url(this.value)">CC CARD CATEGORY WISE CREDIT LIMITS</option>
                         <option data-tokens="document type" value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
                         <option data-tokens="loan product mapping" value="${pageContext.request.contextPath}/lpidmap/listIndexIdMap.html" onclick="redirect_url(this.value)">LOAN PRODUCT INDEX ID MAPPING</option>
@@ -149,7 +150,7 @@
                             <td>WF_P_Code</td>
                             <td>PRODUCT NAME</td>
                             <td>PRODUCT DESCRIPTION</td>
-                            <td>P_Cat_ID</td>
+                            <td>PRODUCT CATEGORY</td>
                             <td  style="width: 5%;">EDIT</td>
                             <td  style="width: 5%;">DELETE</td>
                         </tr>
@@ -163,7 +164,7 @@
                                 <td>${pbase.wfProductCode}</td>
                                 <td>${pbase.productName}</td>
                                 <td>${pbase.productDescription}</td>
-                                <td>${pbase.productCategoryId.productCategoryId}</td>
+                                <td>${pbase.productCategoryId.productCategory} (${pbase.productCategoryId.productCategoryId})</td>
 
                                 <td style="width: 5%;"><p data-placement="top" title="Edit"><button class="btn btn-primary btn-s" data-title="Edit" data-toggle="modal"  style="width:60px"  data-target="#edtModalcnfm_${pbase.pid}">Edit</button></p></td>
                                 <td style="width: 5%;"><p data-placement="top" id="deletebtn"  title="Delete"><button class="btn btn-warning btn-s" data-title="Delete"  style="width:60px" data-toggle="modal" data-target="#dltModalcnfm_${pbase.pid}">Delete</button></p></td>

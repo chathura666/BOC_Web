@@ -64,15 +64,18 @@ public class PicklistvaluesMasterDAOImpl implements PicklistvaluesMasterDAO {
     }
 
     @Override
-    public List<PicklistvaluesMaster> getCreditCardTypes() {
-       return getCurrentSession().createQuery("from PicklistvaluesMaster where PICKLIST_NAME = 'CREDIT CARD BRAND'").list();
+    public List<PicklistvaluesMaster> getCreditCardBrands() {
+        return getCurrentSession().createQuery("from PicklistvaluesMaster where PICKLIST_NAME = 'CREDIT CARD BRAND'").list();
     }
 
     @Override
-    public List<PicklistvaluesMaster> getCreditCardSubCategory() {
+    public List<PicklistvaluesMaster> getCreditCardTypes() {
         return getCurrentSession().createQuery("from PicklistvaluesMaster where PICKLIST_NAME = 'CREDIT CARD TYPE'").list();
     }
 
-   
+    @Override
+    public List<PicklistvaluesMaster> getCreditCardSubcategories() {
+        return getCurrentSession().createQuery("from PicklistvaluesMaster where PICKLIST_NAME = 'CREDIT CARD SUB CATEGORY'").list();
+    }
 
 }

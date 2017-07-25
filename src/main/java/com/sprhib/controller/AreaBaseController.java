@@ -7,7 +7,12 @@ package com.sprhib.controller;
 
 import com.sprhib.model.AreaBase;
 import com.sprhib.service.AreaBaseService;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import org.apache.log4j.Logger;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -23,46 +28,54 @@ import org.springframework.web.servlet.ModelAndView;
  * @author it207432
  */
 @Controller
-@RequestMapping(value = "/abase")
+@RequestMapping(value = "/AreaBase")
 public class AreaBaseController {
 
     @Autowired
     AreaBaseService abaseService;
+    
+    final static Logger logger = Logger.getLogger(AreaBaseController.class);
 
-    @RequestMapping(value = "/addAreaBase", method = RequestMethod.GET)
+    @RequestMapping(value = "/addBase", method = RequestMethod.GET)
     public ModelAndView addAreaBase() {
-        ModelAndView modelAndView = new ModelAndView("add-area-base");
+        ModelAndView modelAndView = new ModelAndView("area_base/add-area-base");
+
         modelAndView.addObject("abase", new AreaBase());
         return modelAndView;
     }
 
-    @RequestMapping(value = "/addAreaBase", method = RequestMethod.POST)
+    @RequestMapping(value = "/addBase", method = RequestMethod.POST)
     public ModelAndView addingAreaBase(@ModelAttribute AreaBase abase) {
 
-        ModelAndView modelAndView = new ModelAndView("list-of-area-bases");
+        ModelAndView modelAndView = new ModelAndView("area_base/list-of-area-bases");
         try {
             abaseService.addAreaBase(abase);
+            
+            logger.info("Area Record Inserted... : "+abase.getAid()+"_"+abase.getAreaCode()+"_"+abase.getAreaName());
 
-            String message = "Area was successfully added!!.";
+            String message = "Record was successfully added!!.";
             modelAndView.addObject("message", message);
 
         } catch (ConstraintViolationException ex) {
 
-            String message1 = "Constraint Violation.. Area Adding Failed!!";
+            String message1 = "Constraint Violation.. Record Adding Failed!!";
             modelAndView.addObject("message1", message1);
 
         } catch (DataIntegrityViolationException ex) {
 
             AreaBase currentabase = abaseService.getAreaBase(abase.getAid());
             if (currentabase != null) {
-                String message1 = "Area Already Exist!!!";
+                String message1 = "Record Already Exist!!!";
+                
                 modelAndView.addObject("message1", message1);
             } else {
-                String message1 = "Area Adding Failed!!";
+                String message1 = ex.getMessage();
+                //String message1 = "Area Adding Failed!!";
                 modelAndView.addObject("message1", message1);
             }
         } catch (Exception ex) {
-            String message1 = "Area Adding Failed!!";
+            String message1 =ex.getMessage();
+            //String message1 = "Area Adding Failed!!";
             modelAndView.addObject("message1", message1);
         }
         List<AreaBase> abases = abaseService.getAreaBases();
@@ -72,9 +85,9 @@ public class AreaBaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/listAreaBases")
+    @RequestMapping(value = "/listBases")
     public ModelAndView listOfAreaBases() {
-        ModelAndView modelAndView = new ModelAndView("list-of-area-bases");
+        ModelAndView modelAndView = new ModelAndView("area_base/list-of-area-bases");
 
         List<AreaBase> abases = abaseService.getAreaBases();
         modelAndView.addObject("abases", abases);
@@ -82,42 +95,44 @@ public class AreaBaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editAreaBase/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/editBase/{id}", method = RequestMethod.GET)
     public ModelAndView editAreaBase(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("edit-area-base");
+        ModelAndView modelAndView = new ModelAndView("area_base/edit-area-base");
         AreaBase abase = abaseService.getAreaBase(id);
         modelAndView.addObject("abase", abase);
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editAreaBase/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/editBase/{id}", method = RequestMethod.POST)
     public ModelAndView editingAreaBase(@ModelAttribute AreaBase abase, @PathVariable Integer id) {
 
-        ModelAndView modelAndView = new ModelAndView("list-of-area-bases");
+        ModelAndView modelAndView = new ModelAndView("area_base/list-of-area-bases");
 
         try {
-           abaseService.updateAreaBase(abase);
-
-            String message = "Area was successfully edited!!.";
+            abaseService.updateAreaBase(abase);
+            
+            logger.info("Area Record Edited... : "+abase.getAid());
+            
+            String message = "Record was successfully edited!!.";
             modelAndView.addObject("message", message);
 
         } catch (ConstraintViolationException ex) {
 
-            String message1 = "Constraint Violation.. Area editing Failed!!";
+            String message1 = "Constraint Violation.. Record editing Failed!!";
             modelAndView.addObject("message1", message1);
 
         } catch (DataIntegrityViolationException ex) {
 
             AreaBase currentabase = abaseService.getAreaBase(abase.getAid());
             if (currentabase != null) {
-                String message1 = "Area Code With Same ID Already Exist!!!";
+                String message1 = "Record With Same ID Already Exist!!!";
                 modelAndView.addObject("message1", message1);
             } else {
-                String message1 = "Area Editing Failed!!";
+                String message1 = "Record Editing Failed!!";
                 modelAndView.addObject("message1", message1);
             }
         } catch (Exception ex) {
-            String message1 = "Area Editing Failed!!";
+            String message1 = "Record Editing Failed!!";
             modelAndView.addObject("message1", message1);
         }
 
@@ -127,13 +142,16 @@ public class AreaBaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/deleteAreaBase/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteBase/{id}", method = RequestMethod.GET)
     public ModelAndView deleteAreaBase(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("list-of-area-bases");
+        ModelAndView modelAndView = new ModelAndView("area_base/list-of-area-bases");
 
         try {
             abaseService.deleteAreaBase(id);
-            String message = "Area was successfully deleted!!.";
+            
+            logger.info("Area Record Deleted... : "+id);
+            
+            String message = "Record was successfully deleted!!.";
             modelAndView.addObject("message", message);
         } catch (Exception ex) {
 

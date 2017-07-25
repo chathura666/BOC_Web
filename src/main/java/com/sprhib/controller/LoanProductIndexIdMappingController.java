@@ -45,7 +45,7 @@ public class LoanProductIndexIdMappingController {
 
     @RequestMapping(value = "/addIndexIdMap", method = RequestMethod.GET)
     public ModelAndView addLoanProductIndexIdMap() {
-        ModelAndView modelAndView = new ModelAndView("add-loan-product-mapping");
+        ModelAndView modelAndView = new ModelAndView("loan_product_mapping/add-loan-product-mapping");
 
         List<ProductBase> productNames = pbaseService.getProducts();
         List<String> ProdName = new ArrayList<String>();
@@ -73,7 +73,7 @@ public class LoanProductIndexIdMappingController {
     @RequestMapping(value = "/addIndexIdMap", method = RequestMethod.POST)
     public ModelAndView addingLoanProductIndexIdMap(@ModelAttribute LoanProductIndexIdMapping idmap, @RequestParam("pname") String pname, @RequestParam("desc") String desc) {
 
-        ModelAndView modelAndView = new ModelAndView("list-of-loan-product-mapping");
+        ModelAndView modelAndView = new ModelAndView("loan_product_mapping/list-of-loan-product-mapping");
 
         List<ProductBase> products = pbaseService.getProducts();
         List<IndexIdBase> indexes = indexidService.getIndexIds();
@@ -131,7 +131,7 @@ public class LoanProductIndexIdMappingController {
 
     @RequestMapping(value = "/listIndexIdMap")
     public ModelAndView listOfLoanProductIndexIdMaps() {
-        ModelAndView modelAndView = new ModelAndView("list-of-loan-product-mapping");
+        ModelAndView modelAndView = new ModelAndView("loan_product_mapping/list-of-loan-product-mapping");
 
         List<LoanProductIndexIdMapping> allidmaps = idmapService.getLoanProductIndexIdMaps();
 
@@ -141,7 +141,7 @@ public class LoanProductIndexIdMappingController {
 
     @RequestMapping(value = "/editIndexIdMap/{id}", method = RequestMethod.GET)
     public ModelAndView editLoanProductIndexIdMap(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("edit-loan-product-mapping");
+        ModelAndView modelAndView = new ModelAndView("loan_product_mapping/edit-loan-product-mapping");
         LoanProductIndexIdMapping idmap = idmapService.getLoanProductIndexIdMap(id);
         modelAndView.addObject("idmap", idmap);
 
@@ -193,7 +193,7 @@ public class LoanProductIndexIdMappingController {
     @RequestMapping(value = "/editIndexIdMap/{id}", method = RequestMethod.POST)
     public ModelAndView editingLoanProductIndexIdMap(@ModelAttribute LoanProductIndexIdMapping idmap, @PathVariable Integer id, @RequestParam("pname") String pname, @RequestParam("desc") String desc) {
 
-        ModelAndView modelAndView = new ModelAndView("list-of-loan-product-mapping");
+        ModelAndView modelAndView = new ModelAndView("loan_product_mapping/list-of-loan-product-mapping");
 
         List<ProductBase> products = pbaseService.getProducts();
         List<IndexIdBase> indexes = indexidService.getIndexIds();
@@ -247,7 +247,7 @@ public class LoanProductIndexIdMappingController {
 
     @RequestMapping(value = "/deleteIndexIdMap/{id}", method = RequestMethod.GET)
     public ModelAndView deleteLoanProductIndexIdMap(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("list-of-loan-product-mapping");
+        ModelAndView modelAndView = new ModelAndView("loan_product_mapping/list-of-loan-product-mapping");
 
         try {
             idmapService.deleteLoanProductIndexIdMap(id);

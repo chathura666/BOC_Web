@@ -14,8 +14,12 @@ import com.sprhib.service.AreaBaseService;
 import com.sprhib.service.AreaBranchMappingService;
 import com.sprhib.service.BranchBaseService;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+import org.apache.log4j.Logger;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -32,7 +36,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author it207432
  */
 @Controller
-@RequestMapping(value = "/AreaBranchMap")
+@RequestMapping(value = "/AreaBranchMapping")
 public class AreaBranchMappingController {
 
     @Autowired
@@ -44,9 +48,11 @@ public class AreaBranchMappingController {
     @Autowired
     BranchBaseService bbservice;
 
-    @RequestMapping(value = "/addMap", method = RequestMethod.GET)
+    final static Logger logger = Logger.getLogger(AreaBaseController.class);
+
+    @RequestMapping(value = "/addMapping", method = RequestMethod.GET)
     public ModelAndView addAreaBranchMap() {
-        ModelAndView modelAndView = new ModelAndView("add-area-branch-mapping");
+        ModelAndView modelAndView = new ModelAndView("area_branch_mapping/add-area-branch-mapping");
 
         List<AreaBase> allAreas = abservice.getAreaBases();
         List<String> areaName = new ArrayList<String>();
@@ -62,20 +68,25 @@ public class AreaBranchMappingController {
 
         Iterator<BranchBase> bname = allBranches.iterator();
         while (bname.hasNext()) {
-            branchName.add(bname.next().getBranchName() + "_" + bname.next().getBranchCode());
+            BranchBase current = bname.next();
+            System.out.println(current.getBranchName() + "_" + current.getBranchCode());
+            branchName.add(current.getBranchName() + "_" + current.getBranchCode());
         }
 
-        modelAndView.addObject("areaName", areaName);
+        List<String> newList = new ArrayList<String>(new HashSet<String>(areaName));
+
+        Collections.sort(branchName);
+        modelAndView.addObject("areaName", newList);
         modelAndView.addObject("branchName", branchName);
 
         modelAndView.addObject("abmap", new AreaBranchMapping());
         return modelAndView;
     }
 
-    @RequestMapping(value = "/addMap", method = RequestMethod.POST)
+    @RequestMapping(value = "/addMapping", method = RequestMethod.POST)
     public ModelAndView addingAreaBranchMap(@ModelAttribute AreaBranchMapping abmap, @RequestParam("aname") String aname, @RequestParam("bname") String bname) {
 
-        ModelAndView modelAndView = new ModelAndView("list-of-area-branch-mapping");
+        ModelAndView modelAndView = new ModelAndView("area_branch_mapping/list-of-area-branch-mapping");
 
         List<AreaBase> AllAreas = abservice.getAreaBases();
         List<BranchBase> AllBranches = bbservice.getBranchBases();
@@ -105,26 +116,28 @@ public class AreaBranchMappingController {
         try {
             abmapService.addAreaBranchMap(abmap);
 
-            String message = "Area Branch Mapping was successfully added!!.";
+            String message = "Record was successfully added!!.";
+            logger.info("Area Branch Mapping Record Inserted... : " + abmap.getAreaBrId()+ "_" + abmap.getAid()+ "_" + abmap.getBid());
+
             modelAndView.addObject("message", message);
 
         } catch (ConstraintViolationException ex) {
 
-            String message1 = "Constraint Violation.. Mapping Adding Failed!!";
+            String message1 = "Constraint Violation.. Record Adding Failed!!";
             modelAndView.addObject("message1", message1);
 
         } catch (DataIntegrityViolationException ex) {
 
             AreaBranchMapping currentabmap = abmapService.getAreaBranchMap(abmap.getAreaBrId());
             if (currentabmap != null) {
-                String message1 = "Mapping Already Exist!!!";
+                String message1 = "Record Already Exist!!!";
                 modelAndView.addObject("message1", message1);
             } else {
-                String message1 = "Mapping Adding Failed!!";
+                String message1 = "Record Adding Failed!!";
                 modelAndView.addObject("message1", message1);
             }
         } catch (Exception ex) {
-            String message1 = "Mapping Adding Failed!!";
+            String message1 = "Record Adding Failed!!";
             modelAndView.addObject("message1", message1);
         }
         List<AreaBranchMapping> abmaps = abmapService.getAreaBranchMaps();
@@ -133,9 +146,9 @@ public class AreaBranchMappingController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/listMap")
+    @RequestMapping(value = "/listMappings")
     public ModelAndView listOfAreaBranchMaps() {
-        ModelAndView modelAndView = new ModelAndView("list-of-area-branch-mapping");
+        ModelAndView modelAndView = new ModelAndView("area_branch_mapping/list-of-area-branch-mapping");
 
         List<AreaBranchMapping> abmaps = abmapService.getAreaBranchMaps();
 
@@ -143,9 +156,9 @@ public class AreaBranchMappingController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editMap/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/editMapping/{id}", method = RequestMethod.GET)
     public ModelAndView editAreaBranchMap(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("edit-area-branch-mapping");
+        ModelAndView modelAndView = new ModelAndView("area_branch_mapping/edit-area-branch-mapping");
         AreaBranchMapping abmaps = abmapService.getAreaBranchMap(id);
 
         List<AreaBase> AllAreas = abservice.getAreaBases();
@@ -161,12 +174,12 @@ public class AreaBranchMappingController {
 
         Iterator<BranchBase> bname = allBranches.iterator();
         while (bname.hasNext()) {
-            BNames.add(bname.next().getBranchName() + "_" + bname.next().getBranchCode());
+            BranchBase current = bname.next();
+            BNames.add(current.getBranchName() + "_" + current.getBranchCode());
         }
 
         AreaBase area = null;
         BranchBase branch = null;
-        
 
         for (AreaBase ab : AllAreas) {
             if (ab.getAreaName().equalsIgnoreCase(abmaps.getAid().getAreaName())) {
@@ -183,29 +196,29 @@ public class AreaBranchMappingController {
         }
 
         ANames.remove(area.getAreaName());
-        BNames.remove(branch.getBranchName());
+        BNames.remove(branch.getBranchName() + "_" + branch.getBranchCode());
 
         modelAndView.addObject("ANames", ANames);
         modelAndView.addObject("BNames", BNames);
 
         modelAndView.addObject("AName", area.getAreaName());
-        modelAndView.addObject("BName", branch.getBranchName()+"_"+branch.getBranchCode());
+        modelAndView.addObject("BName", branch.getBranchName() + "_" + branch.getBranchCode());
 
         modelAndView.addObject("abmap", abmaps);
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editMap/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/editMapping/{id}", method = RequestMethod.POST)
     public ModelAndView editingAreaBranchMap(@ModelAttribute AreaBranchMapping abmap, @PathVariable Integer id, @RequestParam("aname") String aname, @RequestParam("bname") String bname) {
 
-        ModelAndView modelAndView = new ModelAndView("list-of-area-branch-mapping");
+        ModelAndView modelAndView = new ModelAndView("area_branch_mapping/list-of-area-branch-mapping");
 
         List<AreaBase> AllAreas = abservice.getAreaBases();
         List<BranchBase> AllBranches = bbservice.getBranchBases();
 
         AreaBase area = null;
         BranchBase branch = null;
-        
+
         String[] bn = bname.split("_");
 
         for (AreaBase ab : AllAreas) {
@@ -228,26 +241,28 @@ public class AreaBranchMappingController {
         try {
             abmapService.updateAreaBranchMap(abmap);
 
-            String message = "Mapping was successfully edited!!.";
+            String message = "Record was successfully edited!!.";
+            logger.info("Area Branch Mapping Record updated... : " + abmap.getAreaBrId());
+            
             modelAndView.addObject("message", message);
 
         } catch (ConstraintViolationException ex) {
 
-            String message1 = "Constraint Violation.. Mapping editing Failed!!";
+            String message1 = "Constraint Violation.. Record editing Failed!!";
             modelAndView.addObject("message1", message1);
 
         } catch (DataIntegrityViolationException ex) {
 
             AreaBranchMapping currentabase = abmapService.getAreaBranchMap(abmap.getAreaBrId());
             if (currentabase != null) {
-                String message1 = "Mapping With Same ID Already Exist!!!";
+                String message1 = "Record With Same ID Already Exist!!!";
                 modelAndView.addObject("message1", message1);
             } else {
                 String message1 = "Mapping Editing Failed!!";
                 modelAndView.addObject("message1", message1);
             }
         } catch (Exception ex) {
-            String message1 = "Mapping Editing Failed!!";
+            String message1 = "Record Editing Failed!!";
             modelAndView.addObject("message1", message1);
         }
 
@@ -257,13 +272,14 @@ public class AreaBranchMappingController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/deleteMap/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteMapping/{id}", method = RequestMethod.GET)
     public ModelAndView deleteAreaBranchMap(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("list-of-area-branch-mapping");
+        ModelAndView modelAndView = new ModelAndView("area_branch_mapping/list-of-area-branch-mapping");
 
         try {
             abmapService.deleteAreaBranchMap(id);
-            String message = "Mapping was successfully deleted!!.";
+            String message = "Record was successfully deleted!!.";
+            logger.info("Area Branch Mapping Record deleted... : " + id);
             modelAndView.addObject("message", message);
         } catch (Exception ex) {
 

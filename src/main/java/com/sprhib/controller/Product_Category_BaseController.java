@@ -31,7 +31,7 @@ public class Product_Category_BaseController {
 
     @RequestMapping(value = "/addProductCategory", method = RequestMethod.GET)
     public ModelAndView addProductCategoryPage() {
-        ModelAndView modelAndView = new ModelAndView("add-product-category-form");
+        ModelAndView modelAndView = new ModelAndView("prodcategory_base/add-product-category-form");
         modelAndView.addObject("pcbase", new ProductCategoryBase());
         return modelAndView;
     }
@@ -39,7 +39,7 @@ public class Product_Category_BaseController {
     @RequestMapping(value = "/addProductCategory", method = RequestMethod.POST)
     public ModelAndView addingProductCategoryPage(@ModelAttribute ProductCategoryBase pcbase) {
 
-        ModelAndView modelAndView = new ModelAndView("list-of-product-categories");
+        ModelAndView modelAndView = new ModelAndView("prodcategory_base/list-of-product-categories");
         try {
             pcbaseService.addProductCategoryBase(pcbase);
 
@@ -74,7 +74,7 @@ public class Product_Category_BaseController {
 
     @RequestMapping(value = "/listProductCategories")
     public ModelAndView listOfProductCategories() {
-        ModelAndView modelAndView = new ModelAndView("list-of-product-categories");
+        ModelAndView modelAndView = new ModelAndView("prodcategory_base/list-of-product-categories");
 
         List<ProductCategoryBase> pcbases = pcbaseService.getProductCategoryBases();
         modelAndView.addObject("pcbases", pcbases);
@@ -84,7 +84,7 @@ public class Product_Category_BaseController {
 
     @RequestMapping(value = "/editProductCategory/{id}", method = RequestMethod.GET)
     public ModelAndView editProductCategoryPage(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("edit-product-category-form");
+        ModelAndView modelAndView = new ModelAndView("prodcategory_base/edit-product-category-form");
         ProductCategoryBase pcbase = pcbaseService.getProductCategoryBase(id);
         modelAndView.addObject("pcbase", pcbase);
         return modelAndView;
@@ -93,7 +93,7 @@ public class Product_Category_BaseController {
     @RequestMapping(value = "/editProductCategory/{id}", method = RequestMethod.POST)
     public ModelAndView editingProductCategory(@ModelAttribute ProductCategoryBase pcbase, @PathVariable Integer id) {
 
-        ModelAndView modelAndView = new ModelAndView("list-of-product-categories");
+        ModelAndView modelAndView = new ModelAndView("prodcategory_base/list-of-product-categories");
 
         try {
             pcbaseService.updateProductCategoryBase(pcbase);
@@ -129,7 +129,7 @@ public class Product_Category_BaseController {
 
     @RequestMapping(value = "/deleteProductCategory/{id}", method = RequestMethod.GET)
     public ModelAndView deleteProductCategory(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("list-of-product-categories");
+        ModelAndView modelAndView = new ModelAndView("prodcategory_base/list-of-product-categories");
 
         try {
             pcbaseService.deleteProductCategoryBase(id);

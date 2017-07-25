@@ -45,7 +45,7 @@ public class Product_Doc_CheckMappingController {
 
     @RequestMapping(value = "/addChecklistMap", method = RequestMethod.GET)
     public ModelAndView addProductChecklistMap() {
-        ModelAndView modelAndView = new ModelAndView("add-checklist-mapping-form");
+        ModelAndView modelAndView = new ModelAndView("doc_checklist_mapping/add-checklist-mapping-form");
 
         List<ProductBase> productNames = pbaseService.getProducts();
         List<String> ProdName = new ArrayList<String>();
@@ -74,7 +74,7 @@ public class Product_Doc_CheckMappingController {
     @RequestMapping(value = "/addChecklistMap", method = RequestMethod.POST)
     public ModelAndView addingProductChecklistMap(@ModelAttribute ProductDocumentChecklistMapping dcmap, @RequestParam("pname") String pname, @RequestParam("dtype") String dtype) {
 
-        ModelAndView modelAndView = new ModelAndView("list-of-checklist-mapping");
+        ModelAndView modelAndView = new ModelAndView("doc_checklist_mapping/list-of-checklist-mapping");
 
         List<ProductBase> products = pbaseService.getProducts();
         List<DocumentTypeBase> docs = dtbaseService.getDocumentTypeBases();
@@ -168,7 +168,7 @@ public class Product_Doc_CheckMappingController {
 
     @RequestMapping(value = "/listChecklistMaps")
     public ModelAndView listOfProductChecklistMaps() {
-        ModelAndView modelAndView = new ModelAndView("list-of-checklist-mapping");
+        ModelAndView modelAndView = new ModelAndView("doc_checklist_mapping/list-of-checklist-mapping");
 
         List<ProductDocumentChecklistMapping> dcmaps = dcmapService.getProductDocumentChecklistMappings();
         modelAndView.addObject("dcmaps", dcmaps);
@@ -177,7 +177,7 @@ public class Product_Doc_CheckMappingController {
 
     @RequestMapping(value = "/editChecklistMapping/{id}", method = RequestMethod.GET)
     public ModelAndView editProductChecklistMap(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("edit-checklist-mapping-form");
+        ModelAndView modelAndView = new ModelAndView("doc_checklist_mapping/edit-checklist-mapping-form");
         ProductDocumentChecklistMapping dcmaps = dcmapService.getProductDocumentChecklistMapping(id);
         modelAndView.addObject("dcmap", dcmaps);
 
@@ -237,7 +237,7 @@ public class Product_Doc_CheckMappingController {
             @PathVariable Integer id, @RequestParam("pname") String pname, @RequestParam("dtype") String dtype
     ) {
 
-        ModelAndView modelAndView = new ModelAndView("list-of-checklist-mapping");
+        ModelAndView modelAndView = new ModelAndView("doc_checklist_mapping/list-of-checklist-mapping");
 
         List<ProductBase> productNames = pbaseService.getProducts();
         List<DocumentTypeBase> docNames = dtbaseService.getDocumentTypeBases();
@@ -321,7 +321,7 @@ public class Product_Doc_CheckMappingController {
     @RequestMapping(value = "/deleteChecklistMapping/{id}", method = RequestMethod.GET)
     public ModelAndView deleteProductCategory(@PathVariable Integer id
     ) {
-        ModelAndView modelAndView = new ModelAndView("list-of-checklist-mapping");
+        ModelAndView modelAndView = new ModelAndView("doc_checklist_mapping/list-of-checklist-mapping");
 
         try {
             dcmapService.deleteProductDocumentChecklistMapping(id);

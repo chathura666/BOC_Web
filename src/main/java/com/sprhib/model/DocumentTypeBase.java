@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -34,6 +36,7 @@ public class DocumentTypeBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "DID")
     private Integer did;
@@ -42,6 +45,12 @@ public class DocumentTypeBase implements Serializable {
     private String documentType;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "documentId")
     private Collection<ProductDocumentChecklistMapping> productDocumentChecklistMappingCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "documentId")
+    private Collection<LoanPurposesDocumentChecklistMapping> loanPurposesDocumentChecklistMappingCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "documentId")
+    private Collection<SecurityTypeDocumentChecklistMapping> securityTypeDocumentChecklistMappingCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "documentId")
+    private Collection<LegalEntityDocumentChecklistMapping> legalEntityDocumentChecklistMappingCollection;
 
     public DocumentTypeBase() {
     }
@@ -80,6 +89,33 @@ public class DocumentTypeBase implements Serializable {
         this.productDocumentChecklistMappingCollection = productDocumentChecklistMappingCollection;
     }
 
+    @XmlTransient
+    public Collection<LoanPurposesDocumentChecklistMapping> getLoanPurposesDocumentChecklistMappingCollection() {
+        return loanPurposesDocumentChecklistMappingCollection;
+    }
+
+    public void setLoanPurposesDocumentChecklistMappingCollection(Collection<LoanPurposesDocumentChecklistMapping> loanPurposesDocumentChecklistMappingCollection) {
+        this.loanPurposesDocumentChecklistMappingCollection = loanPurposesDocumentChecklistMappingCollection;
+    }
+
+    @XmlTransient
+    public Collection<SecurityTypeDocumentChecklistMapping> getSecurityTypeDocumentChecklistMappingCollection() {
+        return securityTypeDocumentChecklistMappingCollection;
+    }
+
+    public void setSecurityTypeDocumentChecklistMappingCollection(Collection<SecurityTypeDocumentChecklistMapping> securityTypeDocumentChecklistMappingCollection) {
+        this.securityTypeDocumentChecklistMappingCollection = securityTypeDocumentChecklistMappingCollection;
+    }
+
+    @XmlTransient
+    public Collection<LegalEntityDocumentChecklistMapping> getLegalEntityDocumentChecklistMappingCollection() {
+        return legalEntityDocumentChecklistMappingCollection;
+    }
+
+    public void setLegalEntityDocumentChecklistMappingCollection(Collection<LegalEntityDocumentChecklistMapping> legalEntityDocumentChecklistMappingCollection) {
+        this.legalEntityDocumentChecklistMappingCollection = legalEntityDocumentChecklistMappingCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -102,7 +138,7 @@ public class DocumentTypeBase implements Serializable {
 
     @Override
     public String toString() {
-        return "db2.DocumentTypeBase[ did=" + did + " ]";
+        return "db.DocumentTypeBase[ did=" + did + " ]";
     }
     
 }

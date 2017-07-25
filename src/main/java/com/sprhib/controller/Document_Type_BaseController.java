@@ -30,7 +30,7 @@ public class Document_Type_BaseController {
 
     @RequestMapping(value = "/addDocumentType", method = RequestMethod.GET)
     public ModelAndView addProductCategoryPage() {
-        ModelAndView modelAndView = new ModelAndView("add-document-type-form");
+        ModelAndView modelAndView = new ModelAndView("doctype_base/add-document-type-form");
         modelAndView.addObject("dtbase", new DocumentTypeBase());
         return modelAndView;
     }
@@ -38,7 +38,7 @@ public class Document_Type_BaseController {
     @RequestMapping(value = "/addDocumentType", method = RequestMethod.POST)
     public ModelAndView addingProductCategoryPage(@ModelAttribute DocumentTypeBase dtbase) {
 
-        ModelAndView modelAndView = new ModelAndView("list-of-document-types");
+        ModelAndView modelAndView = new ModelAndView("doctype_base/list-of-document-types");
 
         try {
             dtbaseService.addDocumentTypeBase(dtbase);
@@ -60,7 +60,7 @@ public class Document_Type_BaseController {
 
     @RequestMapping(value = "/listDocumentTypes")
     public ModelAndView listOfProductCategories() {
-        ModelAndView modelAndView = new ModelAndView("list-of-document-types");
+        ModelAndView modelAndView = new ModelAndView("doctype_base/list-of-document-types");
 
         List<DocumentTypeBase> dtbases = dtbaseService.getDocumentTypeBases();
         modelAndView.addObject("dtbases", dtbases);
@@ -69,7 +69,7 @@ public class Document_Type_BaseController {
 
     @RequestMapping(value = "/editDocumentType/{id}", method = RequestMethod.GET)
     public ModelAndView editProductCategoryPage(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("edit-document-type-form");
+        ModelAndView modelAndView = new ModelAndView("doctype_base/edit-document-type-form");
         DocumentTypeBase dtbase = dtbaseService.getDocumentTypeBase(id);
         modelAndView.addObject("dtbase", dtbase);
         return modelAndView;
@@ -78,7 +78,7 @@ public class Document_Type_BaseController {
     @RequestMapping(value = "/editDocumentType/{id}", method = RequestMethod.POST)
     public ModelAndView editingProductCategory(@ModelAttribute DocumentTypeBase dtbase, @PathVariable Integer id) {
 
-        ModelAndView modelAndView = new ModelAndView("list-of-document-types");
+        ModelAndView modelAndView = new ModelAndView("doctype_base/list-of-document-types");
 
         try {
             dtbaseService.updateDocumentTypeBase(dtbase);
@@ -100,7 +100,7 @@ public class Document_Type_BaseController {
 
     @RequestMapping(value = "/deleteDocumentType/{id}", method = RequestMethod.GET)
     public ModelAndView deleteProductCategory(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("list-of-document-types");
+        ModelAndView modelAndView = new ModelAndView("doctype_base/list-of-document-types");
 
         try {
             dtbaseService.deleteDocumentTypeBase(id);

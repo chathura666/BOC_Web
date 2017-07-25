@@ -5,7 +5,6 @@
  */
 package com.sprhib.dao;
 
-import com.sprhib.model.AreaBase;
 import com.sprhib.model.BranchBase;
 import java.util.List;
 

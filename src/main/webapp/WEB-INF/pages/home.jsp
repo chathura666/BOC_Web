@@ -8,21 +8,20 @@
         <title>Home page</title>
 
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.css"/>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.js"></script>
 
 
-            <script>
-                function redirect_url(url)
-                {
-                    window.location = url;
-                }
-
-
-            </script>
+        <script>
+            function redirect_url()
+            {
+                var x = document.getElementById("tablelist").value;
+                window.location = x;
+            }
+        </script>
 
     </head>
     <body>
@@ -41,7 +40,10 @@
                             <select  id="tablelist"  onchange="redirect_url()" class="selectpicker" data-live-search="true">
                                 <option selected data-tokens="area" value="${pageContext.request.contextPath}/abase/listAreaBases.html" onclick="redirect_url(this.value)">AREA BASE</option>
                                 <option data-tokens="credit card wise credit limit" value="${pageContext.request.contextPath}/creditlimit/listCreditLimits.html" onclick="redirect_url(this.value)">CC CARD CATEGORY WISE CREDIT LIMITS</option>
+                                <option selected data-tokens="branch" value="${pageContext.request.contextPath}/bbase/listBranchBases.html" onclick="redirect_url(this.value)">BRANCH BASE</option>
+                                <option data-tokens="bsrbranch" value="${pageContext.request.contextPath}/bsrbase/listBsrBankBranch.html" onclick="redirect_url(this.value)">BSR BANK BRANCH BASE</option>
                                 <option data-tokens="document type" value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
+                                <option data-tokens="index id base" value="${pageContext.request.contextPath}/indexbase/listIndexIds.html" onclick="redirect_url(this.value)">INDEX ID BASE</option>
                                 <option data-tokens="loan product mapping" value="${pageContext.request.contextPath}/lpidmap/listIndexIdMap.html" onclick="redirect_url(this.value)">LOAN PRODUCT INDEX ID MAPPING</option>
                                 <option data-tokens="pick list values" value="${pageContext.request.contextPath}/picklist/listPickList.html" onclick="redirect_url(this.value)">PICKLIST VALUES</option>
                                 <option data-tokens="product" value="${pageContext.request.contextPath}/pbase/listProducts.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>

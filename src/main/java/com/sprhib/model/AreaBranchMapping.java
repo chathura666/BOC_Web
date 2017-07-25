@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -31,6 +33,7 @@ public class AreaBranchMapping implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "AREA_BR_ID")
     private Integer areaBrId;
@@ -85,7 +88,6 @@ public class AreaBranchMapping implements Serializable {
         if (!(object instanceof AreaBranchMapping)) {
             return false;
         }
-        
         AreaBranchMapping other = (AreaBranchMapping) object;
         if ((this.areaBrId == null && other.areaBrId != null) || (this.areaBrId != null && !this.areaBrId.equals(other.areaBrId))) {
             return false;

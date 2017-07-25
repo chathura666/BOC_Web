@@ -31,7 +31,7 @@ public class PickListValuesController {
 
     @RequestMapping(value = "/addPickList", method = RequestMethod.GET)
     public ModelAndView addPickListValues() {
-        ModelAndView modelAndView = new ModelAndView("add-picklist-value");
+        ModelAndView modelAndView = new ModelAndView("picklist_value/add-picklist-value");
         modelAndView.addObject("pklist", new PicklistvaluesMaster());
         return modelAndView;
     }
@@ -42,7 +42,7 @@ public class PickListValuesController {
         List<PicklistvaluesMaster> allpklist = pickService.getPickListValues();
         System.out.println(allpklist);
 
-        ModelAndView modelAndView = new ModelAndView("list-of-picklist");
+        ModelAndView modelAndView = new ModelAndView("picklist_value/list-of-picklist");
 
         try {
             //if(currentpbases.)
@@ -78,7 +78,7 @@ public class PickListValuesController {
 
     @RequestMapping(value = "/listPickList")
     public ModelAndView listOfPickListValues() {
-        ModelAndView modelAndView = new ModelAndView("list-of-picklist");
+        ModelAndView modelAndView = new ModelAndView("picklist_value/list-of-picklist");
 
         List<PicklistvaluesMaster> pklist = pickService.getPickListValues();
         modelAndView.addObject("pklist", pklist);
@@ -88,7 +88,7 @@ public class PickListValuesController {
 
     @RequestMapping(value = "/editPickList/{id}", method = RequestMethod.GET)
     public ModelAndView editPickListValues(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("edit-picklist-value");
+        ModelAndView modelAndView = new ModelAndView("picklist_value/edit-picklist-value");
         PicklistvaluesMaster pklist = pickService.getPickListValue(id);
         modelAndView.addObject("pklist", pklist);
         return modelAndView;
@@ -97,7 +97,7 @@ public class PickListValuesController {
     @RequestMapping(value = "/editPickList/{id}", method = RequestMethod.POST)
     public ModelAndView edditingProduct(@ModelAttribute PicklistvaluesMaster picklist, @PathVariable Integer id) {
 
-        ModelAndView modelAndView = new ModelAndView("list-of-picklist");
+        ModelAndView modelAndView = new ModelAndView("picklist_value/list-of-picklist");
 
         try {
             pickService.updatePickListValue(picklist);
@@ -128,7 +128,7 @@ public class PickListValuesController {
 
     @RequestMapping(value = "/deletePickList/{id}", method = RequestMethod.GET)
     public ModelAndView deletePickListValue(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("list-of-picklist");
+        ModelAndView modelAndView = new ModelAndView("picklist_value/list-of-picklist");
 
         try {
             pickService.deletePickListValue(id);

@@ -40,7 +40,7 @@ public class BranchBaseDAOImpl implements BranchBaseDAO {
         BranchToUpdate.setBranchContactNumber(bbase.getBranchContactNumber());
         BranchToUpdate.setBranchGrade(bbase.getBranchCode());
         BranchToUpdate.setBranchName(bbase.getBranchName());
-        BranchToUpdate.setDeptFlag(bbase.getDeptFlag());
+        BranchToUpdate.setDeleteflag(bbase.getDeleteflag());
         BranchToUpdate.setEditflag(bbase.getEditflag());
 
         getCurrentSession().update(BranchToUpdate);

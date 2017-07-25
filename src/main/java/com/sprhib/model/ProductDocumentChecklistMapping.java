@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,6 +35,7 @@ public class ProductDocumentChecklistMapping implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "PDCID")
     private Integer pdcid;
@@ -47,9 +50,6 @@ public class ProductDocumentChecklistMapping implements Serializable {
     @JoinColumn(name = "DOCUMENT_ID", referencedColumnName = "DID")
     @ManyToOne(optional = false)
     private DocumentTypeBase documentId;
-
-    
-    
 
     public ProductDocumentChecklistMapping() {
     }
@@ -125,7 +125,7 @@ public class ProductDocumentChecklistMapping implements Serializable {
 
     @Override
     public String toString() {
-        return "db2.ProductDocumentChecklistMapping[ pdcid=" + pdcid + " ]";
+        return "db.ProductDocumentChecklistMapping[ pdcid=" + pdcid + " ]";
     }
-
+    
 }

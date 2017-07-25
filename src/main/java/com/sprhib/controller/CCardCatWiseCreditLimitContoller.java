@@ -38,9 +38,9 @@ public class CCardCatWiseCreditLimitContoller {
 
     @RequestMapping(value = "/addCreditLimit", method = RequestMethod.GET)
     public ModelAndView addCreditLimit() {
-        ModelAndView modelAndView = new ModelAndView("add-credit-limit");
+        ModelAndView modelAndView = new ModelAndView("credit_limit/add-credit-limit");
 
-        List<PicklistvaluesMaster> creditCardType = pklistServices.getCreditCardTypes();
+        List<PicklistvaluesMaster> creditCardType = pklistServices.getCreditCardBrands();
         List<String> MainDropValues = new ArrayList<String>();
 
         Iterator<PicklistvaluesMaster> typ = creditCardType.iterator();
@@ -50,7 +50,7 @@ public class CCardCatWiseCreditLimitContoller {
 
         modelAndView.addObject("creditCardType", MainDropValues);
 
-        List<PicklistvaluesMaster> subType = pklistServices.getCreditCardSubCategory();
+        List<PicklistvaluesMaster> subType = pklistServices.getCreditCardTypes();
         List<String> SubDropValues = new ArrayList<String>();
 
         Iterator<PicklistvaluesMaster> sub = subType.iterator();
@@ -70,7 +70,7 @@ public class CCardCatWiseCreditLimitContoller {
         List<CcCardCategoryWiseCreditLimits> allcclimit = cclimitService.getCCWiseCreditLimit();
         System.out.println(allcclimit);
 
-        ModelAndView modelAndView = new ModelAndView("list-of-credit-limits");
+        ModelAndView modelAndView = new ModelAndView("credit_limit/list-of-credit-limits");
 
         try {
 
@@ -109,7 +109,7 @@ public class CCardCatWiseCreditLimitContoller {
 
     @RequestMapping(value = "/listCreditLimits")
     public ModelAndView listCreditLimit() {
-        ModelAndView modelAndView = new ModelAndView("list-of-credit-limits");
+        ModelAndView modelAndView = new ModelAndView("credit_limit/list-of-credit-limits");
 
         List<CcCardCategoryWiseCreditLimits> creditlimits = cclimitService.getCCWiseCreditLimit();
 
@@ -119,10 +119,10 @@ public class CCardCatWiseCreditLimitContoller {
 
     @RequestMapping(value = "/editCreditLimit/{id}", method = RequestMethod.GET)
     public ModelAndView editCreditLimit(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("edit-credit-limit");
+        ModelAndView modelAndView = new ModelAndView("credit_limit/edit-credit-limit");
         CcCardCategoryWiseCreditLimits creditlimit = cclimitService.getCCWiseCreditLimit(id);
 
-        List<PicklistvaluesMaster> creditCardType = pklistServices.getCreditCardTypes();
+        List<PicklistvaluesMaster> creditCardType = pklistServices.getCreditCardBrands();
         List<String> MainDropValues = new ArrayList<String>();
 
         Iterator<PicklistvaluesMaster> typ = creditCardType.iterator();
@@ -132,7 +132,7 @@ public class CCardCatWiseCreditLimitContoller {
 
         modelAndView.addObject("creditCardType", MainDropValues);
 
-        List<PicklistvaluesMaster> subType = pklistServices.getCreditCardSubCategory();
+        List<PicklistvaluesMaster> subType = pklistServices.getCreditCardTypes();
         List<String> SubDropValues = new ArrayList<String>();
 
         Iterator<PicklistvaluesMaster> sub = subType.iterator();
@@ -149,7 +149,7 @@ public class CCardCatWiseCreditLimitContoller {
     @RequestMapping(value = "/editCreditLimit/{id}", method = RequestMethod.POST)
     public ModelAndView edditingCreditLimit(@ModelAttribute CcCardCategoryWiseCreditLimits creditlimit, @PathVariable Integer id) {
 
-        ModelAndView modelAndView = new ModelAndView("list-of-credit-limits");
+        ModelAndView modelAndView = new ModelAndView("credit_limit/list-of-credit-limits");
 
         try {
             cclimitService.updateCCWiseCreditLimit(creditlimit);
@@ -175,7 +175,7 @@ public class CCardCatWiseCreditLimitContoller {
 
     @RequestMapping(value = "/deleteCreditLimit/{id}", method = RequestMethod.GET)
     public ModelAndView deleteCreditLimit(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("list-of-credit-limits");
+        ModelAndView modelAndView = new ModelAndView("credit_limit/list-of-credit-limits");
 
         try {
             cclimitService.deleteCCWiseCreditLimit(id);

@@ -42,7 +42,7 @@ public class Product_BaseController {
 
     @RequestMapping(value = "/addProduct", method = RequestMethod.GET)
     public ModelAndView addProductPage() {
-        ModelAndView modelAndView = new ModelAndView("add-product-form");
+        ModelAndView modelAndView = new ModelAndView("products/add-product-form");
 
         List<ProductCategoryBase> productcats = pcbaseService.getProductCategoryBases();
         List<String> Prodcat = new ArrayList<String>();
@@ -63,7 +63,7 @@ public class Product_BaseController {
         List<ProductBase> currentpbases = pbaseService.getProducts();
         List<ProductCategoryBase> productcats = pcbaseService.getProductCategoryBases();
         System.out.println(currentpbases);
-        ModelAndView modelAndView = new ModelAndView("list-of-products");
+        ModelAndView modelAndView = new ModelAndView("products/list-of-products");
 
         ProductCategoryBase pcid = null;
 
@@ -120,7 +120,7 @@ public class Product_BaseController {
 
     @RequestMapping(value = "/listProducts")
     public ModelAndView listOfProducts() {
-        ModelAndView modelAndView = new ModelAndView("list-of-products");
+        ModelAndView modelAndView = new ModelAndView("products/list-of-products");
 
         List<ProductBase> pbases = pbaseService.getProducts();
         modelAndView.addObject("pbases", pbases);
@@ -131,7 +131,7 @@ public class Product_BaseController {
  
     @RequestMapping(value = "/editProduct/{id}", method = RequestMethod.GET)
     public ModelAndView editProductPage(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("edit-product-form");
+        ModelAndView modelAndView = new ModelAndView("products/edit-product-form");
         ProductBase pbase = pbaseService.getProduct(id);
 
         List<ProductCategoryBase> productcats = pcbaseService.getProductCategoryBases();
@@ -163,7 +163,7 @@ public class Product_BaseController {
     @RequestMapping(value = "/editProduct/{id}", method = RequestMethod.POST)
     public ModelAndView edditingProduct(@ModelAttribute ProductBase pbase, @PathVariable Integer id, @RequestParam("pcat") String pcat) {
 
-        ModelAndView modelAndView = new ModelAndView("list-of-products");
+        ModelAndView modelAndView = new ModelAndView("products/list-of-products");
 
         List<ProductCategoryBase> productcats = pcbaseService.getProductCategoryBases();
         ProductCategoryBase pcid = null;
@@ -213,7 +213,7 @@ public class Product_BaseController {
 
     @RequestMapping(value = "/deleteProduct/{id}", method = RequestMethod.GET)
     public ModelAndView deleteProduct(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("list-of-products");
+        ModelAndView modelAndView = new ModelAndView("products/list-of-products");
 
         try {
             pbaseService.deleteProduct(id);

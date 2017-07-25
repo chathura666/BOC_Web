@@ -28,7 +28,7 @@ public class AreaBaseDAOImpl implements AreaBaseDAO {
 
     @Override
     public void addAreaBase(AreaBase abase) {
-        getCurrentSession().save(abase);
+        getCurrentSession().persist(abase);
     }
 
     @Override

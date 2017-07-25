@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -39,6 +41,7 @@ public class ProductBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "PID")
     private Integer pid;
@@ -53,11 +56,21 @@ public class ProductBase implements Serializable {
     private String productName;
     @Column(name = "PRODUCT_DESCRIPTION")
     private String productDescription;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pid")
+    private Collection<ProductLoanDetails> productLoanDetailsCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
+    private Collection<ProductDocumentChecklistMapping> productDocumentChecklistMappingCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pid")
+    private Collection<LoanProductIndexIdMapping> loanProductIndexIdMappingCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
+    private Collection<ProfessionProductMapping> professionProductMappingCollection;
     @JoinColumn(name = "PRODUCT_CATEGORY_ID", referencedColumnName = "PRODUCT_CATEGORY_ID")
     @ManyToOne
     private ProductCategoryBase productCategoryId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private Collection<ProductDocumentChecklistMapping> productDocumentChecklistMappingCollection;
+    private Collection<ProductSecurityTypeMapping> productSecurityTypeMappingCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pid")
+    private Collection<LoanInterestRateVariance> loanInterestRateVarianceCollection;
 
     public ProductBase() {
     }
@@ -113,12 +126,13 @@ public class ProductBase implements Serializable {
         this.productDescription = productDescription;
     }
 
-    public ProductCategoryBase getProductCategoryId() {
-        return productCategoryId;
+    @XmlTransient
+    public Collection<ProductLoanDetails> getProductLoanDetailsCollection() {
+        return productLoanDetailsCollection;
     }
 
-    public void setProductCategoryId(ProductCategoryBase productCategoryId) {
-        this.productCategoryId = productCategoryId;
+    public void setProductLoanDetailsCollection(Collection<ProductLoanDetails> productLoanDetailsCollection) {
+        this.productLoanDetailsCollection = productLoanDetailsCollection;
     }
 
     @XmlTransient
@@ -128,6 +142,50 @@ public class ProductBase implements Serializable {
 
     public void setProductDocumentChecklistMappingCollection(Collection<ProductDocumentChecklistMapping> productDocumentChecklistMappingCollection) {
         this.productDocumentChecklistMappingCollection = productDocumentChecklistMappingCollection;
+    }
+
+    @XmlTransient
+    public Collection<LoanProductIndexIdMapping> getLoanProductIndexIdMappingCollection() {
+        return loanProductIndexIdMappingCollection;
+    }
+
+    public void setLoanProductIndexIdMappingCollection(Collection<LoanProductIndexIdMapping> loanProductIndexIdMappingCollection) {
+        this.loanProductIndexIdMappingCollection = loanProductIndexIdMappingCollection;
+    }
+
+    @XmlTransient
+    public Collection<ProfessionProductMapping> getProfessionProductMappingCollection() {
+        return professionProductMappingCollection;
+    }
+
+    public void setProfessionProductMappingCollection(Collection<ProfessionProductMapping> professionProductMappingCollection) {
+        this.professionProductMappingCollection = professionProductMappingCollection;
+    }
+
+    public ProductCategoryBase getProductCategoryId() {
+        return productCategoryId;
+    }
+
+    public void setProductCategoryId(ProductCategoryBase productCategoryId) {
+        this.productCategoryId = productCategoryId;
+    }
+
+    @XmlTransient
+    public Collection<ProductSecurityTypeMapping> getProductSecurityTypeMappingCollection() {
+        return productSecurityTypeMappingCollection;
+    }
+
+    public void setProductSecurityTypeMappingCollection(Collection<ProductSecurityTypeMapping> productSecurityTypeMappingCollection) {
+        this.productSecurityTypeMappingCollection = productSecurityTypeMappingCollection;
+    }
+
+    @XmlTransient
+    public Collection<LoanInterestRateVariance> getLoanInterestRateVarianceCollection() {
+        return loanInterestRateVarianceCollection;
+    }
+
+    public void setLoanInterestRateVarianceCollection(Collection<LoanInterestRateVariance> loanInterestRateVarianceCollection) {
+        this.loanInterestRateVarianceCollection = loanInterestRateVarianceCollection;
     }
 
     @Override
@@ -152,7 +210,7 @@ public class ProductBase implements Serializable {
 
     @Override
     public String toString() {
-        return "db2.ProductBase[ pid=" + pid + " ]";
+        return "db.ProductBase[ pid=" + pid + " ]";
     }
     
 }

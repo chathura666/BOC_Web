@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -34,11 +36,12 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "BranchBase.findByBranchGrade", query = "SELECT b FROM BranchBase b WHERE b.branchGrade = :branchGrade"),
     @NamedQuery(name = "BranchBase.findByBranchContactNumber", query = "SELECT b FROM BranchBase b WHERE b.branchContactNumber = :branchContactNumber"),
     @NamedQuery(name = "BranchBase.findByEditflag", query = "SELECT b FROM BranchBase b WHERE b.editflag = :editflag"),
-    @NamedQuery(name = "BranchBase.findByDeptFlag", query = "SELECT b FROM BranchBase b WHERE b.deptFlag = :deptFlag")})
+    @NamedQuery(name = "BranchBase.findByDeleteflag", query = "SELECT b FROM BranchBase b WHERE b.deleteflag = :deleteflag")})
 public class BranchBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "BID")
     private Integer bid;
@@ -55,10 +58,16 @@ public class BranchBase implements Serializable {
     private String branchContactNumber;
     @Column(name = "EDITFLAG")
     private Short editflag;
-    @Column(name = "DEPT_FLAG")
-    private Short deptFlag;
+    @Column(name = "DELETEFLAG")
+    private Short deleteflag;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bid")
     private Collection<AreaBranchMapping> areaBranchMappingCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bid")
+    private Collection<UsrBase> usrBaseCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bid")
+    private Collection<RlcBranchMapping> rlcBranchMappingCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bid")
+    private Collection<ProvinceBranchMapping> provinceBranchMappingCollection;
 
     public BranchBase() {
     }
@@ -122,12 +131,12 @@ public class BranchBase implements Serializable {
         this.editflag = editflag;
     }
 
-    public Short getDeptFlag() {
-        return deptFlag;
+    public Short getDeleteflag() {
+        return deleteflag;
     }
 
-    public void setDeptFlag(Short deptFlag) {
-        this.deptFlag = deptFlag;
+    public void setDeleteflag(Short deleteflag) {
+        this.deleteflag = deleteflag;
     }
 
     @XmlTransient
@@ -137,6 +146,33 @@ public class BranchBase implements Serializable {
 
     public void setAreaBranchMappingCollection(Collection<AreaBranchMapping> areaBranchMappingCollection) {
         this.areaBranchMappingCollection = areaBranchMappingCollection;
+    }
+
+    @XmlTransient
+    public Collection<UsrBase> getUsrBaseCollection() {
+        return usrBaseCollection;
+    }
+
+    public void setUsrBaseCollection(Collection<UsrBase> usrBaseCollection) {
+        this.usrBaseCollection = usrBaseCollection;
+    }
+
+    @XmlTransient
+    public Collection<RlcBranchMapping> getRlcBranchMappingCollection() {
+        return rlcBranchMappingCollection;
+    }
+
+    public void setRlcBranchMappingCollection(Collection<RlcBranchMapping> rlcBranchMappingCollection) {
+        this.rlcBranchMappingCollection = rlcBranchMappingCollection;
+    }
+
+    @XmlTransient
+    public Collection<ProvinceBranchMapping> getProvinceBranchMappingCollection() {
+        return provinceBranchMappingCollection;
+    }
+
+    public void setProvinceBranchMappingCollection(Collection<ProvinceBranchMapping> provinceBranchMappingCollection) {
+        this.provinceBranchMappingCollection = provinceBranchMappingCollection;
     }
 
     @Override

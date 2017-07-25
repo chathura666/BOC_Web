@@ -6,7 +6,6 @@
 package com.sprhib.service;
 
 import com.sprhib.model.PicklistvaluesMaster;
-import com.sprhib.model.ProductBase;
 import java.util.List;
 
 /**
@@ -24,9 +23,11 @@ public interface PicklistvaluesMasterService {
     public void deletePickListValue(int id);
 
     public List<PicklistvaluesMaster> getPickListValues();
-    
+
+    public List<PicklistvaluesMaster> getCreditCardBrands();
+
     public List<PicklistvaluesMaster> getCreditCardTypes();
     
-    public List<PicklistvaluesMaster> getCreditCardSubCategory();
+    public List<PicklistvaluesMaster> getCreditCardSubcategories();
 
 }

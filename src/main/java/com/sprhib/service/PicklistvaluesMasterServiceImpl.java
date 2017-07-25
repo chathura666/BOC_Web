@@ -51,13 +51,18 @@ public class PicklistvaluesMasterServiceImpl implements PicklistvaluesMasterServ
     }
 
     @Override
-    public List<PicklistvaluesMaster> getCreditCardTypes() {
-        return picklistdao.getCreditCardTypes();
+    public List<PicklistvaluesMaster> getCreditCardBrands() {
+        return picklistdao.getCreditCardBrands();
     }
 
     @Override
-    public List<PicklistvaluesMaster> getCreditCardSubCategory() {
-        return picklistdao.getCreditCardSubCategory();
+    public List<PicklistvaluesMaster> getCreditCardTypes() {
+        return picklistdao.getCreditCardTypes();
+    }
+    
+    @Override
+    public List<PicklistvaluesMaster> getCreditCardSubcategories() {
+        return picklistdao.getCreditCardSubcategories();
     }
 
 

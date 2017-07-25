@@ -24,8 +24,10 @@ public interface PicklistvaluesMasterDAO {
 
     public List<PicklistvaluesMaster> getPickListValues();
     
+    public List<PicklistvaluesMaster> getCreditCardBrands();
+    
     public List<PicklistvaluesMaster> getCreditCardTypes();
     
-    public List<PicklistvaluesMaster> getCreditCardSubCategory();
+    public List<PicklistvaluesMaster> getCreditCardSubcategories();
 
 }

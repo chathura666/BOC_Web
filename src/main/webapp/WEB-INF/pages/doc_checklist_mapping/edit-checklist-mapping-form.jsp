@@ -37,7 +37,7 @@
         <div class ="container" >
             <div class="col-sm-9 col-sm-offset-3"><h3>Edit Document Checklist Mapping page</h3></div>
             <div class="col-sm-9 col-sm-offset-3"><p>Here you can edit Document Checklist Mapping details....</p></div>
-            <form:form method="POST" class="form-horizontal" commandName="dcmap" action="${pageContext.request.contextPath}/dcmap/editChecklistMapping/${dcmap.pdcid}.html">
+            <form:form method="POST" class="form-horizontal" commandName="dcmap" action="${pageContext.request.contextPath}/ProductDocumentChecklistMapping/editMapping/${dcmap.pdcid}.html">
                 <div class="form-group">
                     <label  class="col-sm-3 control-label">PDCID:</label>
                     <div class="col-sm-4">
@@ -89,7 +89,7 @@
                         <button type="submit" class="btn btn-primary btn-block">Edit Checklist Map</button>
                     </div>
                     <div class="col-sm-2">
-                        <a href="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html" type="button" class="btn btn-default btn-block" >Close</a>
+                        <a href="${pageContext.request.contextPath}/ProductDocumentChecklistMapping/listMappings.html" type="button" class="btn btn-default btn-block" >Close</a>
                     </div>
                     <div class="col-sm-5"></div>
                 </div>

@@ -7,10 +7,6 @@ package com.sprhib.controller;
 
 import com.sprhib.model.AreaBase;
 import com.sprhib.service.AreaBaseService;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.exception.ConstraintViolationException;

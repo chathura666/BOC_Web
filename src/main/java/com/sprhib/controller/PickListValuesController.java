@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author it207432
  */
 @Controller
-@RequestMapping(value = "/picklist")
+@RequestMapping(value = "/PickListValues")
 public class PickListValuesController {
 
     @Autowired

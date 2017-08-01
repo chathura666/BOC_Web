@@ -99,6 +99,11 @@
                         <option data-tokens="area" value="${pageContext.request.contextPath}/AreaBase/listBases.html" onclick="redirect_url(this.value)">AREA BASE</option>
                         <option data-tokens="area branch" value="${pageContext.request.contextPath}/AreaBranchMapping/listMappings.html" onclick="redirect_url(this.value)">AREA BRANCH MAPPING</option>
                         <option selected data-tokens="branch" value="${pageContext.request.contextPath}/BranchBase/listBases.html" onclick="redirect_url(this.value)">BRANCH BASE</option>
+                        <option data-tokens="document" value="${pageContext.request.contextPath}/DocumentTypeBase/listBases.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
+                        <option data-tokens="pick list values" value="${pageContext.request.contextPath}/PickListValues/listPickList.html" onclick="redirect_url(this.value)">PICKLIST VALUES</option>
+                        <option data-tokens="product" value="${pageContext.request.contextPath}/ProductBase/listBases.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>        
+                        <option data-tokens="product category" value="${pageContext.request.contextPath}/ProductCategoryBase/listBases.html" onclick="redirect_url(this.value)">PRODUCT CATEGORY BASE</option>  
+                        <option data-tokens="product document checklist" value="${pageContext.request.contextPath}/ProductDocumentChecklistMapping/listMappings.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>        
                         <option data-tokens="RlcBase" value="${pageContext.request.contextPath}/RlcBase/listBases.html" onclick="redirect_url(this.value)">RLC BASE</option>
                         <option data-tokens="RlcBranchMapping" value="${pageContext.request.contextPath}/RlcBranchMapping/listMappings.html" onclick="redirect_url(this.value)">RLC BRANCH MAPPING</option>
                     </select>
@@ -206,9 +211,7 @@
             <!--<p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>-->
         </div>
 
-
         <!--  ************************************************************    -->
-
 
         <!-- Modal -->
         <div id="myModal" data-keyboard="true"  class="modal" role="dialog" style="background-color: black !important;  ">
@@ -216,7 +219,6 @@
                 <!-- Modal content-->
                 <div class="modal-content"> </div>
             </div>
-
         </div>
 
 

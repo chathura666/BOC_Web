@@ -8,17 +8,13 @@ package com.sprhib.controller;
 import com.sprhib.model.AreaBase;
 import com.sprhib.model.AreaBranchMapping;
 import com.sprhib.model.BranchBase;
-import com.sprhib.model.DocumentTypeBase;
-import com.sprhib.model.ProductBase;
 import com.sprhib.service.AreaBaseService;
 import com.sprhib.service.AreaBranchMappingService;
 import com.sprhib.service.BranchBaseService;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 import org.apache.log4j.Logger;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +44,7 @@ public class AreaBranchMappingController {
     @Autowired
     BranchBaseService bbservice;
 
-    final static Logger logger = Logger.getLogger(AreaBaseController.class);
+    final static Logger logger = Logger.getLogger(AreaBranchMappingController.class);
 
     @RequestMapping(value = "/addMapping", method = RequestMethod.GET)
     public ModelAndView addAreaBranchMap() {
@@ -69,14 +65,12 @@ public class AreaBranchMappingController {
         Iterator<BranchBase> bname = allBranches.iterator();
         while (bname.hasNext()) {
             BranchBase current = bname.next();
-            System.out.println(current.getBranchName() + "_" + current.getBranchCode());
-            branchName.add(current.getBranchName() + "_" + current.getBranchCode());
+            System.out.println(current.getBranchName() + "/" + current.getBranchCode());
+            branchName.add(current.getBranchName() + "/" + current.getBranchCode());
         }
 
-        List<String> newList = new ArrayList<String>(new HashSet<String>(areaName));
-
         Collections.sort(branchName);
-        modelAndView.addObject("areaName", newList);
+        modelAndView.addObject("areaName", areaName);
         modelAndView.addObject("branchName", branchName);
 
         modelAndView.addObject("abmap", new AreaBranchMapping());

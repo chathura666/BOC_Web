@@ -8,6 +8,7 @@ package com.sprhib.controller;
 import com.sprhib.model.RlcBase;
 import com.sprhib.service.RlcBaseService;
 import java.util.List;
+import org.apache.log4j.Logger;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -28,6 +29,8 @@ public class RlcBaseController {
 
     @Autowired
     RlcBaseService rlcService;
+    
+    final static Logger logger = Logger.getLogger(RlcBaseController.class);
 
     @RequestMapping(value = "/addBase", method = RequestMethod.GET)
     public ModelAndView addRlcBase() {
@@ -44,6 +47,9 @@ public class RlcBaseController {
             rlcService.addRlcBase(rbase);
 
             String message = "Record was successfully added!!.";
+            
+            logger.info("RlcBase Record Inserted... : "+rbase.getRlcId()+"_"+rbase.getRlcCode()+"_"+rbase.getRlcName());
+            
             modelAndView.addObject("message", message);
 
         } catch (ConstraintViolationException ex) {
@@ -82,7 +88,7 @@ public class RlcBaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editRlcBase/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/editBase/{id}", method = RequestMethod.GET)
     public ModelAndView editBranchBase(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("rlc_base/edit-rlc-base");
         RlcBase rbase = rlcService.getRlcBase(id);
@@ -90,7 +96,7 @@ public class RlcBaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editRlcBase/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/editBase/{id}", method = RequestMethod.POST)
     public ModelAndView editingRlcBase(@ModelAttribute RlcBase rbase, @PathVariable Integer id) {
 
         ModelAndView modelAndView = new ModelAndView("rlc_base/list-of-rlc-bases");
@@ -99,6 +105,8 @@ public class RlcBaseController {
            rlcService.updateRlcBase(rbase);
 
             String message = "Record was successfully edited!!.";
+            
+            logger.info("RlcBase Record Updated... : "+rbase.getRlcId());
             modelAndView.addObject("message", message);
 
         } catch (ConstraintViolationException ex) {
@@ -127,13 +135,15 @@ public class RlcBaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/deleteRlcBase/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteBase/{id}", method = RequestMethod.GET)
     public ModelAndView deleteRlcBase(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("rlc_base/list-of-rlc-bases");
 
         try {
             rlcService.deleteRlcBase(id);
             String message = "Record was successfully deleted!!.";
+            
+            logger.info("RlcBase Record Updated... : "+id);
             modelAndView.addObject("message", message);
         } catch (Exception ex) {
 

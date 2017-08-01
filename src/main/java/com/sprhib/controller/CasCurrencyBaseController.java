@@ -41,6 +41,7 @@ public class CasCurrencyBaseController {
 
         ModelAndView modelAndView = new ModelAndView("cascurrency_base/list-of-cas-currency");
         try {
+            
             currencyService.addCasCurrency(cbase);
 
             String message = "Record was successfully added!!.";

@@ -39,7 +39,7 @@
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">BRANCH GRADE:</label>
                                 <div class="col-sm-4">
-                                    <form:input type="text" class="form-control"  path="branchGrade"/>
+                                    <form:input required="true" type="text" class="form-control"  path="branchGrade"/>
                                 </div>
                             </div>
 

@@ -16,29 +16,23 @@
                     <div class="container" >
                         <div class="col-sm-9 col-sm-offset-3"><h3>Add Product</h3></div>
                         <div class="col-sm-9 col-sm-offset-3"><p>Here you can add a new product....</p></div>
-                        <form:form method="POST" class="form-horizontal" role="form" commandName="pbase" action="${pageContext.request.contextPath}/pbase/addProduct.html">        
-                            <div class="form-group">
-                                <label  class="col-sm-3 control-label">Product ID:</label>
-                                <div class="col-sm-4">
-                                    <form:input type="text" class="form-control" path="pid" maxlength="4"/>
-                                </div>
-                            </div>
+                        <form:form method="POST" class="form-horizontal" role="form" commandName="pbase" action="${pageContext.request.contextPath}/ProductBase/addBase.html">        
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">Product Code:</label>
                                 <div class="col-sm-4">
-                                    <form:input type="text" class="form-control" path="productCode" maxlength="5"/>
+                                    <form:input type="text" required="true" class="form-control" path="productCode" maxlength="5"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">WF Product Code:</label>
                                 <div class="col-sm-4">
-                                    <form:input type="text" class="form-control" path="wfProductCode" maxlength="5"/>
+                                    <form:input type="text" required="true" class="form-control" path="wfProductCode" maxlength="5"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Product Name:</label>
                                 <div class="col-sm-4">
-                                    <form:input type="text" class="form-control" path="productName" maxlength="100"/>
+                                    <form:input type="text" required="true" class="form-control" path="productName" maxlength="100"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -59,10 +53,10 @@
                             <div class="form-group row">
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-2">
-                                    <button type="submit" class="btn btn-primary btn-block">Add Product</button>
+                                    <button type="submit" class="btn btn-primary btn-block">Add Record</button>
                                 </div>
                                 <div class="col-sm-2">
-                                    <a href="${pageContext.request.contextPath}/pbase/listProducts.html" type="button" class="btn btn-default btn-block" >Close</a>
+                                    <a href="${pageContext.request.contextPath}/ProductBase/listBases.html" type="button" class="btn btn-default btn-block" >Close</a>
                                 </div>
                                 <div class="col-sm-5"></div>
                             </div>

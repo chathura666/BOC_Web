@@ -27,7 +27,7 @@
                     <div class ="container" >
                         <div class="col-sm-9 col-sm-offset-3"><h3>Edit RLC Base</h3></div>
                         <div class="col-sm-9 col-sm-offset-3"><p>Here you can edit RLD Base details....</p></div>
-                        <form:form method="POST" class="form-horizontal" commandName="rbase" action="${pageContext.request.contextPath}/rlcbase/editRlcBase/${rbase.rlcId}.html">
+                        <form:form method="POST" class="form-horizontal" commandName="rbase" action="${pageContext.request.contextPath}/RlcBase/editBase/${rbase.rlcId}.html">
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">RLC ID:</label>
                                 <div class="col-sm-4">
@@ -37,13 +37,13 @@
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">RLC CODE:</label>
                                 <div class="col-sm-4">
-                                    <form:input type="text" class="form-control" path="rlcCode"/>
+                                    <form:input type="text" required="true" class="form-control" path="rlcCode"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">RLC NAME:</label>
                                 <div class="col-sm-4">
-                                    <form:input type="text" class="form-control" path="rlcName"/>
+                                    <form:input type="text" required="true" class="form-control" path="rlcName"/>
                                 </div>
                             </div>
 
@@ -53,7 +53,7 @@
                                     <button type="submit" class="btn btn-primary btn-block">Edit Record</button>
                                 </div>
                                 <div class="col-sm-2">
-                                    <a href="${pageContext.request.contextPath}/rlcbase/listRlcBases.html" type="button" class="btn btn-default btn-block" >Close</a>
+                                    <a href="${pageContext.request.contextPath}/RlcBase/listBases.html" type="button" class="btn btn-default btn-block" >Close</a>
                                 </div>
                                 <div class="col-sm-5"></div>
                             </div>    

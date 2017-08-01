@@ -20,23 +20,16 @@
                     <div class ="container" >
                         <div class="col-sm-9 col-sm-offset-3"><h3>Add Index ID</h3></div>
                         <div class="col-sm-9 col-sm-offset-3"><p>Here you can add index details....</p></div>
-                        <form:form method="POST" class="form-horizontal" commandName="index" action="${pageContext.request.contextPath}/indexbase/addIndexId.html">
-                            <div class="form-group">
-                                <label  class="col-sm-3 control-label">IDX ID:</label>
-                                <div class="col-sm-4">
-                                    <form:input id="pid" type="text" class="form-control"  path="idxId"/>
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">INDEX RATE:</label>
                                 <div class="col-sm-4">
-                                    <form:input type="text" class="form-control" path="indexRate"/>
+                                    <form:input required="true" type="text" class="form-control" path="indexRate"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">DESCRIPTION:</label>
                                 <div class="col-sm-4">
-                                    <form:input type="text" class="form-control" path="description"/>
+                                    <form:input required="true" type="text" class="form-control" path="description"/>
                                 </div>
                             </div>
 

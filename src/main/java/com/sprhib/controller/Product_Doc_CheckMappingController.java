@@ -31,7 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author it207432
  */
 @Controller
-@RequestMapping(value = "/dcmap")
+@RequestMapping(value = "/ProductDocumentChecklistMapping")
 public class Product_Doc_CheckMappingController {
 
     @Autowired
@@ -43,7 +43,7 @@ public class Product_Doc_CheckMappingController {
     @Autowired
     Document_Type_BaseService dtbaseService;
 
-    @RequestMapping(value = "/addChecklistMap", method = RequestMethod.GET)
+    @RequestMapping(value = "/addMapping", method = RequestMethod.GET)
     public ModelAndView addProductChecklistMap() {
         ModelAndView modelAndView = new ModelAndView("doc_checklist_mapping/add-checklist-mapping-form");
 
@@ -71,7 +71,7 @@ public class Product_Doc_CheckMappingController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/addChecklistMap", method = RequestMethod.POST)
+    @RequestMapping(value = "/addMapping", method = RequestMethod.POST)
     public ModelAndView addingProductChecklistMap(@ModelAttribute ProductDocumentChecklistMapping dcmap, @RequestParam("pname") String pname, @RequestParam("dtype") String dtype) {
 
         ModelAndView modelAndView = new ModelAndView("doc_checklist_mapping/list-of-checklist-mapping");
@@ -166,7 +166,7 @@ public class Product_Doc_CheckMappingController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/listChecklistMaps")
+    @RequestMapping(value = "/listMappings")
     public ModelAndView listOfProductChecklistMaps() {
         ModelAndView modelAndView = new ModelAndView("doc_checklist_mapping/list-of-checklist-mapping");
 
@@ -175,7 +175,7 @@ public class Product_Doc_CheckMappingController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editChecklistMapping/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/editMapping/{id}", method = RequestMethod.GET)
     public ModelAndView editProductChecklistMap(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("doc_checklist_mapping/edit-checklist-mapping-form");
         ProductDocumentChecklistMapping dcmaps = dcmapService.getProductDocumentChecklistMapping(id);
@@ -232,7 +232,7 @@ public class Product_Doc_CheckMappingController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editChecklistMapping/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/editMapping/{id}", method = RequestMethod.POST)
     public ModelAndView editingProductChecklistMap(@ModelAttribute ProductDocumentChecklistMapping dcmap,
             @PathVariable Integer id, @RequestParam("pname") String pname, @RequestParam("dtype") String dtype
     ) {
@@ -318,7 +318,7 @@ public class Product_Doc_CheckMappingController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/deleteChecklistMapping/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteMapping/{id}", method = RequestMethod.GET)
     public ModelAndView deleteProductCategory(@PathVariable Integer id
     ) {
         ModelAndView modelAndView = new ModelAndView("doc_checklist_mapping/list-of-checklist-mapping");

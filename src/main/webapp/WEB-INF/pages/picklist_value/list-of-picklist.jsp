@@ -107,19 +107,16 @@
                 </div>
                 <div style="margin-top: 7px;" class="col-md-3" >
                     <select  id="tablelist"  onchange="redirect_url()" class="selectpicker" data-live-search="true">
-                        <option data-tokens="area" value="${pageContext.request.contextPath}/abase/listAreaBases.html" onclick="redirect_url(this.value)">AREA BASE</option>
-                        <option data-tokens="area branch" value="${pageContext.request.contextPath}/AreaBranchMap/listMap.html" onclick="redirect_url(this.value)">AREA BRANCH MAPPING</option>
-                        <option selected data-tokens="branch" value="${pageContext.request.contextPath}/bbase/listBranchBases.html" onclick="redirect_url(this.value)">BRANCH BASE</option>
-                        <option data-tokens="bsrbranch" value="${pageContext.request.contextPath}/bsrbase/listBsrBankBranch.html" onclick="redirect_url(this.value)">BSR BANK BRANCH BASE</option>
-                        <option data-tokens="credit card wise credit limit" value="${pageContext.request.contextPath}/creditlimit/listCreditLimits.html" onclick="redirect_url(this.value)">CC CARD CATEGORY WISE CREDIT LIMITS</option>
-                        <option data-tokens="credit card category wise eligibilites" value="${pageContext.request.contextPath}/cceligibility/listEligibilities.html" onclick="redirect_url(this.value)">CC CARD CATEGORY WISE ELIGIBILITES</option>
-                        <option data-tokens="document type" value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
-                        <option data-tokens="index id base" value="${pageContext.request.contextPath}/indexbase/listIndexIds.html" onclick="redirect_url(this.value)">INDEX ID BASE</option>
-                        <option data-tokens="loan product mapping" value="${pageContext.request.contextPath}/lpidmap/listIndexIdMap.html" onclick="redirect_url(this.value)">LOAN PRODUCT INDEX ID MAPPING</option>
-                        <option selected data-tokens="pick list values" value="${pageContext.request.contextPath}/picklist/listPickList.html" onclick="redirect_url(this.value)">PICKLIST VALUES</option>
-                        <option data-tokens="product" value="${pageContext.request.contextPath}/pbase/listProducts.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>
-                        <option data-tokens="product category" value="${pageContext.request.contextPath}/pcbase/listProductCategories.html" onclick ="redirect_url(this.value)">PRODUCT CATEGORY BASE</option>
-                        <option data-tokens="document chacklist map " value="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html" onclick="redirect_url(this.value)">PRODUCT DOCUMENT CHECKLIST MAPPING</option>
+                        <option data-tokens="area" value="${pageContext.request.contextPath}/AreaBase/listBases.html" onclick="redirect_url(this.value)">AREA BASE</option>
+                        <option data-tokens="area branch" value="${pageContext.request.contextPath}/AreaBranchMapping/listMappings.html" onclick="redirect_url(this.value)">AREA BRANCH MAPPING</option>
+                        <option data-tokens="branch" value="${pageContext.request.contextPath}/BranchBase/listBases.html" onclick="redirect_url(this.value)">BRANCH BASE</option>
+                        <option data-tokens="document" value="${pageContext.request.contextPath}/DocumetTypeBase/listBases.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
+                        <option selected data-tokens="pick list values" value="${pageContext.request.contextPath}/PickListValues/listPickList.html" onclick="redirect_url(this.value)">PICKLIST VALUES</option>
+                        <option data-tokens="product" value="${pageContext.request.contextPath}/ProductBase/listBases.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>        
+                        <option data-tokens="product category" value="${pageContext.request.contextPath}/ProductCategoryBase/listBases.html" onclick="redirect_url(this.value)">PRODUCT CATEGORY BASE</option>  
+                        <option data-tokens="product document checklist" value="${pageContext.request.contextPath}/ProductDocumentChecklistMapping/listMappings.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>        
+                        <option data-tokens="RlcBase" value="${pageContext.request.contextPath}/RlcBase/listBases.html" onclick="redirect_url(this.value)">RLC BASE</option>
+                        <option data-tokens="RlcBranchMapping" value="${pageContext.request.contextPath}/RlcBranchMapping/listMappings.html" onclick="redirect_url(this.value)">RLC BRANCH MAPPING</option>
                     </select>
                 </div>
                 <div class="col-md-7"></div>
@@ -149,7 +146,7 @@
                 <table id="datatable" class="display" cellspacing="0" width="100%">
                     <thead>
                         <div style="float:right">
-                            <a href="${pageContext.request.contextPath}/picklist/addPickList.html" class="btn btn-success" role="button" data-toggle="modal" data-target="#myModal" style="width:110px;margin-bottom: 5px">+ Add New</a>
+                            <a href="${pageContext.request.contextPath}/PickListValues/addPickList.html" class="btn btn-success" role="button" data-toggle="modal" data-target="#myModal" style="width:110px;margin-bottom: 5px">+ Add New</a>
                         </div>
                         <tr>
                             <div>
@@ -190,7 +187,7 @@
                                         <div class="modal-footer">
 
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <a class="btn btn-warning" href="${pageContext.request.contextPath}/picklist/deletePickList/${pklist.picklistId}.html" title="Delete"><i class="fa fa-trash-o"></i>Delete</a>
+                                            <a class="btn btn-warning" href="${pageContext.request.contextPath}/PickListValues/deletePickList/${pklist.picklistId}.html" title="Delete"><i class="fa fa-trash-o"></i>Delete</a>
                                         </div>
                                     </div>
                                 </div>
@@ -210,7 +207,7 @@
                                         <div class="modal-footer">
 
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <a  href="${pageContext.request.contextPath}/picklist/editPickList/${pklist.picklistId}.html" data-toggle="modal" data-dismiss="modal" class="btn btn-warning" data-target="#myModal" ><i class="fa fa-trash-o"></i>Edit</a>
+                                            <a  href="${pageContext.request.contextPath}/PickListValues/editPickList/${pklist.picklistId}.html" data-toggle="modal" data-dismiss="modal" class="btn btn-warning" data-target="#myModal" ><i class="fa fa-trash-o"></i>Edit</a>
                                         </div>
                                     </div>
                                 </div>

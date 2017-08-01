@@ -20,27 +20,21 @@
                     <div class ="container" >
                         <div class="col-sm-9 col-sm-offset-3"><h3>Add Document Type</h3></div>
                         <div class="col-sm-9 col-sm-offset-3"><p>Here you can add document type details....</p></div>
-                        <form:form method="POST" class="form-horizontal" commandName="dtbase" action="${pageContext.request.contextPath}/dtbase/addDocumentType.html">
-                            <div class="form-group">
-                                <label  class="col-sm-3 control-label">Document ID:</label>
-                                <div class="col-sm-4">
-                                    <form:input id="did" type="text" class="form-control"  path="did"/>
-                                </div>
-                            </div>
+                        <form:form method="POST" class="form-horizontal" commandName="dtbase" action="${pageContext.request.contextPath}/DocumentTypeBase/addBase.html">
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">Document Type:</label>
                                 <div class="col-sm-4">
-                                    <form:input type="text" class="form-control" path="documentType"/>
+                                    <form:input type="text" required="true" class="form-control" path="documentType"/>
                                 </div>
                             </div>
 
                            <div class="form-group row">
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-2">
-                                    <button type="submit" class="btn btn-primary btn-block">Add Document Type</button>
+                                    <button type="submit" class="btn btn-primary btn-block">Add Record</button>
                                 </div>
                                 <div class="col-sm-2">
-                                    <a href="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html" type="button" class="btn btn-default btn-block" >Close</a>
+                                    <a href="${pageContext.request.contextPath}/DocumentTypeBase/listBases.html" type="button" class="btn btn-default btn-block" >Close</a>
                                 </div>
                                 <div class="col-sm-5"></div>
                             </div>

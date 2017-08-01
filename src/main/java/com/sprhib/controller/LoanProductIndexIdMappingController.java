@@ -31,7 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author it207432
  */
 @Controller
-@RequestMapping(value = "/lpidmap")
+@RequestMapping(value = "/LoanProductIndexIdMapping")
 public class LoanProductIndexIdMappingController {
 
     @Autowired
@@ -43,7 +43,7 @@ public class LoanProductIndexIdMappingController {
     @Autowired
     IndexIdBaseService indexidService;
 
-    @RequestMapping(value = "/addIndexIdMap", method = RequestMethod.GET)
+    @RequestMapping(value = "/addMapping", method = RequestMethod.GET)
     public ModelAndView addLoanProductIndexIdMap() {
         ModelAndView modelAndView = new ModelAndView("loan_product_mapping/add-loan-product-mapping");
 
@@ -70,7 +70,7 @@ public class LoanProductIndexIdMappingController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/addIndexIdMap", method = RequestMethod.POST)
+    @RequestMapping(value = "/addMapping", method = RequestMethod.POST)
     public ModelAndView addingLoanProductIndexIdMap(@ModelAttribute LoanProductIndexIdMapping idmap, @RequestParam("pname") String pname, @RequestParam("desc") String desc) {
 
         ModelAndView modelAndView = new ModelAndView("loan_product_mapping/list-of-loan-product-mapping");
@@ -129,7 +129,7 @@ public class LoanProductIndexIdMappingController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/listIndexIdMap")
+    @RequestMapping(value = "/listMapping")
     public ModelAndView listOfLoanProductIndexIdMaps() {
         ModelAndView modelAndView = new ModelAndView("loan_product_mapping/list-of-loan-product-mapping");
 
@@ -139,7 +139,7 @@ public class LoanProductIndexIdMappingController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editIndexIdMap/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/editMapping/{id}", method = RequestMethod.GET)
     public ModelAndView editLoanProductIndexIdMap(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("loan_product_mapping/edit-loan-product-mapping");
         LoanProductIndexIdMapping idmap = idmapService.getLoanProductIndexIdMap(id);
@@ -190,7 +190,7 @@ public class LoanProductIndexIdMappingController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editIndexIdMap/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/editMapping/{id}", method = RequestMethod.POST)
     public ModelAndView editingLoanProductIndexIdMap(@ModelAttribute LoanProductIndexIdMapping idmap, @PathVariable Integer id, @RequestParam("pname") String pname, @RequestParam("desc") String desc) {
 
         ModelAndView modelAndView = new ModelAndView("loan_product_mapping/list-of-loan-product-mapping");
@@ -245,7 +245,7 @@ public class LoanProductIndexIdMappingController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/deleteIndexIdMap/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteMapping/{id}", method = RequestMethod.GET)
     public ModelAndView deleteLoanProductIndexIdMap(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("loan_product_mapping/list-of-loan-product-mapping");
 

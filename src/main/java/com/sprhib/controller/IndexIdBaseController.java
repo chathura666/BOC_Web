@@ -23,20 +23,20 @@ import org.springframework.web.servlet.ModelAndView;
  * @author it207432
  */
 @Controller
-@RequestMapping(value = "/indexbase")
+@RequestMapping(value = "/IndexIdBase")
 public class IndexIdBaseController {
 
     @Autowired
     IndexIdBaseService indexService;
 
-    @RequestMapping(value = "/addIndexId", method = RequestMethod.GET)
+    @RequestMapping(value = "/addBase", method = RequestMethod.GET)
     public ModelAndView addIndexId() {
         ModelAndView modelAndView = new ModelAndView("indexid_base/add-indexid-base");
         modelAndView.addObject("index", new IndexIdBase());
         return modelAndView;
     }
 
-    @RequestMapping(value = "/addIndexId", method = RequestMethod.POST)
+    @RequestMapping(value = "/addBase", method = RequestMethod.POST)
     public ModelAndView addingIndexId(@ModelAttribute IndexIdBase index) {
 
         ModelAndView modelAndView = new ModelAndView("indexid_base/list-of-indexid-bases");
@@ -72,7 +72,7 @@ public class IndexIdBaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/listIndexIds")
+    @RequestMapping(value = "/listMappings")
     public ModelAndView listOfIndexIds() {
         ModelAndView modelAndView = new ModelAndView("indexid_base/list-of-indexid-bases");
 
@@ -83,7 +83,7 @@ public class IndexIdBaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editIndexId/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/editMapping/{id}", method = RequestMethod.GET)
     public ModelAndView editIndexId(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("indexid_base/edit-indexid-base");
         IndexIdBase index = indexService.getIndexId(id);
@@ -91,7 +91,7 @@ public class IndexIdBaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editIndexId/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/editMapping/{id}", method = RequestMethod.POST)
     public ModelAndView editingIndexId(@ModelAttribute IndexIdBase index, @PathVariable Integer id) {
 
         ModelAndView modelAndView = new ModelAndView("indexid_base/list-of-indexid-bases");
@@ -129,7 +129,7 @@ public class IndexIdBaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/deleteIndexId/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteMapping/{id}", method = RequestMethod.GET)
     public ModelAndView deleteIndexId(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("indexid_base/list-of-indexid-bases");
 

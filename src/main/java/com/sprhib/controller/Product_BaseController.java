@@ -29,7 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author it207432
  */
 @Controller
-@RequestMapping(value = "/pbase")
+@RequestMapping(value = "/ProductBase")
 public class Product_BaseController {
 
     @Autowired
@@ -40,7 +40,7 @@ public class Product_BaseController {
     
     final static Logger logger = Logger.getLogger(Product_BaseController.class);
 
-    @RequestMapping(value = "/addProduct", method = RequestMethod.GET)
+    @RequestMapping(value = "/addBase", method = RequestMethod.GET)
     public ModelAndView addProductPage() {
         ModelAndView modelAndView = new ModelAndView("products/add-product-form");
 
@@ -57,7 +57,7 @@ public class Product_BaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
+    @RequestMapping(value = "/addBase", method = RequestMethod.POST)
     public ModelAndView addingProduct(@ModelAttribute ProductBase pbase, @RequestParam("pcat") String pcat) {
 
         List<ProductBase> currentpbases = pbaseService.getProducts();
@@ -118,7 +118,7 @@ public class Product_BaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/listProducts")
+    @RequestMapping(value = "/listBases")
     public ModelAndView listOfProducts() {
         ModelAndView modelAndView = new ModelAndView("products/list-of-products");
 
@@ -129,7 +129,7 @@ public class Product_BaseController {
     }
 
  
-    @RequestMapping(value = "/editProduct/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/editBase/{id}", method = RequestMethod.GET)
     public ModelAndView editProductPage(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("products/edit-product-form");
         ProductBase pbase = pbaseService.getProduct(id);
@@ -160,7 +160,7 @@ public class Product_BaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editProduct/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/editBase/{id}", method = RequestMethod.POST)
     public ModelAndView edditingProduct(@ModelAttribute ProductBase pbase, @PathVariable Integer id, @RequestParam("pcat") String pcat) {
 
         ModelAndView modelAndView = new ModelAndView("products/list-of-products");
@@ -211,7 +211,7 @@ public class Product_BaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/deleteProduct/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteBase/{id}", method = RequestMethod.GET)
     public ModelAndView deleteProduct(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("products/list-of-products");
 

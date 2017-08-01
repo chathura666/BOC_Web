@@ -30,7 +30,7 @@ public class BranchBaseController {
     @Autowired
     BranchBaseService bbaseService;
     
-    final static Logger logger = Logger.getLogger(AreaBaseController.class);
+    final static Logger logger = Logger.getLogger(BranchBaseController.class);
 
     @RequestMapping(value = "/addBase", method = RequestMethod.GET)
     public ModelAndView addBranchBase() {

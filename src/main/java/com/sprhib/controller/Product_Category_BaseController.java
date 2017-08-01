@@ -8,6 +8,7 @@ package com.sprhib.controller;
 import com.sprhib.model.ProductCategoryBase;
 import com.sprhib.service.Product_Category_BaseService;
 import java.util.List;
+import org.apache.log4j.Logger;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -23,20 +24,22 @@ import org.springframework.web.servlet.ModelAndView;
  * @author it207432
  */
 @Controller
-@RequestMapping(value = "/pcbase")
+@RequestMapping(value = "/ProductCategoryBase")
 public class Product_Category_BaseController {
 
     @Autowired
     Product_Category_BaseService pcbaseService;
+    
+    final static Logger logger = Logger.getLogger(Product_Category_BaseController.class);
 
-    @RequestMapping(value = "/addProductCategory", method = RequestMethod.GET)
+    @RequestMapping(value = "/addBase", method = RequestMethod.GET)
     public ModelAndView addProductCategoryPage() {
         ModelAndView modelAndView = new ModelAndView("prodcategory_base/add-product-category-form");
         modelAndView.addObject("pcbase", new ProductCategoryBase());
         return modelAndView;
     }
 
-    @RequestMapping(value = "/addProductCategory", method = RequestMethod.POST)
+    @RequestMapping(value = "/addBase", method = RequestMethod.POST)
     public ModelAndView addingProductCategoryPage(@ModelAttribute ProductCategoryBase pcbase) {
 
         ModelAndView modelAndView = new ModelAndView("prodcategory_base/list-of-product-categories");
@@ -72,7 +75,7 @@ public class Product_Category_BaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/listProductCategories")
+    @RequestMapping(value = "/listBases")
     public ModelAndView listOfProductCategories() {
         ModelAndView modelAndView = new ModelAndView("prodcategory_base/list-of-product-categories");
 
@@ -82,7 +85,7 @@ public class Product_Category_BaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editProductCategory/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/editBase/{id}", method = RequestMethod.GET)
     public ModelAndView editProductCategoryPage(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("prodcategory_base/edit-product-category-form");
         ProductCategoryBase pcbase = pcbaseService.getProductCategoryBase(id);
@@ -90,7 +93,7 @@ public class Product_Category_BaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editProductCategory/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/editBase/{id}", method = RequestMethod.POST)
     public ModelAndView editingProductCategory(@ModelAttribute ProductCategoryBase pcbase, @PathVariable Integer id) {
 
         ModelAndView modelAndView = new ModelAndView("prodcategory_base/list-of-product-categories");
@@ -127,7 +130,7 @@ public class Product_Category_BaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/deleteProductCategory/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteBase/{id}", method = RequestMethod.GET)
     public ModelAndView deleteProductCategory(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("prodcategory_base/list-of-product-categories");
 

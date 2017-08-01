@@ -12,7 +12,7 @@
         <title>Edit Product page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">  
             <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">  
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>  
+                <script src=  "https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>  
                 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
 
                 <script>
@@ -37,13 +37,13 @@
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">INDEX RATE:</label>
                                 <div class="col-sm-4">
-                                    <form:input type="text" class="form-control" path="indexRate"/>
+                                    <form:input required="true" type="text" class="form-control" path="indexRate"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">DESCRIPTION:</label>
                                 <div class="col-sm-4">
-                                    <form:input type="text" class="form-control" path="description"/>
+                                    <form:input required="true" type="text" class="form-control" path="description"/>
                                 </div>
                             </div>
 
@@ -57,9 +57,6 @@
                                 </div>
                                 <div class="col-sm-5"></div>
                             </div>    
-
-
-
                         </form:form>
                     </div>
 

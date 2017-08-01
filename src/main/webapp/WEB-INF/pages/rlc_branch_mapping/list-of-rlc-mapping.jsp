@@ -8,7 +8,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-        <title>List of Document Checklist Mapping</title>
 
         <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap-select.css"/>
         <script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
@@ -20,6 +19,8 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"/>  
         <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/jquery-ui.css"/>  
         <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/dataTables.jqueryui.min.css"/>  
+
+        <title>List of RLC Bases</title>
 
         <script type="text/javascript">
 
@@ -82,11 +83,11 @@
             .modal-backdrop.in {
                 opacity: 0.5;
             }
-
-
         </style>
 
+
     </head>
+
     <body>
         <nav class="navbar navbar-default" style="margin-bottom: 0px;">
             <div class="container-fluid row">
@@ -99,12 +100,12 @@
                         <option data-tokens="area branch" value="${pageContext.request.contextPath}/AreaBranchMapping/listMappings.html" onclick="redirect_url(this.value)">AREA BRANCH MAPPING</option>
                         <option data-tokens="branch" value="${pageContext.request.contextPath}/BranchBase/listBases.html" onclick="redirect_url(this.value)">BRANCH BASE</option>
                         <option data-tokens="document" value="${pageContext.request.contextPath}/DocumentTypeBase/listBases.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
-                        <option data-tokens="pick list values" value="${pageContext.request.contextPath}/PickListValues/listPickList.html" onclick="redirect_url(this.value)">PICKLIST VALUES</option>
+                        <option data-tokens="pick list values" value="${pageContext.request.contextPath}/picklist/listPickList.html" onclick="redirect_url(this.value)">PICKLIST VALUES</option>
                         <option data-tokens="product" value="${pageContext.request.contextPath}/ProductBase/listBases.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>        
                         <option data-tokens="product category" value="${pageContext.request.contextPath}/ProductCategoryBase/listBases.html" onclick="redirect_url(this.value)">PRODUCT CATEGORY BASE</option>  
-                        <option selected data-tokens="product document checklist" value="${pageContext.request.contextPath}/ProductDocumentChecklistMapping/listMappings.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>        
+                        <option data-tokens="product document checklist" value="${pageContext.request.contextPath}/ProductDocumentChecklistMapping/listMappings.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>        
                         <option data-tokens="RlcBase" value="${pageContext.request.contextPath}/RlcBase/listBases.html" onclick="redirect_url(this.value)">RLC BASE</option>
-                        <option data-tokens="RlcBranchMapping" value="${pageContext.request.contextPath}/RlcBranchMapping/listMappings.html" onclick="redirect_url(this.value)">RLC BRANCH MAPPING</option>
+                        <option selected data-tokens="RlcBranchMapping" value="${pageContext.request.contextPath}/RlcBranchMapping/listMappings.html" onclick="redirect_url(this.value)">RLC BRANCH MAPPING</option>
                     </select>
                 </div>
                 <div class="col-md-7"></div>
@@ -115,7 +116,7 @@
         <div class="container">
             <div class="row">
                 <div>
-                    <h3 style="margin-top: 10px;">List of Checklist Mapping</h3>
+                    <h3 style="margin-top: 10px;">List of RLC Bases</h3>
                     <div>
                         <div>
                             <c:if test = "${not empty message}">
@@ -129,41 +130,36 @@
                 </div>
             </div>
 
+            <!-- Table -->
+
             <div class="table-responsive row" style="margin-top: 5px;">
-                <table id="datatable" class="display" cellspacing="0" width="100%">
+                <table style="text-align: left;" id="datatable" class="display" cellspacing="0"  width="100%" >
 
                     <thead>
+                        <div style="float:right">
+                            <a href="${pageContext.request.contextPath}/RlcBranchMapping/addMapping.html" class="btn btn-success" role="button" data-toggle="modal" data-target="#myModal" style="width:110px;margin-bottom: 5px">+ Add New</a>
+                        </div>
                         <tr>
-                            <div style="float:right">
-                                <a href="${pageContext.request.contextPath}/ProductDocumentChecklistMapping/addMapping.html" class="btn btn-success" role="button" data-toggle="modal" data-target="#myModal" style="width:110px;margin-bottom: 5px">+ Add New</a>
-                            </div>
-                            <div>
-                                <td>PDCID</td>
-                                <td>PRODUCT NAME / ID</td>
-                                <td>DOCUMENT TYPE / ID</td>
-                                <td>SCAN REQIURED</td>
-                                <td>MANDATORY</td>
-                                <td  style="width: 5%;">EDIT</td>
-                                <td  style="width: 5%;">DELETE</td>
-                            </div>
+                            <td>RLC ID</td>
+                            <td>RLC NAME / RLC CODE</td>
+                            <td>BRANCH NAME / BRANCH CODE</td>
+
+                            <td  style="width: 5%;">EDIT</td>
+                            <td  style="width: 5%;">DELETE</td>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <c:forEach var="dcmap" items="${dcmaps}">
+                        <c:forEach var="rmap" items="${rmaps}">
                             <tr>
-                                <td>${dcmap.pdcid}</td>
-                                <td>${dcmap.productId.productName} (${dcmap.productId.pid})</td>
-                                <td>${dcmap.documentId.documentType} (${dcmap.documentId.did})</td>
-                                <td>${dcmap.scanRequired}</td>
-                                <td>${dcmap.mandatory}</td>
+                                <td>${rmap.rlcBrId}</td>
+                                <td>${rmap.rlcId.rlcName} / ${rmap.rlcId.rlcId}</td>
+                                <td>${rmap.bid.branchName} / ${rmap.bid.bid}</td>
 
-                                <td style="width: 5%;"><p data-placement="top" title="Edit"><button class="btn btn-primary btn-s" data-title="Edit" data-toggle="modal"  style="width:60px"  data-target="#edtModalcnfm_${dcmap.pdcid}">Edit</button></p></td>
-                                <td style="width: 5%;"><p data-placement="top" id="deletebtn"  title="Delete"><button class="btn btn-warning btn-s" data-title="Delete"  style="width:60px" data-toggle="modal" data-target="#dltModalcnfm_${dcmap.pdcid}">Delete</button></p></td>
-
-
-                            </tr>
-                            <div id="dltModalcnfm_${dcmap.pdcid}" class="modal">
+                                <td style="width: 5%;"><p data-placement="top" title="Edit"><button class="btn btn-primary btn-s" data-title="Edit" data-toggle="modal" style="width:60px"  data-target="#edtModalcnfm_${rmap.rlcBrId}" >Edit</button></p></td>
+                                <td style="width: 5%;"><p data-placement="top" id="deletebtn"  title="Delete"><button class="btn btn-warning btn-s" data-title="Delete" style="width:60px"  data-toggle="modal" data-target="#dltModalcnfm_${rmap.rlcBrId}" >Delete</button></p></td>
+                            </tr>             
+                            <div id="dltModalcnfm_${rmap.rlcBrId}" class="modal">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -172,23 +168,23 @@
                                         </div>
 
                                         <div class="modal-body">
-                                            <p>Are you sure you want to delete this? </p>
+                                            <p>Are you sure you want to delete this </p>
                                         </div>
                                         <div class="modal-footer">
 
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <a class="btn btn-warning" href="${pageContext.request.contextPath}/ProductDocumentChecklistMapping/deleteMapping/${dcmap.pdcid}.html" title="Delete"><i class="fa fa-trash-o"></i>Delete</a>
+                                            <a class="btn btn-warning" href="${pageContext.request.contextPath}/RlcBranchMapping/deleteMapping/${rmap.rlcBrId}.html" title="Delete"><i class="fa fa-trash-o"></i>Delete</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>  
 
-                            <div id="edtModalcnfm_${dcmap.pdcid}" class="modal">
+                            <div id="edtModalcnfm_${rmap.rlcBrId}" class="modal">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title">Confirm Update</h4>
+                                            <h4 class="modal-title">Confirm Edit</h4>
                                         </div>
 
                                         <div class="modal-body">
@@ -197,7 +193,7 @@
                                         <div class="modal-footer">
 
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <a  href="${pageContext.request.contextPath}/ProductDocumentChecklistMapping/editMapping/${dcmap.pdcid}.html" data-toggle="modal" data-dismiss="modal" class="btn btn-warning" data-target="#myModal" ><i class="fa fa-trash-o"></i>Edit</a>
+                                            <a  href="${pageContext.request.contextPath}/RlcBranchMapping/editMapping/${rmap.rlcBrId}.html" data-toggle="modal" data-dismiss="modal" class="btn btn-warning" data-target="#myModal" ><i class="fa fa-trash-o"></i>Edit</a>
                                         </div>
                                     </div>
                                 </div>
@@ -214,10 +210,10 @@
 
 
         <!-- Modal -->
-        <div id="myModal" data-keyboard="true"  class="modal selectpicker" role="dialog" style="background-color: black !important;  ">
-            <div class="modal-dialog modal-lg selectpicker">
+        <div id="myModal" data-keyboard="true"  class="modal" role="dialog" style="background-color: black !important;  ">
+            <div class="modal-dialog modal-lg">
                 <!-- Modal content-->
-                <div class="modal-content selectpicker"> </div>
+                <div class="modal-content"> </div>
             </div>
 
         </div>

@@ -129,7 +129,7 @@ public class LoanProductIndexIdMappingController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/listMapping")
+    @RequestMapping(value = "/listMappings")
     public ModelAndView listOfLoanProductIndexIdMaps() {
         ModelAndView modelAndView = new ModelAndView("loan_product_mapping/list-of-loan-product-mapping");
 

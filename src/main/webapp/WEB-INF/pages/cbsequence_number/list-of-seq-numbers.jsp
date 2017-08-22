@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/jquery-ui.css"/>  
         <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/dataTables.jqueryui.min.css"/>  
 
-        <title>List of Index IDs</title>
+        <title>List of Areas</title>
 
         <script type="text/javascript">
 
@@ -65,6 +65,8 @@
 
 
 
+
+
         </script>
 
 
@@ -83,43 +85,69 @@
             .modal-backdrop.in {
                 opacity: 0.5;
             }
+
+            .navbar-brand {
+                padding: 0px;
+            }
+            .navbar-brand>img {
+                height: 100%;
+                padding: 15px;
+                width: auto;
+            }
+
         </style>
 
 
     </head>
 
+
+
     <body>
-        <nav class="navbar navbar-default" style="margin-bottom: 0px;">
-            <div class="container-fluid row">
-                <div class="navbar-header col-md-2"">
-                    <a class="navbar-brand" href="#">BOC</a>
-                </div>
-                <div style="margin-top: 7px;" class="col-md-3">
-                    <select  id="tablelist"  onchange="redirect_url()" class="selectpicker" data-live-search="true">
-                        <option data-tokens="area" value="${pageContext.request.contextPath}/abase/listAreaBases.html" onclick="redirect_url(this.value)">AREA BASE</option>
-                        <option data-tokens="area branch" value="${pageContext.request.contextPath}/AreaBranchMap/listMap.html" onclick="redirect_url(this.value)">AREA BRANCH MAPPING</option>
-                        <option data-tokens="branch" value="${pageContext.request.contextPath}/bbase/listBranchBases.html" onclick="redirect_url(this.value)">BRANCH BASE</option>
-                        <option data-tokens="bsrbranch" value="${pageContext.request.contextPath}/bsrbase/listBsrBankBranch.html" onclick="redirect_url(this.value)">BSR BANK BRANCH BASE</option>
-                        <option data-tokens="credit card wise credit limit" value="${pageContext.request.contextPath}/creditlimit/listCreditLimits.html" onclick="redirect_url(this.value)">CC CARD CATEGORY WISE CREDIT LIMITS</option>
-                        <option data-tokens="credit card category wise eligibilites" value="${pageContext.request.contextPath}/cceligibility/listEligibilities.html" onclick="redirect_url(this.value)">CC CARD CATEGORY WISE ELIGIBILITES</option>
-                        <option data-tokens="document type" value="${pageContext.request.contextPath}/dtbase/listDocumentTypes.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
-                        <option selected data-tokens="index id base" value="${pageContext.request.contextPath}/indexbase/listIndexIds.html" onclick="redirect_url(this.value)">INDEX ID BASE</option>
-                        <option data-tokens="loan product mapping" value="${pageContext.request.contextPath}/lpidmap/listIndexIdMap.html" onclick="redirect_url(this.value)">LOAN PRODUCT INDEX ID MAPPING</option>
-                        <option data-tokens="pick list values" value="${pageContext.request.contextPath}/picklist/listPickList.html" onclick="redirect_url(this.value)">PICKLIST VALUES</option>
-                        <option data-tokens="product" value="${pageContext.request.contextPath}/pbase/listProducts.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>
-                        <option data-tokens="product category" value="${pageContext.request.contextPath}/pcbase/listProductCategories.html" onclick ="redirect_url(this.value)">PRODUCT CATEGORY BASE</option>
-                        <option data-tokens="document chacklist map " value="${pageContext.request.contextPath}/dcmap/listChecklistMaps.html" onclick="redirect_url(this.value)">PRODUCT DOCUMENT CHECKLIST MAPPING</option>
-                    </select>
-                </div>
-                <div class="col-md-7"></div>
 
-            </div>
-        </nav>
-
+        <div>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" ><img src="<%=request.getContextPath()%>/resources/images/boc.png" alt="Dispute Bills"/>
+                        </a>
+                    </div>
+                    <div id="navbar1" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"></li>
+                            <li>&nbsp&nbsp&nbsp&nbsp</li>
+                            <li style="margin-top: 7px;"><h5>Select Table:</h5></li>
+                            <li style="margin-top: 7px;">
+                                &nbsp&nbsp
+                                <select  id="tablelist"  onchange="redirect_url()" class="selectpicker" data-live-search="true">
+                                    <option selected data-tokens="area" value="${pageContext.request.contextPath}/AreaBase/listBases.html" onclick="redirect_url(this.value)">AREA BASE</option>
+                                    <option data-tokens="area branch" value="${pageContext.request.contextPath}/AreaBranchMapping/listMappings.html" onclick="redirect_url(this.value)">AREA BRANCH MAPPING</option>
+                                    <option data-tokens="branch" value="${pageContext.request.contextPath}/BranchBase/listBases.html" onclick="redirect_url(this.value)">BRANCH BASE</option>
+                                    <option data-tokens="document" value="${pageContext.request.contextPath}/DocumetTypeBase/listBases.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
+                                    <option data-tokens="pick list values" value="${pageContext.request.contextPath}/PickListValues/listPickList.html" onclick="redirect_url(this.value)">PICKLIST VALUES</option>
+                                    <option data-tokens="product" value="${pageContext.request.contextPath}/ProductBase/listBases.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>        
+                                    <option data-tokens="product category" value="${pageContext.request.contextPath}/ProductCategoryBase/listBases.html" onclick="redirect_url(this.value)">PRODUCT CATEGORY BASE</option>  
+                                    <option data-tokens="product document checklist" value="${pageContext.request.contextPath}/ProductDocumentChecklistMapping/listMappings.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>        
+                                    <option data-tokens="RlcBase" value="${pageContext.request.contextPath}/RlcBase/listBases.html" onclick="redirect_url(this.value)">RLC BASE</option>
+                                    <option data-tokens="RlcBranchMapping" value="${pageContext.request.contextPath}/RlcBranchMapping/listMappings.html" onclick="redirect_url(this.value)">RLC BRANCH MAPPING</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+                <!--/.container-fluid -->
+            </nav>
+        </div>
         <div class="container">
             <div class="row">
                 <div>
-                    <h3 style="margin-top: 10px;">List of Index IDs</h3>
+                    <h3 style="margin-top: 10px;">List of Areas</h3>
                     <div>
                         <div>
                             <c:if test = "${not empty message}">
@@ -137,30 +165,27 @@
 
             <div class="table-responsive row" style="margin-top: 5px;">
                 <table style="text-align: left;" id="datatable" class="display" cellspacing="0"  width="100%" >
-
                     <thead>
                         <div style="float:right">
-                            <a href="${pageContext.request.contextPath}/IndexIdBase/addBase.html" class="btn btn-success" role="button" data-toggle="modal" data-target="#myModal" style="width:110px;margin-bottom: 5px">+ Add New</a>
+                            <a href="${pageContext.request.contextPath}/CbSequenceNumber/addSequenceNumber.html" class="btn btn-success" role="button" data-toggle="modal" data-target="#myModal" style="width:110px;margin-bottom: 5px">+ Add New</a>
                         </div>
                         <tr>
-                            <td>IDX ID</td>
-                            <td>INDEX RATE</td>
-                            <td>DESCRIPTION</td>
+                            <td style="width: 6%;text-align: center">AID</td>
+                            <td>CURRENT YEAR</td>
                             <td  style="width: 5%;">EDIT</td>
                             <td  style="width: 5%;">DELETE</td>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <c:forEach var="index" items="${indexes}">
+                        <c:forEach var="abase" items="${abases}">
                             <tr>
-                                <td>${index.idxId}</td>
-                                <td>${index.indexRate}</td>
-                                <td>${index.description}</td>
-                                <td style="width: 5%;"><p data-placement="top" title="Edit"><button class="btn btn-primary btn-s" data-title="Edit" data-toggle="modal" style="width:60px"  data-target="#edtModalcnfm_${index.idxId}" >Edit</button></p></td>
-                                <td style="width: 5%;"><p data-placement="top" id="deletebtn"  title="Delete"><button class="btn btn-warning btn-s" data-title="Delete" style="width:60px"  data-toggle="modal" data-target="#dltModalcnfm_${index.idxId}" >Delete</button></p></td>
+                                <td style="width: 6%;text-align: center">${abase.sequenceNo}</td>
+                                <td>${abase.currentYear}</td>
+                                <td style="width: 5%;"><p data-placement="top" title="Edit"><button class="btn btn-primary btn-s" data-title="Edit" data-toggle="modal" style="width:60px"  data-target="#edtModalcnfm_${abase.sequenceNo}" >Edit</button></p></td>
+                                <td style="width: 5%;"><p data-placement="top" id="deletebtn"  title="Delete"><button class="btn btn-warning btn-s" data-title="Delete" style="width:60px"  data-toggle="modal" data-target="#dltModalcnfm_${abase.sequenceNo}" >Delete</button></p></td>
                             </tr>             
-                            <div id="dltModalcnfm_${index.idxId}" class="modal">
+                            <div id="dltModalcnfm_${abase.sequenceNo}" class="modal">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -174,13 +199,13 @@
                                         <div class="modal-footer">
 
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <a class="btn btn-warning" href="${pageContext.request.contextPath}/IndexIdBase/deleteBase/${index.idxId}.html" title="Delete"><i class="fa fa-trash-o"></i>Delete</a>
+                                            <a class="btn btn-warning" href="${pageContext.request.contextPath}/AreaBase/deleteBase/${abase.sequenceNo}.html" title="Delete"><i class="fa fa-trash-o"></i>Delete</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>  
 
-                            <div id="edtModalcnfm_${index.idxId}" class="modal">
+                            <div id="edtModalcnfm_${abase.sequenceNo}" class="modal">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -194,7 +219,7 @@
                                         <div class="modal-footer">
 
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <a  href="${pageContext.request.contextPath}/IndexIdBase/editBase/${index.idxId}.html" data-toggle="modal" data-dismiss="modal" class="btn btn-warning" data-target="#myModal" ><i class="fa fa-trash-o"></i>Edit</a>
+                                            <a  href="${pageContext.request.contextPath}/AreaBase/editBase/${abase.sequenceNo}.html" data-toggle="modal" data-dismiss="modal" class="btn btn-warning" data-target="#myModal" ><i class="fa fa-trash-o"></i>Edit</a>
                                         </div>
                                     </div>
                                 </div>

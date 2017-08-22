@@ -9,42 +9,56 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-        <title>Add Index ID page</title>
+        <title>Edit Area page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">  
             <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">  
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>  
                 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
 
+                <script>
+                    function disable()
+                    {
+                        document.getElementById('pid').disabled = true;
+                    }
+                </script>
+
                 </head>
                 <body>
                     <div class ="container" >
-                        <div class="col-sm-9 col-sm-offset-3"><h3>Add Index ID</h3></div>
-                        <div class="col-sm-9 col-sm-offset-3"><p>Here you can add index details....</p></div>
-
-                        <form:form method="POST" class="form-horizontal" commandName="index" action="${pageContext.request.contextPath}/IndexIdBase/addBase.html">
+                        <div class="col-sm-9 col-sm-offset-3"><h3>Edit Area page</h3></div>
+                        <div class="col-sm-9 col-sm-offset-3"><p>Here you can edit area details</p></div>
+                        <div>&nbsp</div>  
+                        <form:form method="POST" class="form-horizontal" commandName="cbase" action="${pageContext.request.contextPath}/CollateralBase/editBase/${cbase.cid}.html">
                             <div class="form-group">
-                                <label  class="col-sm-3 control-label">INDEX RATE:</label>
+                                <label  class="col-sm-3 control-label">CID:</label>
                                 <div class="col-sm-4">
-                                    <form:input required="true" type="text" class="form-control" path="indexRate"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label  class="col-sm-3 control-label">DESCRIPTION:</label>
-                                <div class="col-sm-4">
-                                    <form:input required="true" type="text" class="form-control" path="description"/>
+                                    <form:input id="pid" type="text" class="form-control" readonly="true"  path="cid"/>
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <label  class="col-sm-3 control-label">COLLATERAL CODE:</label>
+                                <div class="col-sm-4">
+                                    <form:input type="text" required="true" class="form-control" path="collateralCode"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label  class="col-sm-3 control-label">COLLATERAL DESCRIPTION:</label>
+                                <div class="col-sm-4">
+                                    <form:input type="text" required="true" class="form-control" path="collateralDescription"/>
+                                </div>
+                            </div>      
                             <div class="form-group row">
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-2">
-                                    <button type="submit" class="btn btn-primary btn-block">Add Record</button>
+                                    <button type="submit" class="btn btn-primary btn-block" >Edit Record</button>
                                 </div>
                                 <div class="col-sm-2">
-                                    <a href="${pageContext.request.contextPath}/IndexIdBase/listBases.html" type="button" class="btn btn-default btn-block" >Close</a>
+                                    <a href="${pageContext.request.contextPath}/CollateralBase/listBases.html" type="button" class="btn btn-default btn-block" >Close</a>
                                 </div>
                                 <div class="col-sm-5"></div>
                             </div>    
+
                         </form:form>
                     </div>
 

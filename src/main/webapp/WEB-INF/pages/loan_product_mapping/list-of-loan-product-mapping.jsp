@@ -144,7 +144,7 @@
 
                         <thead>
                             <div style="float:right">
-                                <a href="${pageContext.request.contextPath}/lpidmap/addIndexIdMap.html" class="btn btn-success" role="button" data-toggle="modal" data-target="#myModal" style="width:110px;margin-bottom: 5px">+ Add New</a>
+                                <a href="${pageContext.request.contextPath}/LoanProductIndexIdMapping/addMapping.html" class="btn btn-success" role="button" data-toggle="modal" data-target="#myModal" style="width:110px;margin-bottom: 5px">+ Add New</a>
                             </div>
                             <tr>
                                 <td>PROD_INDEX_ID</td>
@@ -180,7 +180,7 @@
                                             <div class="modal-footer">
 
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                <a class="btn btn-warning" href="${pageContext.request.contextPath}/lpidmap/deleteIndexIdMap/${idmap.prodIndexId}.html" title="Delete"><i class="fa fa-trash-o"></i>Delete</a>
+                                                <a class="btn btn-warning" href="${pageContext.request.contextPath}/LoanProductIndexIdMapping/deleteMapping/${idmap.prodIndexId}.html" title="Delete"><i class="fa fa-trash-o"></i>Delete</a>
                                             </div>
                                         </div>
                                     </div>
@@ -200,7 +200,7 @@
                                             <div class="modal-footer">
 
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                <a  href="${pageContext.request.contextPath}/lpidmap/editIndexIdMap/${idmap.prodIndexId}.html" data-toggle="modal" data-dismiss="modal" class="btn btn-warning" data-target="#myModal" ><i class="fa fa-trash-o"></i>Edit</a>
+                                                <a  href="${pageContext.request.contextPath}/LoanProductIndexIdMapping/editMapping/${idmap.prodIndexId}.html" data-toggle="modal" data-dismiss="modal" class="btn btn-warning" data-target="#myModal" ><i class="fa fa-trash-o"></i>Edit</a>
                                             </div>
                                         </div>
                                     </div>

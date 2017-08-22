@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-        <title>Edit Product page</title>
+        <title>Edit Area page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">  
             <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">  
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>  
@@ -25,38 +25,43 @@
                 </head>
                 <body>
                     <div class ="container" >
-                        <div class="col-sm-9 col-sm-offset-3"><h3>Edit Index ID</h3></div>
-                        <div class="col-sm-9 col-sm-offset-3"><p>Here you can edit index details....</p></div>
-                        <form:form method="POST" class="form-horizontal" commandName="index" action="${pageContext.request.contextPath}/IndexIdBase/editBase/${index.idxId}.html">
+                        <div class="col-sm-9 col-sm-offset-3"><h3>Edit Legal Entity page</h3></div>
+                        <div class="col-sm-9 col-sm-offset-3"><p>Here you can edit Legal Entity details</p></div>
+                        <div>&nbsp</div>  
+                        <form:form method="POST" class="form-horizontal" commandName="lbases" action="${pageContext.request.contextPath}/LegalEntityBase/editBase/${lbases.leid}.html">
                             <div class="form-group">
-                                <label  class="col-sm-3 control-label">IDX ID:</label>
+                                <label  class="col-sm-3 control-label">LEID:</label>
                                 <div class="col-sm-4">
-                                    <form:input id="pid" type="text" class="form-control" readonly="true" path="idxId"/>
+                                    <form:input id="pid" type="text" class="form-control" readonly="true"  path="leid"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label  class="col-sm-3 control-label">INDEX RATE:</label>
+                                <label  class="col-sm-3 control-label">LEGAL ENTITY TYPE:</label>
                                 <div class="col-sm-4">
-                                    <form:input required="true" type="text" class="form-control" path="indexRate"/>
+                                    <form:input type="text" required="true" class="form-control" path="legalEntityType"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label  class="col-sm-3 control-label">DESCRIPTION:</label>
+                                <label  class="col-sm-3 control-label">PRODUCT CATEGORY ID:</label>
                                 <div class="col-sm-4">
-                                    <form:input required="true" type="text" class="form-control" path="description"/>
+                                    <form:select data-live-search="true" class="form-control" type="text" name="productCategoryId" path="">
+                                        <form:option item="${pcat}" value="${pcat}" selected="true" >${pcat}</form:option>
+                                        <form:options items="${pcats}"></form:options>                                                                                                        
+                                    </form:select>
                                 </div>
-                            </div>
-
+                            </div>      
                             <div class="form-group row">
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-2">
-                                    <button type="submit" class="btn btn-primary btn-block">Edit Index ID</button>
+                                    <button type="submit" class="btn btn-primary btn-block" >Edit Record</button>
                                 </div>
                                 <div class="col-sm-2">
-                                    <a href="${pageContext.request.contextPath}/IndexIdBase/listBases.html" type="button" class="btn btn-default btn-block" >Close</a>
+                                    <a href="${pageContext.request.contextPath}/LegalEntityBase/listBases.html" type="button" class="btn btn-default btn-block" >Close</a>
                                 </div>
                                 <div class="col-sm-5"></div>
                             </div>    
+
+
                         </form:form>
                     </div>
 

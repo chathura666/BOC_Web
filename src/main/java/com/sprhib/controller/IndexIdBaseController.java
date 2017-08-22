@@ -72,7 +72,7 @@ public class IndexIdBaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/listMappings")
+    @RequestMapping(value = "/listBases")
     public ModelAndView listOfIndexIds() {
         ModelAndView modelAndView = new ModelAndView("indexid_base/list-of-indexid-bases");
 
@@ -83,7 +83,7 @@ public class IndexIdBaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editMapping/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/editBase/{id}", method = RequestMethod.GET)
     public ModelAndView editIndexId(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("indexid_base/edit-indexid-base");
         IndexIdBase index = indexService.getIndexId(id);
@@ -91,7 +91,7 @@ public class IndexIdBaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editMapping/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/editBase/{id}", method = RequestMethod.POST)
     public ModelAndView editingIndexId(@ModelAttribute IndexIdBase index, @PathVariable Integer id) {
 
         ModelAndView modelAndView = new ModelAndView("indexid_base/list-of-indexid-bases");
@@ -129,7 +129,7 @@ public class IndexIdBaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/deleteMapping/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteBase/{id}", method = RequestMethod.GET)
     public ModelAndView deleteIndexId(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("indexid_base/list-of-indexid-bases");
 

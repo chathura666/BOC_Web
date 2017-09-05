@@ -107,11 +107,18 @@
                 </div>
                 <div style="margin-top: 7px;" class="col-md-3" >
                     <select  id="tablelist"  onchange="redirect_url()" class="selectpicker" data-live-search="true">
-                        <option data-tokens="area" value="${pageContext.request.contextPath}/AreaBase/listBases.html" onclick="redirect_url(this.value)">AREA BASE</option>
-                        <option data-tokens="area branch" value="${pageContext.request.contextPath}/AreaBranchMapping/listMappings.html" onclick="redirect_url(this.value)">AREA BRANCH MAPPING</option>
-                        <option data-tokens="branch" value="${pageContext.request.contextPath}/BranchBase/listBases.html" onclick="redirect_url(this.value)">BRANCH BASE</option>
-                        <option data-tokens="document" value="${pageContext.request.contextPath}/DocumetTypeBase/listBases.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
-                        <option selected data-tokens="pick list values" value="${pageContext.request.contextPath}/PickListValues/listPickList.html" onclick="redirect_url(this.value)">PICKLIST VALUES</option>
+                        <option data-tokens="Area" value="${pageContext.request.contextPath}/AreaBase/listBases.html" onclick="redirect_url(this.value)">AREA BASE</option>
+                        <option data-tokens="Area Branch" value="${pageContext.request.contextPath}/AreaBranchMapping/listMappings.html" onclick="redirect_url(this.value)">AREA BRANCH MAPPING</option>
+                        <option data-tokens="Branch" value="${pageContext.request.contextPath}/BranchBase/listBases.html" onclick="redirect_url(this.value)">BRANCH BASE</option>
+                        <option data-tokens="Cb Sequence" value="${pageContext.request.contextPath}/CbSequenceNumber/listSequenceNumbers.html" onclick="redirect_url(this.value)">CB SEQUENCE NUMBER</option>
+                        <option data-tokens="Collateral Base" value="${pageContext.request.contextPath}/CollateralBase/listBases.html" onclick="redirect_url(this.value)">COLLATERAL BASE</option>
+                        <option data-tokens="Document" value="${pageContext.request.contextPath}/DocumetTypeBase/listBases.html" onclick="redirect_url(this.value)">DOCUMENT TYPE BASE</option>
+                        <option data-tokens="Index Id" value="${pageContext.request.contextPath}/IndexIdBase/listBases.html" onclick="redirect_url(this.value)">INDEX ID BASE</option>
+                        <option data-tokens="Legal Entity " value="${pageContext.request.contextPath}/LegalEntityBase/listBases.html" onclick="redirect_url(this.value)">LEGAL ENTITY BASE</option>
+                        <option data-tokens="Loan Interest Rate Variance" value="${pageContext.request.contextPath}/LoanInterestRateVariance/listVariances.html" onclick="redirect_url(this.value)">LOAN INTEREST RATE VARIENCE</option>
+                        <option data-tokens="Loan Product Index Id " value="${pageContext.request.contextPath}/LoanProductIndexIdMapping/listMappings.html" onclick="redirect_url(this.value)">LOAN PRODUCT INDEX ID MAPPING</option>
+                        <option data-tokens="Loan Purposes" value="${pageContext.request.contextPath}/LoanPurposes/listPurposes.html" onclick="redirect_url(this.value)">LOAN PURPOSES</option>
+                        <option data-tokens="pick list values" value="${pageContext.request.contextPath}/PickListValues/listPickList.html" onclick="redirect_url(this.value)">PICKLIST VALUES</option>
                         <option data-tokens="product" value="${pageContext.request.contextPath}/ProductBase/listBases.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>        
                         <option data-tokens="product category" value="${pageContext.request.contextPath}/ProductCategoryBase/listBases.html" onclick="redirect_url(this.value)">PRODUCT CATEGORY BASE</option>  
                         <option data-tokens="product document checklist" value="${pageContext.request.contextPath}/ProductDocumentChecklistMapping/listMappings.html" onclick="redirect_url(this.value)">PRODUCT BASE</option>        

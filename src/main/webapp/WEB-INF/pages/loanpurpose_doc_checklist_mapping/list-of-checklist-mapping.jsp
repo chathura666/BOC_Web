@@ -82,7 +82,10 @@
             .modal-backdrop.in {
                 opacity: 0.5;
             }
+
+
         </style>
+
     </head>
     <body>
         <nav class="navbar navbar-default" style="margin-bottom: 0px;">
@@ -139,12 +142,14 @@
                     <thead>
                         <tr>
                             <div style="float:right">
-                                <a href="${pageContext.request.contextPath}/AreaBranchMapping/addMapping.html" class="btn btn-success" role="button" data-toggle="modal" data-target="#myModal" style="width:110px;margin-bottom: 5px">+ Add New</a>
+                                <a href="${pageContext.request.contextPath}/LoanPurposesDocumentChecklistMapping/addMapping.html" class="btn btn-success" role="button" data-toggle="modal" data-target="#myModal" style="width:110px;margin-bottom: 5px">+ Add New</a>
                             </div>
                             <div>
-                                <td style="width: 6%;text-align: center">AREA_BR_ID</td>
-                                <td>BRANCH NAME / BID</td>
-                                <td>AREA NAME / AID</td>
+                                <td>PRPID</td>
+                                <td>PURPOSE_ID</td>
+                                <td>DOCUMENT_ID</td>
+                                <td>SCAN REQIURED</td>
+                                <td>MANDATORY</td>
                                 <td  style="width: 5%;">EDIT</td>
                                 <td  style="width: 5%;">DELETE</td>
                             </div>
@@ -152,17 +157,20 @@
                     </thead>
 
                     <tbody>
-                        <c:forEach var="abmap" items="${abmaps}">
+                        <c:forEach var="map" items="${maps}">
                             <tr>
-                                <td style="width: 6%;text-align: center">${abmap.areaBrId}</td>
-                                <td>${abmap.bid.branchName} (${abmap.bid.bid})</td>
-                                <td>${abmap.aid.areaName} (${abmap.aid.aid})</td>
-                                <td style="width: 5%;"><p data-placement="top" title="Edit"><button class="btn btn-primary btn-s" data-title="Edit" data-toggle="modal"  style="width:60px"  data-target="#edtModalcnfm_${abmap.areaBrId}">Edit</button></p></td>
-                                <td style="width: 5%;"><p data-placement="top" id="deletebtn"  title="Delete"><button class="btn btn-warning btn-s" data-title="Delete"  style="width:60px" data-toggle="modal" data-target="#dltModalcnfm_${abmap.areaBrId}">Delete</button></p></td>
+                                <td>${map.prpid}</td>
+                                <td>${map.purposeId.purposeId} (${map.purposeId.purposeId})</td>
+                                <td>${map.documentId.documentId} (${map.documentId.documentId})</td>
+                                <td>${map.scanRequired}</td>
+                                <td>${map.mandatory}</td>
+
+                                <td style="width: 5%;"><p data-placement="top" title="Edit"><button class="btn btn-primary btn-s" data-title="Edit" data-toggle="modal"  style="width:60px"  data-target="#edtModalcnfm_${map.prpid}">Edit</button></p></td>
+                                <td style="width: 5%;"><p data-placement="top" id="deletebtn"  title="Delete"><button class="btn btn-warning btn-s" data-title="Delete"  style="width:60px" data-toggle="modal" data-target="#dltModalcnfm_${map.prpid}">Delete</button></p></td>
 
 
                             </tr>
-                            <div id="dltModalcnfm_${abmap.areaBrId}" class="modal">
+                            <div id="dltModalcnfm_${map.prpid}" class="modal">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -174,15 +182,14 @@
                                             <p>Are you sure you want to delete this? </p>
                                         </div>
                                         <div class="modal-footer">
-
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <a class="btn btn-warning" href="${pageContext.request.contextPath}/AreaBranchMapping/deleteMapping/${abmap.areaBrId}.html" title="Delete"><i class="fa fa-trash-o"></i>Delete</a>
+                                            <a class="btn btn-warning" href="${pageContext.request.contextPath}/ProductDocumentChecklistMapping/deleteMapping/${map.prpid}.html" title="Delete"><i class="fa fa-trash-o"></i>Delete</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>  
 
-                            <div id="edtModalcnfm_${abmap.areaBrId}" class="modal">
+                            <div id="edtModalcnfm_${map.prpid}" class="modal">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -196,7 +203,7 @@
                                         <div class="modal-footer">
 
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <a  href="${pageContext.request.contextPath}/AreaBranchMapping/editMapping/${abmap.areaBrId}.html" data-toggle="modal" data-dismiss="modal" class="btn btn-warning" data-target="#myModal" ><i class="fa fa-trash-o"></i>Edit</a>
+                                            <a  href="${pageContext.request.contextPath}/ProductDocumentChecklistMapping/editMapping/${map.prpid}.html" data-toggle="modal" data-dismiss="modal" class="btn btn-warning" data-target="#myModal" ><i class="fa fa-trash-o"></i>Edit</a>
                                         </div>
                                     </div>
                                 </div>

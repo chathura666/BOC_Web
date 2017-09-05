@@ -66,7 +66,7 @@
                             <div class="form-group">
                                 <label  class="col-sm-3 control-label">DEPT FLAG:</label>
                                 <div class="col-sm-4">
-                                    <form:input type="text" class="form-control" path="deleteflag"/>
+                                    <form:input type="text" class="form-control" path="deptFlag"/>
                                 </div>
                             </div>
 
